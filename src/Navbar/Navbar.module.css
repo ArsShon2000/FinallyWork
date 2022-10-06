@@ -1,0 +1,100 @@
+.nav {
+  /* position: relative; */
+    grid-area: navbar; 
+    display: grid;  
+    grid-template-areas:
+    ". . . . . . ."
+    "np na nw nb nl no nv";
+    width: auto;
+    text-align: center;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  
+
+    /* justify-self: space-around; */
+    background-color: rgb(92, 92, 92);
+    /* padding: 5px; */
+    /* margin: 10px; */
+    /* overflow-y: auto, */
+  }
+
+  .button_np {
+    display: grid;  
+    grid-area: np;
+  }
+  .button_na {
+    display: grid;  
+    grid-area: na;
+  }
+  .button_nw {
+    display: grid;  
+    grid-area: nw;
+  }
+  .button_nb {
+    
+    display: grid;  
+    grid-area: nb;
+  }
+  .button_nl {
+    display: grid;  
+    grid-area: nl;
+  }
+  .button_no {
+    display: grid;  
+    grid-area: no;
+  }
+  .button_nv {
+    display: grid;  
+    grid-area: nv;
+  }
+
+
+  .nav a {
+    background: linear-gradient(rgb(184, 184, 184), rgb(112, 112, 112));
+    margin: 1px;
+    border-radius:  8px 8px
+                    1px 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color:rgb(0, 0, 0);
+    font-size: 14px;
+    padding-top: 8px;
+  }
+
+  .nav a.active {
+    color: rgb(32, 32, 32);
+    font-weight: bold;
+    background: linear-gradient(rgb(231, 231, 231), rgb(151, 151, 151));
+    /* border-radius: 3px; */
+    /* border: 1px solid #d3d3d3; */
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    /* width: 95px; */
+  }
+
+  .nav button {
+    background: linear-gradient(rgb(175, 175, 175), rgb(121, 121, 121));
+    margin: 1px;
+    border: none;
+    border-radius:  8px 8px
+                    1px 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+  }
+
+  .item button:active {
+    /* background-color: rgb(112, 112, 112); */
+  }
+
+  .item button:hover {
+    /* background-color: azure;
+    padding: 3px 8px;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1px solid #d3d3d3; */
+    /* background: #e6e6ff; */
+    /* color: white; */
+}
+
+
+ 

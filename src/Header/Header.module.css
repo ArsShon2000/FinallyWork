@@ -1,0 +1,15 @@
+.header {
+    grid-area: header;
+    background-color: rgb(92, 92, 92);
+
+  }
+
+
+  .logo img{
+    width: 290px;
+    z-index: 100;
+    position: relative;
+    /* background-color: aliceblue; */
+  }
+
+  

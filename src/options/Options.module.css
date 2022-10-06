@@ -1,0 +1,47 @@
+.options {  
+    height: fit-content;
+    padding: 5px;
+    font-size: 19px;
+    border-radius: 5px;
+  }
+
+  .item {
+    padding: 2px;
+  } 
+
+  .item a {
+    text-decoration: none;
+    color:rgb(95, 95, 95);
+  }
+
+  .item a.active {
+    color: rgb(0, 0, 0); 
+    font-size: 17px;
+    font-weight: bold;
+  }
+
+  .button {
+    border: none;
+    background-color: rgba(240, 255, 255, 0);
+    font-size: 16px;
+
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .item  button:active {
+    background-color: rgb(112, 112, 112);
+  }
+
+  .button:hover {
+    background-color: azure;
+    padding: 3px 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #d3d3d3;
+    /* background: #e6e6ff; */
+    color: white;
+}
+
+
+ 

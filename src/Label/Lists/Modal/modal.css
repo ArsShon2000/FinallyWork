@@ -1,0 +1,63 @@
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(70, 70, 70, 0.9);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    grid-template-rows:  2fr 2fr;
+    transition: 0.5s;
+    z-index: 100;
+}
+
+.modal.active{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal__content {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: rgb(205, 207, 216);
+    transform: scale(0.5);
+    transition: 0.4s all;
+    height: fit-content;
+    width: auto;
+}
+
+.modal__content.active {
+transform: scale(1);
+}
+
+.btn_add_dates {    
+    margin-left: 30%;
+    border:1;
+    box-shadow:0 0 6px rgba(0,0,0,0.3);
+    transition: .3s box-shadow;
+}
+
+.btn_add_dates:hover{
+    box-shadow:0 0 6px rgba(0,0,0,0.7);
+}
+
+.modal__content input {
+  display:block;
+  /* width:100%; */
+  margin:10px 0;
+  padding:10px;
+}
+
+.type-2 {
+    /* background-color: #fafafa; */
+    border:0;
+    box-shadow:0 0 4px rgba(0,0,0,0.3);
+    transition: .3s box-shadow;
+  }
+  .type-2:hover {
+    box-shadow:0 0 6px rgba(0,0,0,0.7);
+  }

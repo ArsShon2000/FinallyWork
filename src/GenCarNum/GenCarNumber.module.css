@@ -1,0 +1,114 @@
+.lab {
+  grid-area: content;
+    overflow:hidden;
+    /* height: 915px; */
+    display: grid;
+    grid-template-areas:
+    "cameras video"
+    "cameras video";
+  grid-template-rows: 1fr;
+  grid-template-columns: 2fr 8fr;
+  color: #000000 !important;
+  text-shadow: 1px 0 1px #000,
+    0 1px 1px #000,
+    -1px 0 1px #000,
+    0 -1px 1px #000;
+}
+
+.imgArea { 
+  padding: 10px 12px
+              0px 0px;
+  grid-area: video;
+  height: 850px;
+  display: grid;
+  grid-template-areas:
+  "video1 video2"
+  "video3 video4";
+grid-template-rows: 1fr 1fr;
+grid-template-columns: 1fr 1fr;
+
+}
+
+.img1 {
+  display: grid;
+  align-items: end;
+  justify-content: end;
+grid-area: video1;
+grid-template-areas:
+  ". ."
+  ". img";
+}
+
+.img2 {
+  display: grid;
+  align-items: end;
+  justify-content: end;
+grid-area: video2;
+grid-template-areas:
+  ". ."
+  ". img";
+}
+
+.img3 {
+  display: grid;
+  align-items: end;
+  justify-content: end;
+grid-area: video3;
+grid-template-areas:
+  ". ."
+  ". img";
+}
+
+.img4 {
+  display: grid;
+  align-items: end;
+  justify-content: end;
+grid-area: video4;
+grid-template-areas:
+  ". ."
+  ". img";
+}
+
+
+.lab img {
+  width: 300px;
+  position: relative;
+}
+
+.image1 {
+  cursor: pointer;
+  grid-area: img;
+  position: relative;
+  display: grid;
+  
+}
+
+.longText1{
+  cursor: pointer;
+  grid-area: img;
+  position: relative;
+  font-size: 56px;
+  left: 20px;
+  top: 2px;
+  text-align: center;
+  width: 201px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.shortText1{
+  cursor: pointer;
+  grid-area: img;
+  position: relative;
+  font-size: 36px;
+  left: 230px;
+  top: -18px;
+  text-align: center;
+  width: 59px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none; 
+  user-select: none;
+}

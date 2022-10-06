@@ -1,0 +1,90 @@
+.vid {
+    grid-area: content;
+    padding: 10px 0px
+              0px 0px;
+    overflow:hidden;
+    height: 896px;
+    display: grid;
+    grid-template-areas:
+    "cameras video"
+    "cameras video";
+  grid-template-rows: 1fr 30px;
+  grid-template-columns: 2fr 8fr;
+  }
+
+  .vidMulti {
+    
+    grid-area: content;
+    padding: 10px 0px
+              0px 0px;
+    overflow:hidden;
+    height: 896px;
+    display: grid;
+    grid-template-areas:
+    "cameras video"
+    "cameras video";
+  grid-template-rows: 1fr 30px;
+  grid-template-columns: 2fr 8fr;
+  }
+  
+/* ====================================   VIDEO   ================================== */
+
+.videoArea { 
+  border: 3px solid rgb(82, 82, 82);
+  grid-area: video;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+}
+
+
+/* Скрывает контроллеры */
+
+/* video::-webkit-media-controls {
+  display: -webkit-box;
+} */
+
+/* ====================================   STREAM LIST   ================================== */
+
+.cameras {
+  margin: 0px 10px
+              0px 0px;
+  border: 2px solid #333333;
+  color:aliceblue;
+  background-color: #1f2129;   
+  overflow-y: scroll;         
+  grid-area: cameras;
+  display: grid;
+    grid-template-areas:
+    "cameraTitle"
+    "camerasList";
+  grid-template-rows: 30px 1fr;
+  grid-template-columns: 1fr;
+  position: relative;
+
+}
+
+.cameraTitle{
+  padding: 2px;
+  grid-area: cameraTitle;
+  border-bottom: 2px solid #d3d3d3;
+}
+
+.camerasList {
+  padding: 2px;
+  font-size: 13px;
+  grid-area: camerasList;
+}
+
+.cameras img {
+  color: aliceblue;
+  width: 20px;
+  cursor: pointer;
+}
+
+.cross img{
+  width: 15px;
+}
+
+
+

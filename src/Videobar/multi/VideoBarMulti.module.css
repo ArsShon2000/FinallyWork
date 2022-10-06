@@ -1,0 +1,116 @@
+
+  .vidMulti {
+    
+    overflow:hidden;
+    height: 850px;
+    display: grid;
+    grid-template-areas:
+    "video1 video2"
+    "video3 video4"
+    ". tools";
+  grid-template-rows: 1fr 1fr 30px;
+  grid-template-columns: 1fr 1fr;
+  }
+  
+
+.video1{
+  grid-area: video1;
+  height:425px;
+  width:756px;
+  overflow:hidden;
+  position: relative;
+}
+
+.video2{
+  grid-area: video2;
+  height:425px;
+  width:756px;
+  overflow:hidden;
+  position: relative;
+}
+
+.video3{
+  grid-area: video3;
+  height:425px;
+  width:756px;
+  overflow:hidden;
+  position: relative;
+}
+
+.video4{
+  grid-area: video4;
+  height:425px;
+  width:756px;
+  overflow:hidden;
+  position: relative;
+}
+
+
+video::-webkit-media-controls {
+  display: -webkit-box;
+}
+
+/* =============================== НАЗЫВАНИЕ КАРМЕРЫ ================================== */
+
+
+.vidMulti span {
+  color: aliceblue;
+  margin-left: 1%;
+  position: relative;
+}
+
+.vidMulti img {
+  width: 40px;
+  height: 40px;
+  margin-left: 92%;
+  margin-top: 1%;
+  cursor: pointer;
+}
+
+
+/* ====================================   TOOLS   ================================== */
+
+.tools {
+  margin: 0px 0px;
+  grid-area: tools;
+  background-color: rgb(82, 82, 82);
+  display: grid;
+  grid-template-areas:
+    "FullWindowStream fullAllStreams fullOneStream select voice";
+  grid-template-rows: 1fr ;
+  grid-template-columns: 45px 45px 45px 45px 45px  1fr;
+}
+
+.tools img{
+  position: relative;
+  z-index: 1;
+  padding: 4px;
+  width: 35px;
+  cursor: pointer;
+}
+
+.fullAllStreams {
+  grid-area: fullAllStreams;
+}
+
+.FullWindowStream {
+  grid-area: FullWindowStream;
+ }
+
+.select {
+  padding: 1px;
+  grid-area: select;
+}
+
+.select select {
+  margin: 3px;
+  cursor: pointer;
+  width: 20px;
+  position: relative;
+  height: 35px;
+}
+/* 
+.microphone {
+  grid-area: voice;
+} */
+

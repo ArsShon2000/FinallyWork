@@ -1,0 +1,90 @@
+.name {
+  display: grid;
+  grid-template-areas:
+  "n d";
+  grid-template-rows: 23px 0px 0px;
+}
+
+.divName {
+  /* grid-area: n; */
+  padding: 0px;
+  position: relative;
+}
+
+.divNumbers{
+  z-index: 101;
+  display: flex;
+  grid-area: d;
+  /* position: absolute; */
+}
+
+
+.name a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+.maintable{
+  background-color: rgb(0, 0, 0);
+}
+
+.maintableCN{
+  margin: 0px;
+}
+
+.table {
+  width: 190px;
+  border-collapse: collapse;
+  text-align: left;
+
+}
+
+.tableCN {
+  width: 170px;
+  text-align: left;
+
+}
+
+TH {
+  font-weight: normal;
+}
+
+.th {
+  background: rgb(255, 255, 255);
+
+}
+
+.th button{
+  background-color: rgb(255, 255, 255);
+  width: 171px;
+  margin-bottom: -29px;
+  margin-top: -25px;
+  margin-right: -22px;
+padding: 6px;
+cursor: pointer;
+height: 27px;
+  /* padding-top: 5px; */
+}
+
+.th button:hover{
+  background: rgb(219, 219, 219);
+}
+
+.th button:active{
+  background: rgb(148, 148, 148);
+}
+.thCN {
+  background: rgb(255, 255, 255);
+  
+  padding-left: 3px;
+}
+
+th:hover {
+  background: rgb(219, 219, 219);
+}
+
+th:active {
+  /* background: rgb(148, 148, 148); */
+}

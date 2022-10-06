@@ -1,0 +1,67 @@
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(70, 70, 70, 0.9);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;/*  Важно */
+    pointer-events: all;
+    z-index: 0;
+
+}
+
+  .loginForm {
+  display: grid;
+  grid-area: content;
+  height: fit-content;
+  width: auto;
+  /* padding: 20px ; */
+  border-radius: 12px;
+  background: linear-gradient(rgb(231, 231, 231), rgb(207, 207, 207), rgb(143, 143, 143));
+  transform: scale(1);
+  height: fit-content;
+  grid-template-areas:
+    "."
+    "logo"
+    "login"
+    ".";
+  grid-template-rows: 30px 65px 1fr 30px;
+  grid-template-columns: 1fr;
+  }
+
+  .logo {
+    grid-area: logo;
+    width: 480px;
+    background-color: rgb(92, 92, 92);
+    
+  }
+
+  .logo img{
+    width: 345px;
+  }
+
+  .login {
+    margin: 20px;
+    grid-area: login;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+  .login input {
+    margin: 5px;
+    padding: 10px;
+  }
+  
+  .type-2 {
+      box-shadow:0 0 4px rgba(0,0,0,0.3);
+      transition: .3s box-shadow;
+    }
+    .type-2:hover {
+      box-shadow:0 0 6px rgba(0,0,0,0.7);
+    }

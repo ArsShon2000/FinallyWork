@@ -1,0 +1,30 @@
+.vidSingle {
+    overflow:hidden;
+    height: 880px;
+    display: grid;
+    grid-template-areas:
+    "video";
+  grid-template-rows: 1fr;
+  grid-template-columns: 8fr;
+  }
+  
+
+
+.video{
+  height:880px;
+  width:1600px;
+  overflow:hidden;
+}
+
+
+
+video::-webkit-media-controls {
+  display: -webkit-box;
+}
+
+/* =============================== НАЗЫВАНИЕ КАРМЕРЫ ================================== */
+.vidSingle span {
+  color: aliceblue;
+  position: absolute;
+  margin-left: 1%;
+}

@@ -1,0 +1,63 @@
+.modalMultiVideoBar {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(70, 70, 70);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    grid-template-columns: 4.5% 1fr 4%;
+    grid-template-areas: ". allCameras .";
+    transition: 0.5s;
+    z-index: 100;
+}
+
+.modalMultiVideoBar.active{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modalMultiVideoBar__content {
+    grid-area: allCameras;
+    margin: auto;
+    display: flexbox;
+    align-items: center;
+
+    justify-content: center;
+    background-color: rgb(70, 70, 70);
+    transform: scale(0.5);
+    transition: 0.4s all;
+    height: fit-content;
+    width: auto;
+}
+
+.modalMultiVideoBar__content.active {
+transform: scale(1);
+}
+
+
+.modalMultiVideoBar__content video{
+    height:490px;
+    width:870px;
+  }
+
+  .modalMultiVideoBar img {
+    position: absolute;
+    pointer-events: all;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+    margin-left: 1%;
+  }
+
+  .modalMultiVideoBar__content img {
+    width: 40px;
+    height: 40px;
+    margin-left: 92%;
+    margin-top: 1%;
+    cursor: pointer;
+  }
