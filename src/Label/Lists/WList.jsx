@@ -34,6 +34,8 @@ const WList = (props) => {
         })
     }, []);
 
+    instance.get(`/glob`)
+
     // let idName = whiteNameList2.length + 1
     let onAddName = () => {
         console.log(7 < title.length)

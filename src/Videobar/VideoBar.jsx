@@ -22,17 +22,23 @@ const instance = axios.create({
 })
 
 
-const VideoBar = (props) => {
+    const VideoBar = (props) => {
+    let Cameras = props.Cameras.videoStreams
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    
 
     //====================== camera ==========================
     let [editModeCamera1, setEditModeCamera1] = useState(false)
-    let [nameCamera1, setNameCamera1] = useState("sample1")
+    let [nameCamera1, setNameCamera1] = useState([])
     let [editModeCamera2, setEditModeCamera2] = useState(false)
     let [nameCamera2, setNameCamera2] = useState("sample2")
     let [editModeCamera3, setEditModeCamera3] = useState(false)
     let [nameCamera3, setNameCamera3] = useState("sample3")
     let [editModeCamera4, setEditModeCamera4] = useState(false)
     let [nameCamera4, setNameCamera4] = useState("sample4")
+
+    console.log(nameCamera1)
     //====================== camera ==========================
 
     //====================== cameraStream ==========================
@@ -49,16 +55,7 @@ const VideoBar = (props) => {
     let [editModeCameraStatus4, setEditModeCameraStatus4] = useState(false)
     //====================== cameraStatus ==========================
 
-    let [Cameras, setCameras] = useState([])
 
-    useEffect ( () => {
-        instance.get(`/Cameras`).then((res) => {
-            setCameras(res.data.videoStreams);
-        })
-        // window.location.reload()
-    }, [])
-
-    console.log(Cameras)
 
     //====================== cameraStatusEdit ==========================
     // const onCameraStatusEdit1 = () => {
@@ -82,7 +79,6 @@ const VideoBar = (props) => {
     //====================== cameraStatusEdit ==========================
 
     //====================== cam Edit ==========================
-debugger
     let onCameraStatusEdit1 = (id_name) => {
         console.log(id_name)
         switch (Cameras[id_name - 1].editMode) {
@@ -115,8 +111,9 @@ debugger
         setEditModeCamera1(true)  //едит мод вкл
     }
     
-    const deActivateEditModeCamera = () => {
+    const deActivateEditModeCamera = (e) => {
         setEditModeCamera1(false)   //едит мод выкл
+        
     }
     const onNameCamera1Change = (e) => {
         setNameCamera1(e.currentTarget.value)       //едит называение камеры
@@ -154,9 +151,7 @@ debugger
     //  ======================== Name editer of cameras ======================== 
 
 
-
-
-
+debugger
 
     return (<div className={Cameras.length > 1 ? styleVideo.vidMulti : styleVideo.vid}>
         <div className={styleVideo.cameras}>
@@ -165,34 +160,39 @@ debugger
                 {/*  ======================== Список камер ========================  */}
                 <div>
                     <img src={liveStreaming} alt="liveStreaming" />
-                    {!editModeCamera1 && <span onDoubleClick={activateEditModeCamera}> {nameCamera1} </span>}
+                    {!editModeCamera1 && <span onDoubleClick={activateEditModeCamera}> {Cameras[0].nameCamera} </span>}
                     {editModeCamera1 && <input onChange={onNameCamera1Change} autoFocus={true} onBlur={deActivateEditModeCamera} />}
                     <img src={screenshot} alt="cameraStatusOn" />
-                    <img className={styleVideo.cameraStatusOn} src={(editModeCameraStatus1 === false ? cameraStatusOn : cameraStatusOff)} alt="cameraStatusOn"  // глазок
+                    <img className={styleVideo.cameraStatusOn} src={(Cameras[0].editMode == "true" ? cameraStatusOff : cameraStatusOn )} 
+                        alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(1)} />
                 </div>
                 <div>
                     <img src={liveStreaming} alt="liveStreaming" />
-                    {!editModeCamera2 && <span onDoubleClick={ activateEditModeCamera2}> {nameCamera2} </span>}
+                    {!editModeCamera2 && <span onDoubleClick={ activateEditModeCamera2}> {Cameras[1].nameCamera} </span>}
                     {editModeCamera2 && <input onChange={onNameCamera2Change} autoFocus={true} onBlur={deActivateEditModeCamera2} />}
                     <img src={screenshot} alt="cameraStatusOn" />
-                    <img className={styleVideo.cameraStatusOn} src={cameraStatusOn} alt="cameraStatusOn"  // глазок
+                    <img className={styleVideo.cameraStatusOn} src={(Cameras[1].editMode == "true" ? cameraStatusOff : cameraStatusOn )} 
+                        alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(2)}/>
                 </div>
                 <div>
                     <img src={liveStreaming} alt="liveStreaming" />
-                    {!editModeCamera3 && <span onDoubleClick={ activateEditModeCamera3}> {nameCamera3} </span>}
+                    {!editModeCamera3 && <span onDoubleClick={ activateEditModeCamera3}> {Cameras[2].nameCamera} </span>}
                     {editModeCamera3 && <input onChange={onNameCamera3Change} autoFocus={true} onBlur={deActivateEditModeCamera3} />}
                     <img src={screenshot} alt="cameraStatusOn" />
-                    <img className={styleVideo.cameraStatusOn} src={cameraStatusOn} alt="cameraStatusOn"  // глазок
+                    <img className={styleVideo.cameraStatusOn} src={(Cameras[2].editMode == "true" ? cameraStatusOff : cameraStatusOn )} 
+                    
+                        alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(3)}/>
                 </div>
                 <div>
                     <img src={liveStreaming} alt="liveStreaming" />
-                    {!editModeCamera4 && <span onDoubleClick={ activateEditModeCamera4}> {nameCamera4} </span>}
+                    {!editModeCamera4 && <span onDoubleClick={ activateEditModeCamera4}> {Cameras[3].nameCamera} </span>}
                     {editModeCamera4 && <input onChange={onNameCamera4Change} autoFocus={true} onBlur={deActivateEditModeCamera4} />}
                     <img src={screenshot} alt="cameraStatusOn" />
-                    <img className={styleVideo.cameraStatusOn} src={cameraStatusOn} alt="cameraStatusOn"  // глазок
+                    <img className={styleVideo.cameraStatusOn} src={(Cameras[3].editMode == "true" ? cameraStatusOff : cameraStatusOn )} 
+                        alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(4)}/>
                 </div>
             </div>

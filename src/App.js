@@ -25,10 +25,28 @@ const instance = axios.create({
 
 let App = (props) => {
 
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  let [Cameras, setCameras] = useState([])
   const [loginList, setLoginList] = useState([]);
-  let bool = loginList.length
+
+
+  useEffect ( () => {
+    fetch(`http://127.0.0.1:5000/Cameras`)
+    .then(res => res.json())
+    .then((result) => {
+        setIsLoaded(true);
+          setCameras(result);
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      })
+  }, [])
+
 
   
+  let bool = loginList.length
     useEffect(() => {
       if(bool < 1){
       instance.get(`/login`).then((res) => {
@@ -41,35 +59,44 @@ const refresh = () =>{
   return 
 }
   
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <Header />
-        <Routes>
-        <Route path='/camera/' element={<VideoBar />} />
-        <Route path='/' element={<VideoBar />} />
-        </Routes>
-        {/* <VideoBar /> */}
-        {bool !== 1 ? <Login /> : 
-        <Navbar />  }
-        <div className="App-wrapper-content ">
-        {bool !== 1 ? refresh() : <Routes>
-            {/* <Route path='/camera/' element={<VideoBar />} /> */}
-            <Route path='/camera/' element={<GenCarNumber />} />
-            <Route path='/' element={<GenCarNumber />} />
-            <Route path='/archive/' element={<Archive />} />
-            <Route path='/wlist/'  element={<WList />} />
-            <Route path='/blist/' element={<BList />} />
-            <Route path='/log/' element={<Log />} />
-            <Route path='/options' element={<Options />} />
-            {/* <Route path='/login' element={<Login />} /> */}
-          </Routes>
-          }
-        </div>
 
-      </div>
-    </BrowserRouter>
+if (error) {
+  return <div>Error: {error.message}</div>;
+} else if (!isLoaded) {
+  return <div>Loading...</div>;
+} else {
+  return (
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <Routes>
+          <Route path='/camera/' element={<VideoBar Cameras = {Cameras} />} />
+          <Route path='/' element={<VideoBar Cameras = {Cameras} />} />
+          </Routes>
+          {/* <VideoBar /> */}
+          {bool !== 1 ? <Login /> : 
+          <Navbar />  }
+          <div className="App-wrapper-content ">
+          {bool !== 1 ? refresh() : <Routes>
+              {/* <Route path='/camera/' element={<VideoBar />} /> */}
+              <Route path='/camera/' element={<GenCarNumber />} />
+              <Route path='/' element={<GenCarNumber />} />
+              <Route path='/archive/' element={<Archive />} />
+              <Route path='/wlist/'  element={<WList />} />
+              <Route path='/blist/' element={<BList />} />
+              <Route path='/log/' element={<Log />} />
+              <Route path='/options' element={<Options />} />
+              {/* <Route path='/login' element={<Login />} /> */}
+            </Routes>
+            }
+          </div>
+  
+        </div>
+      </BrowserRouter>
   );
 }
+}
+
+  
 
 export default App;

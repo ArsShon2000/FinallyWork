@@ -1,2 +1,138 @@
 .lab {
+    grid-area: content;
+    padding: 10px 0px
+                0px 0px;
+    overflow:hidden;
+    height: 896px;
+    display: grid;
+    grid-template-areas:
+    "records video";
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 4fr;
 }
+
+  /* ====================================   TOOLS   ================================== */
+
+ 
+
+.videoArea {
+    border: 3px solid rgb(82, 82, 82);
+    grid-area: video;
+    display: grid;
+    grid-template-areas:
+    "video"
+    "tools";
+    grid-template-rows: 1fr 39px;
+    grid-template-columns: 1fr;
+  }
+ .videoArea span {
+    color: aliceblue;
+    position: absolute;
+    margin-left: 1%;
+  }
+ .videoStream{
+    /* position: absolute; */
+    grid-area: video;
+    height:852px;
+    width:1512px;
+  }
+
+  .progressBar {
+    grid-area: video;
+    width: 100%;
+    display: grid;
+    align-items: end;
+  } 
+  .progressBar progress{
+    width: 100%;
+  }
+
+  /* ====================================   records   ================================== */
+
+  .records {
+    margin: 0px 10px
+                0px 0px;
+    border: 2px solid #333333;
+    color:aliceblue;
+    background-color: #1f2129;   
+    overflow-y: scroll;         
+    grid-area: records;
+    display: grid;
+      grid-template-areas:
+      "recordsTitle"
+      "recordsList";
+    grid-template-rows: 30px 1fr;
+    grid-template-columns: 1fr;
+    position: relative;
+  }
+ 
+  .recordsTitle{
+    padding: 2px;
+    grid-area: recordsTitle;
+    border-bottom: 2px solid #d3d3d3;
+  }
+  
+  .recordsList {
+    padding: 2px;
+    font-size: 13px;
+    grid-area: recordsList;
+  }
+
+  .records span {
+    cursor: pointer;
+  }
+
+
+  /* ====================================   TOOLS   ================================== */
+
+.tools {
+    margin: 0px 0px;
+    grid-area: tools;
+    background-color: #525252;
+    display: grid;
+    grid-template-areas:
+      "stop back Play forward speed scissors";
+    grid-template-rows: 1fr ;
+    grid-template-columns: 45px 45px 45px 45px 30px  1fr;
+  }
+  
+  .tools img{
+    position: relative;
+    z-index: 1;
+    padding: 4px;
+    width: 35px;
+    cursor: pointer;
+  }
+  
+  .back {
+    grid-area: back;
+  }
+
+  .stop {
+    grid-area: stop;
+  }
+  
+  .Play {
+    grid-area: Play;
+  }
+  
+  .forward {
+    grid-area: forward;
+   }
+  
+  .speed {
+    padding: 1px;
+    grid-area: speed;
+  }
+  
+  .speed select {
+    margin: 3px;
+    cursor: pointer;
+    width: 20px;
+    position: relative;
+    height: 35px;
+  }
+
+  .scissors {
+    grid-area: scissors;
+  }

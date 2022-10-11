@@ -194,8 +194,7 @@ const VideoBarMulti = (props) => {
         }else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 3  ) {
              (potok4 = true)
         }
-    }
-    
+    }    
 
     
     return (<div>
