@@ -136,3 +136,8 @@
   .scissors {
     grid-area: scissors;
   }
+
+  .react-calendar {
+      background: #00e8f8;
+  }
+  
