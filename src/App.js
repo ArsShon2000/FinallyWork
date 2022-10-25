@@ -48,10 +48,11 @@ let App = (props) => {
   
   let bool = loginList.length
     useEffect(() => {
-      if(bool < 1){
+      if(bool != 1){
       instance.get(`/login`).then((res) => {
           setLoginList(res.data.login);
       })
+      console.log("From login")
     }
   }, []);
 
@@ -65,6 +66,7 @@ if (error) {
 } else if (!isLoaded) {
   return <div>Loading...</div>;
 } else {
+  
   return (
       <BrowserRouter>
         <div className="App">

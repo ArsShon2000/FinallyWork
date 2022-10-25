@@ -38,15 +38,30 @@
   }
 
   .progressBar {
+    position: relative;
     grid-area: video;
     width: 100%;
     display: grid;
     align-items: end;
+    justify-items: center;
   } 
-  .progressBar progress{
-    width: 100%;
+  .progressBar span {
+    user-select: none;
+  }
+  .demo{
+    justify-self: start;
   }
 
+  .progressBar progress{
+    width: 89%;
+    cursor: pointer;
+  }
+  
+  .videoEnd{
+    justify-self: end;
+    margin-right: 1%;
+  }
+    
   /* ====================================   records   ================================== */
 
   .records {
@@ -81,6 +96,7 @@
   .records span {
     cursor: pointer;
   }
+  
 
 
   /* ====================================   TOOLS   ================================== */

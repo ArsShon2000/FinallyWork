@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import log from "./Login.module.css"
 import logo from "../Header/logo.png" 
+import App from './../App';
 
 
 
@@ -21,13 +22,16 @@ const Login = (props) => {
 // проверка на логинизацию
 
     let onLogin = () => {
-        instance.post('/login', {
-            login: login,
-            password: password
-        }).then((res) => {
-            setLoginList([...loginList, { login: login, password: password}])                
-            console.log(res + "name is added in loginList");
-        })
+        if(loginList.length === 0){
+            instance.post('/login', {
+                login: login,
+                password: password
+            }).then((res) => {
+                setLoginList([...loginList, { login: login, password: password}])                
+                console.log(res + "name is added in loginList");
+            })
+            console.log("From login")
+        }
     }
 
     return (
@@ -43,7 +47,7 @@ const Login = (props) => {
         </div>
         <div>
             <input className="type-2"
-            type="text"
+            type="password"
             value={password} onChange={(e) => setPass(e.currentTarget.value)} 
             placeholder={"Password"} />
         </div>

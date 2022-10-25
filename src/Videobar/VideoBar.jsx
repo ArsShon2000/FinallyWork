@@ -151,7 +151,6 @@ const instance = axios.create({
     //  ======================== Name editer of cameras ======================== 
 
 
-debugger
 
     return (<div className={Cameras.length > 1 ? styleVideo.vidMulti : styleVideo.vid}>
         <div className={styleVideo.cameras}>

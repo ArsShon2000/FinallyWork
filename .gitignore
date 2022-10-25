@@ -5,7 +5,13 @@
 /rtsp
 /.pnp
 .pnp.js
-
+/src/Videobar/multi/2022
+/src/Videobar/multi/video1.mp4
+/src/Videobar/single/video1.mp4
+/src/Videobar/multi/video2.mp4
+/src/Videobar/multi/video3.mp4
+/src/Videobar/multi/video4.mp4
+/src/Videobar/multi/1.mp4
 # testing
 /coverage
 

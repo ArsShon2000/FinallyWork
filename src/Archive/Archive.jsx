@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styArch from "./Archive.module.css"
 import record1 from "../Videobar/multi/video1.mp4"
 import record2 from "../Videobar/single/video1.mp4"
@@ -13,11 +13,8 @@ import stopButtonOff from "../Icons/stopOff.png"
 import scissors from "../Icons/scissors.png"
 import axios from "axios";
 import VideoList from "./videoList/VideoList";
-import "./Archive.module.css"
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import Progress from "./controls/Progress";
-import ReactPlayer from 'react-player'
 
 
 const instance = axios.create({
@@ -42,12 +39,13 @@ const Archive = (props) => {
     let [pause, setPause] = useState(true)  //пауза-плей
     let [stop, setStop] = useState(true) // стоп
     let [choiceStream, setChoiceStream] = useState(false) //сетаем поток камеры
-    let [title, setTitle] = useState(''); //установка даты
-    const [videoTime,  setVideoTime] = useState({ //прогресс бар
-        loadedSecond: 1,
-        playedSeconds: 0,
-        volume: 0
-    })
+    let [title, setTitle] = useState('') //установка даты
+    let [second, setSecond] = useState(0) // секунды видео
+    let [minute, setMinute] = useState(0) // минуты видео
+    let [hour, setHour] = useState(0) // часы видео
+    let [progressTime, setProgressTime] = useState(0)
+    let [videoEnd, setVideoEnd] = useState([]) // длительность видео
+
 
 
     useEffect ( () => {
@@ -55,7 +53,6 @@ const Archive = (props) => {
         .then(res => res.json())
         .then((result) => {
         setIsLoaded(true);
-            
             setVideoListFromArchive(result.files);
             setYearMonthDay([result.setYear, result.setMonth, result.setDay]) // получаем даты установленной папки
           },
@@ -64,15 +61,6 @@ const Archive = (props) => {
         setError(error);
           })
       }, [])
-    
-
-    const {
-        volume,
-        loadedSecond,
-        playedSeconds
-    } = videoTime
-
-    const refPlayer = useRef()
    
 
 
@@ -84,7 +72,6 @@ const Archive = (props) => {
         setStop(false)
         setPause(false)
     }
-
 
     /* ====================================   play   ================================== */
     const onPlayClick = () => {
@@ -134,7 +121,6 @@ const Archive = (props) => {
     }
     // кнопкой
     document.addEventListener('keyup', function (event) {
-        console.log(event)
         if ((event.key === "ArrowRight")) {
             let video = document.querySelector("#single-video-player")
             video.currentTime += 1
@@ -165,21 +151,40 @@ const Archive = (props) => {
         }
     }
 
-    const changeRecord = () => {  
+    const changeRecord = () => {   //не работает
         let select = document.getElementById("stream_")
         let value = select.options[select.selectedIndex].value
         setChoiceStream(value)
     }
 
     /* ====================================   progressBar   ================================== */
-    const handleProgress = (e) => {
-        setVideoTime({...videoTime, ...e})
+    let Video = document.getElementById("single-video-player");
+    if(Video != null)
+    {
+        Video.ontimeupdate = () => {myFunction()};
+        const myFunction = () => {
+            setProgressTime(Video.currentTime)
+            setHour(Math.floor(Video.currentTime / 60 / 60))
+            setMinute(Math.floor(Video.currentTime/ 60) - (hour * 60))
+            setSecond(Math.floor(Video.currentTime % 60))
+
+            let hours, minutes, seconds
+            hours = Math.floor(Video.duration / 60 / 60)
+            minutes = Math.floor(Video.duration/ 60) - (hour * 60)
+            seconds = Math.floor(Video.duration % 60)
+            setVideoEnd([...videoEnd, {0: hours, 1: minutes, 2: seconds}])
+      }
     }
 
-    const handleVolume = (e) => {
-        setVideoTime({...videoTime, volume: e.target.value})
+    const progressClick = () => {
+        let PB = document.getElementById("progressBar");
+        if(PB != null){
+            let widthPB = PB.offsetWidth  // длина template video
+            let procent = (8.1 / 100) * (100 * window.event.offsetX / widthPB) //убираю разницу длины прогресбара от общей длины
+            let newTime = window.event.offsetX - ((widthPB / 100) * procent) // уточняю где был клик
+            Video.currentTime = newTime
+        }
     }
-
 
 
     const searchVideos = () => {
@@ -204,14 +209,24 @@ const Archive = (props) => {
     const onClickDay = (value, event) => {
         if (sereval == false){
             instance.post('/archiveList/byDate', {
-                year: value.getYear() + 1900,
-                month: value.getMonth() + 1,
+                year: value.getYear() + 1900, // год начинается с 122
+                month: value.getMonth() + 1, // месяц начинается с 0
                 day: value.getDate()
             }).then((res) => {
                 window.location.reload()
             })
         }
     }
+
+
+    
+
+
+
+
+    
+
+
     
 
     if (error) {
@@ -220,7 +235,6 @@ const Archive = (props) => {
         return <div>Loading...</div>;
       } else {
 
-    console.log(yearMonthDay[0])
     return (
         <div className={styArch.lab} >
             <div className={styArch.records}>
@@ -237,22 +251,22 @@ const Archive = (props) => {
                     </div>
                     <div>
                     <input 
-                    value={title} onChange={(e) => setTitle(e.currentTarget.value)}
+                    value={title} onChange={(e) => setTitle(e.currentTarget.value)} 
                     placeholder="dd.mm.yyyy"></input>
                     <button onClick={searchVideos}>Найти</button>
                     <button onClick={() => setSereval(true)}>Несколько</button>
                     </div>
 
                     <div className={styArch.calendar}>
-                        <Calendar onChange={onChange} value={dateValue}  //календарь
-                        onClickDay={(value, event) => onClickDay(value, event) }
+                        <Calendar onChange={onChange} value={dateValue}  //календарь //ддммгг передается в вэлию
+                        onClickDay={(value, event) => onClickDay(value, event) } // получаем дату в качестве аргумента
                         // formatLongDate={(locale, date) => formatDate(date, 'dd MMM YYYY')}
-                        isMultiSelection = {false}
+                        isMultiSelection = {false} // выбрать диапазон
                         />
-                        <div>Архивы с {yearMonthDay[2]}-{yearMonthDay[1]}-{yearMonthDay[0]}</div>
+                        <div>Архивы с {yearMonthDay[2]}-{yearMonthDay[1]}-{yearMonthDay[0]}</div> // день месяц год
                         {videoListFromArchive.map((w) => { // пробежка по списку
                             return (
-                                <VideoList key={w} videos = {w}/>
+                                <VideoList key={w} videos = {w}/> 
                             )
                         })}
                     </div>
@@ -264,22 +278,30 @@ const Archive = (props) => {
             <div className={styArch.videoArea}>
             
                 <video className={styArch.videoStream} autoPlay loop muted id="single-video-player"
-                ref={refPlayer}
-                volume={volume}
-                onProgress={handleProgress}
-                >
+                ontimeupdate="myFunction(this)">
                     <source src={record1} type='video/mp4' />
                 </video>
-                <div className={styArch.progressBar}>
-                    <Progress 
-                        loadedSecond={loadedSecond}
-                        playedSeconds={playedSeconds}
-                        handleVolume={handleVolume}
-                        volume={volume}
-                    />
-                    {/* <progress id="progress" max="100" value="0"  ></progress> */}
+                <div className={styArch.progressBar}>                    
+                    <progress id="progressBar" 
+                    max={videoEnd.length > 0 ?
+                        videoEnd[0][0] * 360  + videoEnd[0][1] * 60 + videoEnd[0][2] :
+                         0} value={progressTime} 
+                    onClick = {progressClick}></progress>
+                    <span className={styArch.demo}>
+                        {hour.toString().padStart(2, '0')}:
+                        {minute.toString().padStart(2, '0')}:
+                        {second.toString().padStart(2, '0')}
+                    </span>
+                    <span className={styArch.videoEnd}>
+                        {videoEnd.length > 0  ?
+                        videoEnd[0][0].toString().padStart(2, '0') +
+                        ":" + videoEnd[0][1].toString().padStart(2, '0') + 
+                        ":" + videoEnd[0][2].toString().padStart(2, '0'): "00:00:00"}
+                    </span>
+                    
+                    
                 </div>
-                 {/* ========================== видеоплеер ======================== */}
+                 {/* ========================== инструменты ======================== */}
                 <div className={styArch.tools}>
                     {stop == false ?
                         <div className={styArch.stop}>

@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;/*  Важно */
+    opacity: 1;/*  Важно */
     pointer-events: all;
     z-index: 0;
 
