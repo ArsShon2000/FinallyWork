@@ -3,7 +3,7 @@
     padding: 10px 0px
               0px 0px;
     overflow:hidden;
-    height: 896px;
+    height: 902px;
     display: grid;
     grid-template-areas:
     "cameras video"
@@ -18,7 +18,7 @@
     padding: 10px 0px
               0px 0px;
     overflow:hidden;
-    height: 896px;
+    height: 902px;
     display: grid;
     grid-template-areas:
     "cameras video"

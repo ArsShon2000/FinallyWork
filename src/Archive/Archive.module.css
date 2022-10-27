@@ -3,7 +3,7 @@
     padding: 10px 0px
                 0px 0px;
     overflow:hidden;
-    height: 896px;
+    height: 902px;
     display: grid;
     grid-template-areas:
     "records video";
@@ -22,7 +22,7 @@
     grid-template-areas:
     "video"
     "tools";
-    grid-template-rows: 1fr 39px;
+    grid-template-rows: 1fr 44px;
     grid-template-columns: 1fr;
   }
  .videoArea span {
@@ -115,7 +115,7 @@
   .tools img{
     position: relative;
     z-index: 1;
-    padding: 4px;
+    padding: 6px;
     width: 35px;
     cursor: pointer;
   }
@@ -142,7 +142,7 @@
   }
   
   .speed select {
-    margin: 3px;
+    margin: 5px;
     cursor: pointer;
     width: 20px;
     position: relative;

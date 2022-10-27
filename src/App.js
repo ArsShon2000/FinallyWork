@@ -81,12 +81,12 @@ if (error) {
           <div className="App-wrapper-content ">
           {bool !== 1 ? refresh() : <Routes>
               {/* <Route path='/camera/' element={<VideoBar />} /> */}
-              <Route path='/camera/' element={<GenCarNumber />} />
+              <Route path='/camera' element={<GenCarNumber />} />
               <Route path='/' element={<GenCarNumber />} />
-              <Route path='/archive/' element={<Archive />} />
-              <Route path='/wlist/'  element={<WList />} />
-              <Route path='/blist/' element={<BList />} />
-              <Route path='/log/' element={<Log />} />
+              <Route path='/archive' element={<Archive />} />
+              <Route path='/wlist'  element={<WList />} />
+              <Route path='/blist' element={<BList />} />
+              <Route path='/log' element={<Log />} />
               <Route path='/options' element={<Options />} />
               {/* <Route path='/login' element={<Login />} /> */}
             </Routes>

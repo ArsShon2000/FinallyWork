@@ -19,8 +19,6 @@ const Log = (props) => {
         })
     }, []);
     
-    const otstup = "====="
-    debugger
 
     return (
         <div className={stylab.lab}>

@@ -172,7 +172,9 @@ const Archive = (props) => {
             hours = Math.floor(Video.duration / 60 / 60)
             minutes = Math.floor(Video.duration/ 60) - (hour * 60)
             seconds = Math.floor(Video.duration % 60)
+            if(videoEnd.length < 1){
             setVideoEnd([...videoEnd, {0: hours, 1: minutes, 2: seconds}])
+            }
       }
     }
 
@@ -180,7 +182,7 @@ const Archive = (props) => {
         let PB = document.getElementById("progressBar");
         if(PB != null){
             let widthPB = PB.offsetWidth  // длина template video
-            let procent = (8.1 / 100) * (100 * window.event.offsetX / widthPB) //убираю разницу длины прогресбара от общей длины
+            let procent = (8.04 / 100) * (100 * window.event.offsetX / widthPB) //убираю разницу длины прогресбара от общей длины
             let newTime = window.event.offsetX - ((widthPB / 100) * procent) // уточняю где был клик
             Video.currentTime = newTime
         }
