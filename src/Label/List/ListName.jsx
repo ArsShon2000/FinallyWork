@@ -1,31 +1,26 @@
 import React from "react";
 import stylist from "./List.module.css"
 
+let count = 0;
 
 const ListName = (props) => {
-  let renderElement= () => {
-    if(props.id_name === props.wIdNAme)
-       return (<div>
-        <table  className={stylist.maintableCN}>
-          <table  className={stylist.tableCN}>
-            <tbody >
-              <tr>
-                <th className={stylist.thCN} >
-                  <span>{props.number}&nbsp;</span>
-                </th>
-              </tr>
-            </tbody>
-          </table>
-        </table>
-       </div>)
- }
 
+  let renderElement = React.useMemo(() => {
+    if (props.id_name === props.wIdNAme) {
+      console.log(count++);
+      console.log(props.number);
       return (
-        <view className="">
-            {renderElement()}
-          </view>
+        <span>&nbsp;{props.number} &nbsp;</span>
       )
-  }
-  
-  
-  export default ListName
+    }
+  }, [props.id_name]);
+
+  return (
+    <span className="">
+      {renderElement}
+    </span>
+  )
+}
+
+
+export default ListName

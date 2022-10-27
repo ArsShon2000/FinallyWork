@@ -34,7 +34,6 @@ const WList = (props) => {
         })
     }, []);
 
-    instance.get(`/glob`)
 
     // let idName = whiteNameList2.length + 1
     let onAddName = () => {
@@ -112,16 +111,14 @@ const WList = (props) => {
     let finalWhiteList = unique(namesNoSort).map((idName, sortName) => ({
         idName, sortName: names[sortName]
     }))
-
     let nameListLength = finalWhiteList.length
     
 
     
 
     return <div className={stylab.white}>
-        <div>
             <button className={stylab.open_btn} onClick={() => setModalActive(true)}>Добавить</button>
-            <button className={stylab.open_btn} onClick={() => setModalActive(true)}>Удалить</button>
+            <button className={stylab.delete_btn} onClick={() => setModalActive(true)}>Удалить</button>
 
             <Modal active={modalActive} setActive={setModalActive}>
                 <input className="type-2"
@@ -134,8 +131,23 @@ const WList = (props) => {
                     value={title} onChange={(e) => setTitle(e.currentTarget.value)}
                     placeholder="Номер машины"
                 />
+                <input className="type-2"
+                    type="text"
+                    value={title} onChange={(e) => setTitle(e.currentTarget.value)}
+                    placeholder="Должность"
+                />
+                <input className="type-2"
+                    type="text"
+                    value={title} onChange={(e) => setTitle(e.currentTarget.value)}
+                    placeholder="Номер телефона"
+                />
                 <button className="btn_add_dates" onClick={onAddName}>Добавить</button>
             </Modal>
+            <div className={stylab.search}>
+                <input className={stylab.type_2}
+                    type="text" />
+                <button className={stylab.search_btn}>Найти</button>
+            </div>
 
             <br></br>
             <br></br>
@@ -165,24 +177,35 @@ const WList = (props) => {
                 placeholder="Удалить владельца"
             />
             <button onClick={onDelName}>Удалить</button> */}
-        </div>
         <div className={stylab.names}>
-            <div style={nameListLength > 10 ? { 'height': '230px', 'width': '211px', 'overflow-y': 'scroll', 'overflow-x': 'none', 'display': 'grid' } : {}}>
+            <div className={stylab.headlines}>
+                <div className={stylab.name}>
+                    <span>&nbsp;ФИО водителя</span>
+                </div>
+                <div className={stylab.carNumber}>
+                    <span>&nbsp;Номер машины</span>
+                </div>
+                <div className={stylab.position}>
+                    <span>&nbsp;Должность</span>
+                </div>
+                <div className={stylab.telNumber}>
+                    <span>&nbsp;Номер телефона</span>
+                </div>
+            </div>
+            <div className={stylab.nameTable} style={nameListLength > 10 ? { 'height': '230px', 'width': '211px', 'overflow-y': 'scroll', 'overflow-x': 'none', 'display': 'grid' } : {}}>
                 {finalWhiteList.map((w) => {
                     return (
-                        <List determinant={determinant}
-                            names={w.sortName}
-                            id_name={w.idName}
-                            whiteList={whiteList}
-                            nameListLength={nameListLength}
+                        <List key = {w.idName}
+                            determinant={determinant} //определитель черного и белого списка
+                            names={w.sortName} 
+                            id_name={w.idName} // айди номера отсортированных водителей
+                            whiteList={whiteList} // данные из сервера
+                            nameListLength={nameListLength} // длина списка
                         />
                     )
                 })}
             </div>
-        </div>
-        <div style={nameListLength <= 10 ? { "margin-left": "200px" } : {"margin-left": "220px"}} className={stylab.numbArea}>
-        </div>
-        
+        </div>        
     </div>
 }
 

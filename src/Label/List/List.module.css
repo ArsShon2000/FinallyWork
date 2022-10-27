@@ -1,30 +1,43 @@
 .name {
   display: grid;
   grid-template-areas:
-  "n d";
-  grid-template-rows: 23px 0px 0px;
+  "name carNumber position telNumber";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .divName {
-  /* grid-area: n; */
-  padding: 0px;
+  border: 1px solid #727272;
+  grid-area: name;
+  background-color: rgb(255, 255, 255);
   position: relative;
 }
 
 .divNumbers{
-  z-index: 101;
-  display: flex;
-  grid-area: d;
+  border: 1px solid #727272;
+  grid-area: carNumber;
+  background-color: rgb(255, 255, 255);
   /* position: absolute; */
+}
+
+.position {
+  border: 1px solid #727272;
+  grid-area: position;
+  background-color: rgb(255, 255, 255);
+}
+
+.telNumber{
+  border: 1px solid #727272;
+  grid-area: telNumber;
+  background-color: rgb(255, 255, 255);
 }
 
 
 .name a {
   text-decoration: none;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
-
+/* 
 
 .maintable{
   background-color: rgb(0, 0, 0);
@@ -65,7 +78,6 @@ TH {
 padding: 6px;
 cursor: pointer;
 height: 27px;
-  /* padding-top: 5px; */
 }
 
 .th button:hover{
@@ -83,8 +95,5 @@ height: 27px;
 
 th:hover {
   background: rgb(219, 219, 219);
-}
+} */
 
-th:active {
-  /* background: rgb(148, 148, 148); */
-}

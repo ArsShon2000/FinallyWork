@@ -147,7 +147,8 @@ const BList = (props) => {
                 <div style={finalWhiteList.length > 10 ? { 'height': '230px', 'width': '210px', 'overflow-y': 'scroll', 'overflow-x': '', 'display': 'grid' } : {}}>
                     {finalWhiteList.map((b) => {
                         return (
-                            <List determinant={determinant}
+                            <List  key = {b.idName}
+                                determinant={determinant}
                                 names={b.sortName}
                                 id_name={b.idName}
 

@@ -7,9 +7,9 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    /* display: grid; */
-    /* align-items: center;
-    justify-content: center; */
+    display: grid;
+    align-items: center;
+    justify-content: center;
     pointer-events: none;
 }
 

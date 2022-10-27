@@ -17,12 +17,12 @@ const List = (props) => {
   let id_name = props.id_name
   // let whiteList = props.whiteList
   let nameListLength = props.nameListLength
-    // модальное окно
-    const [modalActive, setModalActive] = useState(false)
+  // модальное окно
+  const [modalActive, setModalActive] = useState(false)
 
   let [title, setTitle] = useState('');
   const [whiteList, setWhiteList] = useState([]);
-  
+
 
 
   // удаление имени из таб wNum
@@ -66,50 +66,36 @@ const List = (props) => {
     }
   }
 
-  
+
   return (
     <div className={stylist.name}  >
       {/* выводится имя */}
-      <div className={stylist.divName} >
-        <table  className={stylist.maintable}>
-          <table  className={stylist.table}>
-                <th className={stylist.th} >
-                  <input type="checkbox"></input>
-                  <button onClick={() => setModalActive(true)}>&nbsp;{props.names}</button>&nbsp;&nbsp;&nbsp;
-                  </th>
-          </table>
-        </table>
+      <div className={stylist.divName} onClick={() => setModalActive(true)} >
+        <span>&nbsp;{props.names}</span>&nbsp;&nbsp;&nbsp;
       </div>
       <div className={stylist.divNumbers}>
-        
+        {/* <div style={{'text-align' : 'center'}}>{props.names}</div> */}
+        {props.whiteList.map((n) => { //тот же вайтлист из пропса
+          return <ListName
+            key={n.id}
+            id_name={id_name} // idName из вайтлист
+            number={n.car_number}
+            wIdNAme={n.id_name} //idName из props.whiteList (id_name и wIdNAme проверяется на схожество)
+          />
+        })}
         <ModalCarNumber nameListLength={nameListLength} active={modalActive} setActive={setModalActive}>
-
-          <div style={{'text-align' : 'center'}}>{props.names}</div>
-          {props.whiteList.map((n) => {
-            return <ListName onChange
-             id_name={id_name}
-              number={n.car_number}
-              wIdNAme={n.id_name}
-            />
-          })}
-          <br></br>
           <input className="type-2CN"
             type="text"
             value={title} onChange={(e) => setTitle(e.currentTarget.value)}
             placeholder="Номер машины"
-          /><br></br>
+          />
           <button className="btnForCN" onClick={onAddName}>Добавить</button>&nbsp;
           <button className="btnForCN" onClick={onDelName}>Удалить</button>
-          <br></br>
-
         </ModalCarNumber>
-
       </div>
-
+      <div className={stylist.position}>&nbsp;position</div>
+      <div className={stylist.telNumber}>&nbsp;telNumber</div>
       {/* выводится номера  */}
-
-
-
     </div>
   )
 }

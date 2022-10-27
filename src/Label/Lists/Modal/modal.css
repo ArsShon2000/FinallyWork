@@ -47,7 +47,6 @@ transform: scale(1);
 
 .modal__content input {
   display:block;
-  /* width:100%; */
   margin:10px 0;
   padding:10px;
 }
@@ -59,5 +58,6 @@ transform: scale(1);
     transition: .3s box-shadow;
   }
   .type-2:hover {
+    border:0;
     box-shadow:0 0 6px rgba(0,0,0,0.7);
   }

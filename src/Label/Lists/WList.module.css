@@ -1,41 +1,133 @@
+.white {
+  display: grid;
+  grid-template-areas:
+    "add del search"
+    "table table table";
+  grid-template-rows: 40px 1fr;
+  grid-template-columns: 170px 170px 1fr;
+  padding: 10px;
+  height: fit-content;
+  min-height: 892px;
 
-  .white {
-    padding: 10px;
-    height: 892px;
-  }
+}
+/* загаловка и списки */
+.names {
+  grid-area: table;
+  position: relative;
+  margin-top: 20px;
+  display: grid;
+  grid-template-areas:
+    "headlines"
+    "nameTable";
+  grid-template-rows: 25px 1fr;
+}
 
-  .names {
-    position: relative;
-    overflow: hidden;
-  }
+/* загаловка */
+.headlines{
+  font-weight: bold;
+  grid-area: headlines;
+  display: grid;
+  grid-template-areas:
+    "name carNumber position telNumber";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border: 1px 1px 1px 1px solid #727272;
+}
 
- .numbArea{
-  border-radius: 3px;
-  width: 216px;
-  height: 189px;
-  background-color: rgb(223, 228, 250);
-  margin-top: -230px;
-  
- }
+.name {
+  grid-area: name;
+  border: 1px solid #727272;
+  background-color: rgb(255, 255, 255);
+}
+.carNumber {
+  grid-area: carNumber;
+  border: 1px solid #727272;
+  background-color: rgb(255, 255, 255);
+}
+.position {
+  grid-area: position;
+  border: 1px solid #727272;
+  background-color: rgb(255, 255, 255);
+}
+.telNumber {
+  grid-area: telNumber;
+  border: 1px solid #727272;
+  background-color: rgb(255, 255, 255);
+}
+/* загаловка */
 
-  .open_btn {
-    background-color: azure;
-    padding: 3px 3px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: 1px solid #d3d3d3;
+/* Список */
+.nameTable {
+  grid-area: nameTable;
+}
+
+/* поиск */
+.search {
+  display: flex;
+  grid-area: search;
+  justify-self: end;
+}
+
+.type_2 {
+  padding: 7px;
+  margin-right: 10px;
+    border:0;
+    box-shadow:0 0 4px rgba(0,0,0,0.3);
+    transition: .3s box-shadow;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    cursor: pointer;
-    width: 95px;
+    width: 200px;
+
+}
+  .type_2:hover {
+    border:0;
+    box-shadow:0 0 6px rgba(0,0,0,0.7);
   }
 
-  .open_btn:hover {
-    background-color: rgb(223, 228, 250);
-    font-weight: bold;
+.search_btn {
+  background-color: azure;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 0px solid #d3d3d3;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  width: 150px;
+}
+/* поиск */
 
-  }
 
+.open_btn {
+  grid-area: add;
+  /* background-color: azure; */
+  background-color: #4f8ad8;
+  color: aliceblue;
+  padding: 3px 3px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #4f8ad8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  width: 150px;
+}
 
+.open_btn:hover {
+  background-color: #72a7ec;
+  font-weight: bold;
 
+}
 
-  
+.delete_btn {
+  grid-area: del;
+  background-color: azure;
+  padding: 3px 3px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #d3d3d3;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  width: 150px;
+}
+
+.delete_btn:hover {
+  background-color: rgb(223, 228, 250);
+  font-weight: bold;
+
+}

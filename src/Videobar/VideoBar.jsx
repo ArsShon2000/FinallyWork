@@ -12,7 +12,6 @@ import cameraStatusOn from '../Icons/cameraStatusOn.png'
 import cameraStatusOff from '../Icons/cameraStatusOff.png'
 import screenshot from '../Icons/screenshot.png'
 import fullScreenButton from '../Icons/expand.png'
-import { useEffect } from "react";
 import axios from "axios";
 
 
@@ -24,7 +23,6 @@ const instance = axios.create({
 
     const VideoBar = (props) => {
     let Cameras = props.Cameras.videoStreams
-    const [isLoaded, setIsLoaded] = useState(false);
 
     
 
@@ -38,7 +36,6 @@ const instance = axios.create({
     let [editModeCamera4, setEditModeCamera4] = useState(false)
     let [nameCamera4, setNameCamera4] = useState("sample4")
 
-    console.log(nameCamera1)
     //====================== camera ==========================
 
     //====================== cameraStream ==========================
