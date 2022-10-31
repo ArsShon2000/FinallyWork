@@ -109,7 +109,8 @@
 }
 
 .open_btn:hover {
-  background-color: #72a7ec;
+  background-color: #72a7ec
+  ;
   font-weight: bold;
 
 }

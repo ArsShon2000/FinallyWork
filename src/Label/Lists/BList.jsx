@@ -27,7 +27,7 @@ const BList = (props) => {
 
     let [title, setTitle] = useState('');
     let [titleName, setTitleName] = useState('');
-    let [titleForDel, setTitleForDel] = useState('');
+    // let [titleForDel, setTitleForDel] = useState('');
     const [blackList, setBlackList] = useState([]);
 
     useEffect(() => {
@@ -66,24 +66,24 @@ const BList = (props) => {
     }
 
     // удаление по владельцу
-    let onDelName = () => {
-        //     if (titleOwner !== '') {
-        //         instance.delete(`/bNames/${titleOwner}`).then((res) => {
-        //             setBlackNameList(blackNameList.filter((e) => {
-        //                 return e.name !== titleOwner
-        //             }))
-        //             console.log(res + "name is deleted in blacklist");
-        //         })
-        //     }
+    // let onDelName = () => {
+    //     //     if (titleOwner !== '') {
+    //     //         instance.delete(`/bNames/${titleOwner}`).then((res) => {
+    //     //             setBlackNameList(blackNameList.filter((e) => {
+    //     //                 return e.name !== titleOwner
+    //     //             }))
+    //     //             console.log(res + "name is deleted in blacklist");
+    //     //         })
+    //     //     }
 
-        //удаление по номеру
-        instance.delete(`/bNum/cn/${titleForDel}`).then((res) => {
-            setBlackList(blackList.filter((e) => {
-                return e.car_number !== titleForDel
-            }))
-            console.log(res + "data is deleted in blacklist");
-        })
-    }
+    //     //удаление по номеру
+    //     instance.delete(`/bNum/cn/${titleForDel}`).then((res) => {
+    //         setBlackList(blackList.filter((e) => {
+    //             return e.car_number !== titleForDel
+    //         }))
+    //         console.log(res + "data is deleted in blacklist");
+    //     })
+    // }
 
     // получаем все айди номера из вайтлиста 
     let namesNoSort = []

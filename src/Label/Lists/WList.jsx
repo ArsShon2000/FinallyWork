@@ -10,37 +10,41 @@ const instance = axios.create({
     withCredentials: true,
     baseURL: 'http://127.0.0.1:5000',
 })
+let render = 0
 
 const WList = (props) => {
+//   console.warn("wlist запрос " + ++render)
+
     // instance.post('/create-db-wn', () => {})
     // instance.post('/create-db-wn2', () => {}) 
     // instance.post('/create-db-w', () => {}) 
 
 // опеределяет в какой странице происходит действие
-    let determinant = "white"
+    const determinant = "white"
     
     // модальное окно
     const [modalActive, setModalActive] = useState(false)
 
     // связано с данными
-    let [title, setTitle] = useState('');
-    let [titleName, setTitleName] = useState('');
-    let [titleForDel, setTitleForDel] = useState('');
-    const [whiteList, setWhiteList] = useState([]);
-
+    const [title, setTitle] = useState(''); // номер машины
+    const [titleName, setTitleName] = useState(''); //имя владельца
+    // const [titleForDel, setTitleForDel] = useState(''); 
+    const [jobTitle, setJobTitle] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [whiteList, setWhiteList] = useState([]); // список из БД
+    
     useEffect(() => {
         instance.get(`/wNum`).then((res) => {
             setWhiteList(res.data.wNum);
+            console.warn("Get запрос " + ++render)
         })
     }, []);
 
 
     // let idName = whiteNameList2.length + 1
     let onAddName = () => {
-        console.log(7 < title.length)
-        console.log(10 > title.length)
 
-        if((7 < title.length) && (10 > title.length) )
+        if((7 < title.length) && (10 > title.length) ) // проверяю длину номера
         {
             if (titleName !== '') {
                 instance.post('/wNames2', {
@@ -52,9 +56,15 @@ const WList = (props) => {
             if (title !== '' && titleName !== '') {
                 instance.post('/wNum', {
                     carNumber: title,
-                    name: titleName
+                    name: titleName,
+                    workPosition: jobTitle,
+                    telNumber: phoneNumber
                 }).then((res) => {
-                    setWhiteList([...whiteList, { name: titleName, car_number: title }])
+                    setWhiteList([...whiteList, { 
+                        name: titleName, 
+                        car_number: title, 
+                        workPosition: jobTitle,
+                        telNumber: phoneNumber }])
                     console.log(res + "data is added in whitelist");
                 })
             }
@@ -67,15 +77,15 @@ const WList = (props) => {
     }
     
     // удаление по номеру
-    let onDelName = () => {
-        instance.delete(`/wNum/cn/${titleForDel}`).then((res) => {
-            setWhiteList(whiteList.filter((e) => {
-                console.log(e.car_number + "-----------------------------------")
-                return e.car_number !== titleForDel
-            }))
-            console.log(titleForDel + "data is deleted in whitelist");
-        })
-    }
+    // let onDelName = () => {
+    //     instance.delete(`/wNum/cn/${titleForDel}`).then((res) => {
+    //         setWhiteList(whiteList.filter((e) => {
+    //             console.log(e.car_number + "-----------------------------------")
+    //             return e.car_number !== titleForDel
+    //         }))
+    //         console.log(titleForDel + "data is deleted in whitelist");
+    //     })
+    // }
 
     // получаем все айди номера из вайтлиста 
     let namesNoSort = []
@@ -111,6 +121,7 @@ const WList = (props) => {
     let finalWhiteList = unique(namesNoSort).map((idName, sortName) => ({
         idName, sortName: names[sortName]
     }))
+    console.log(finalWhiteList)
     let nameListLength = finalWhiteList.length
     
 
@@ -133,12 +144,12 @@ const WList = (props) => {
                 />
                 <input className="type-2"
                     type="text"
-                    value={title} onChange={(e) => setTitle(e.currentTarget.value)}
+                    value={jobTitle} onChange={(e) => setJobTitle(e.currentTarget.value)}
                     placeholder="Должность"
                 />
                 <input className="type-2"
                     type="text"
-                    value={title} onChange={(e) => setTitle(e.currentTarget.value)}
+                    value={phoneNumber} onChange={(e) => setPhoneNumber(e.currentTarget.value)}
                     placeholder="Номер телефона"
                 />
                 <button className="btn_add_dates" onClick={onAddName}>Добавить</button>
@@ -192,7 +203,9 @@ const WList = (props) => {
                     <span>&nbsp;Номер телефона</span>
                 </div>
             </div>
-            <div className={stylab.nameTable} style={nameListLength > 10 ? { 'height': '230px', 'width': '211px', 'overflow-y': 'scroll', 'overflow-x': 'none', 'display': 'grid' } : {}}>
+            <div className={stylab.nameTable} 
+            // style={nameListLength > 10 ? { 'height': '230px', 'width': '211px', 'overflow-y': 'scroll', 'overflow-x': 'none', 'display': 'grid' } : {}}
+            >
                 {finalWhiteList.map((w) => {
                     return (
                         <List key = {w.idName}

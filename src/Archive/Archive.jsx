@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styArch from "./Archive.module.css"
 import record1 from "../Videobar/multi/video1.mp4"
-import record2 from "../Videobar/single/video1.mp4"
-import record3 from "../Videobar/single/video1.mp4"
-import record4 from "../Videobar/single/video1.mp4"
+// import record2 from "../Videobar/single/video1.mp4"
+// import record3 from "../Videobar/single/video1.mp4"
+// import record4 from "../Videobar/single/video1.mp4"
 import play from "../Icons/play.png"
 import back from "../Icons/back.png"
 import forward from "../Icons/forward.png"
@@ -148,6 +148,7 @@ const Archive = (props) => {
                 video.playbackRate = 8
                 break
             }
+            default: break
         }
     }
 
@@ -164,9 +165,10 @@ const Archive = (props) => {
         Video.ontimeupdate = () => {myFunction()};
         const myFunction = () => {
             setProgressTime(Video.currentTime)
-            setHour(Math.floor(Video.currentTime / 60 / 60))
-            setMinute(Math.floor(Video.currentTime/ 60) - (hour * 60))
-            setSecond(Math.floor(Video.currentTime % 60))
+            // форматирование чч:мм:сс
+            setHour(Math.floor(Video.currentTime / 60 / 60))  //получаем часы
+            setMinute(Math.floor(Video.currentTime/ 60) - (hour * 60)) //получаем минуты
+            setSecond(Math.floor(Video.currentTime % 60)) //получаем секунды
 
             let hours, minutes, seconds
             hours = Math.floor(Video.duration / 60 / 60)
@@ -178,13 +180,15 @@ const Archive = (props) => {
       }
     }
 
-    const progressClick = () => {
+    const progressClick = (e) => {
         let PB = document.getElementById("progressBar");
         if(PB != null){
             let widthPB = PB.offsetWidth  // длина template video
             let procent = (8.04 / 100) * (100 * window.event.offsetX / widthPB) //убираю разницу длины прогресбара от общей длины
             let newTime = window.event.offsetX - ((widthPB / 100) * procent) // уточняю где был клик
             Video.currentTime = newTime
+            console.log(Video.remainingTime)
+            console.log(Video.duration)            
         }
     }
 
@@ -194,7 +198,7 @@ const Archive = (props) => {
         let titleSplit = title.split('')
         
         for( let i = 0; i < title.length; i++){
-            if(titleSplit[i] == ".") {
+            if(titleSplit[i] === ".") {
                 titleSplit[i] = '_'
             }
         }
@@ -209,7 +213,7 @@ const Archive = (props) => {
     const  dateValue: Date = new Date(yearMonthDay[0], yearMonthDay[1] - 1, yearMonthDay[2]) // установка активной даты
 
     const onClickDay = (value, event) => {
-        if (sereval == false){
+        if (sereval === false){
             instance.post('/archiveList/byDate', {
                 year: value.getYear() + 1900, // год начинается с 122
                 month: value.getMonth() + 1, // месяц начинается с 0
@@ -243,6 +247,7 @@ const Archive = (props) => {
                 <div className={styArch.recordsTitle}>records</div>
                 <div className={styArch.recordsList}>
                     <div className={styArch.stream}>
+        {/* ========================выбор камеры==================================== */}
                         <select id="stream_" onChange={changeRecord}>
                             <option value="">Выберите камеру</option>
                             <option value="1">Первая камера</option>
@@ -258,15 +263,15 @@ const Archive = (props) => {
                     <button onClick={searchVideos}>Найти</button>
                     <button onClick={() => setSereval(true)}>Несколько</button>
                     </div>
-
+        {/* ======================== Каленьдарь ==================================== */}
                     <div className={styArch.calendar}>
                         <Calendar onChange={onChange} value={dateValue}  //календарь //ддммгг передается в вэлию
                         onClickDay={(value, event) => onClickDay(value, event) } // получаем дату в качестве аргумента
                         // formatLongDate={(locale, date) => formatDate(date, 'dd MMM YYYY')}
-                        isMultiSelection = {false} // выбрать диапазон
+                        isMultiSelection = {false} /*выбрать диапазон*/
                         />
-                        <div>Архивы с {yearMonthDay[2]}-{yearMonthDay[1]}-{yearMonthDay[0]}</div> // день месяц год
-                        {videoListFromArchive.map((w) => { // пробежка по списку
+                        <div>Архивы с {yearMonthDay[2]}-{yearMonthDay[1]}-{yearMonthDay[0]}</div> {/* день месяц год*/}
+                        {videoListFromArchive.map((w) => { /*пробежка по списку*/
                             return (
                                 <VideoList key={w} videos = {w}/> 
                             )
@@ -280,20 +285,46 @@ const Archive = (props) => {
             <div className={styArch.videoArea}>
             
                 <video className={styArch.videoStream} autoPlay loop muted id="single-video-player"
-                ontimeupdate="myFunction(this)">
-                    <source src={record1} type='video/mp4' />
+                ontimeupdate="myFunction(this)" start= "10" end= "20">
+                    <source src={record1} type='video/mp4' start= "10" end= "20" />
                 </video>
+
+                {/* <div
+                    className={styArch.videoStream}
+                    id="single-video-player">
+                    <VideoPlayer
+                    {...{
+                        start: 20,
+                        end: 200,
+                        currentTime: 0,
+                        autoplay: true,
+                        loop: true,
+                        playerOptions: {
+                            controls: true,
+                            sources: [
+                                {
+                                    src: {record1}, type: "video/mp4"
+                                }
+                            ]
+                        }
+                    }}
+                />
+                </div> */}
+                
+                {/* =========================== Прогресс бар =========================== */}
                 <div className={styArch.progressBar}>                    
                     <progress id="progressBar" 
                     max={videoEnd.length > 0 ?
                         videoEnd[0][0] * 360  + videoEnd[0][1] * 60 + videoEnd[0][2] :
                          0} value={progressTime} 
                     onClick = {progressClick}></progress>
+                {/* =========================== Прогресс бар текущяя время =========================== */}                
                     <span className={styArch.demo}>
                         {hour.toString().padStart(2, '0')}:
                         {minute.toString().padStart(2, '0')}:
                         {second.toString().padStart(2, '0')}
                     </span>
+                {/* =========================== Прогресс бар длительность видео =========================== */}                
                     <span className={styArch.videoEnd}>
                         {videoEnd.length > 0  ?
                         videoEnd[0][0].toString().padStart(2, '0') +
@@ -305,27 +336,27 @@ const Archive = (props) => {
                 </div>
                  {/* ========================== инструменты ======================== */}
                 <div className={styArch.tools}>
-                    {stop == false ?
+                    {stop === false ?
                         <div className={styArch.stop}>
-                            <img src={stopButton} onClick={onStopClick} />
+                            <img src={stopButton} onClick={onStopClick} alt="onStopClick"/>
                         </div> :
                         <div className={styArch.stop}>
-                            <img src={stopButtonOff} onClick={onStopClick} />
+                            <img src={stopButtonOff} onClick={onStopClick} alt="onStopClick" />
                         </div>
                     }
                     <div className={styArch.back}>
-                        <img src={back} onClick={onBackClick} />
+                        <img src={back} onClick={onBackClick} alt="onBackClick" />
                     </div>
-                    {pause == true ?
+                    {pause === true ?
                         <div className={styArch.Play}>
-                            <img src={pauseButton} onClick={onPlayClick} />
+                            <img src={pauseButton} onClick={onPlayClick} alt="onPlayClick" />
                         </div> :
                         <div className={styArch.Play}>
-                            <img src={play} onClick={onPlayClick} />
+                            <img src={play} onClick={onPlayClick} alt="onPlayClick" />
                         </div>
                     }
                     <div className={styArch.forward}>
-                        <img src={forward} onClick={onForwardClick} />
+                        <img src={forward} onClick={onForwardClick} alt="onForwardClick" />
                     </div>
                     <div className={styArch.speed}>
                         <select id="speedUp_" onChange={onSpeedUp}>
@@ -336,11 +367,11 @@ const Archive = (props) => {
                         </select>
                     </div>
                     <div className={styArch.scissors}>
-                        <img src={scissors} onClick={onForwardClick} />
+                        <img src={scissors} onClick={onForwardClick} alt="onForwardClick" />
                     </div>
                 </div>
-                <img src={props.fullScreenButton} />
-                <span>{record1}</span>
+                {/* <img src={props.fullScreenButton} alt="fullScreenButton"/> */}
+                {/* <span>{record1}</span> */}
             </div>
         </div>
     )

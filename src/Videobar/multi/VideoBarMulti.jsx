@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import sample1 from "./video1.mp4"
-import sample2 from "./video2.mp4"
-import sample3 from "./video3.mp4"
-import sample4 from "./video4.mp4"
+import React, { useState} from "react";
+// import sample1 from "./video1.mp4"
+// import sample2 from "./video2.mp4"
+// import sample3 from "./video3.mp4"
+// import sample4 from "./video4.mp4"
 import styleVideo from "./VideoBarMulti.module.css"
 import FullWindowStream from '../../Icons/free-icon-font-expand-3917554.png'
 import fullAllStreams from '../../Icons/free-icon-font-apps-3917618.png'
@@ -204,28 +204,28 @@ const VideoBarMulti = (props) => {
                 <source src={potok1 === true ? props.streams[0].nameStream : ""} type='video/mp4' /> 
             </video>
             <span className={styleVideo.video1}>{"sample1"}</span>
-            <img onClick={toggleFullScreen1} id="fullScreenImg" className={styleVideo.video1} src={props.fullScreenButton} />
+            <img onClick={toggleFullScreen1} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video1} src={props.fullScreenButton} />
 
             {/*  ======================== 2 видео поток ========================  */}
             <video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video2} autoPlay loop muted id='multi-video2-player'>
                 <source src={potok2 === true ? props.streams[1].nameStream : ""}  type='video/mp4' />
             </video>
             <span className={styleVideo.video2}>{"sample2"}</span>
-            <img onClick={toggleFullScreen2} id="fullScreenImg" className={styleVideo.video2} src={props.fullScreenButton} />
+            <img onClick={toggleFullScreen2} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video2} src={props.fullScreenButton} />
 
             {/*  ======================== 3 видео поток ========================  */}
             <video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video3} autoPlay loop muted id='multi-video3-player'>
                 <source src={potok3 === true ? props.streams[2].nameStream : ""}  type='video/mp4' />
             </video>
             <span className={styleVideo.video3}>{"sample3"}</span>
-            <img onClick={toggleFullScreen3} id="fullScreenImg" className={styleVideo.video3} src={props.fullScreenButton} />
+            <img onClick={toggleFullScreen3} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video3} src={props.fullScreenButton} />
 
             {/*  ======================== 4 видео поток ========================  */}
             <video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video4} autoPlay loop muted id='multi-video4-player'>
                 <source src={potok4 === true ? props.streams[3].nameStream : ""}  type='video/mp4' />
             </video>
             <span className={styleVideo.video4}>{"sample4"}</span>
-            <img onClick={toggleFullScreen4} id="fullScreenImg" className={styleVideo.video4} src={props.fullScreenButton} />
+            <img onClick={toggleFullScreen4} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video4} src={props.fullScreenButton} />
 
 
             <GenCarNumber />

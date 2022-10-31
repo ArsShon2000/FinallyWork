@@ -37,27 +37,27 @@ const Navbar = () => {
     return (
         <nav className={sty.nav}>
             <div className={sty.button_np}>
-                <NavLink to="/camera" className={({ isActive }) =>
+                <NavLink to="/camera/" className={({ isActive }) =>
                     isActive ? sty.active : undefined}>Просмотр</NavLink>
             </div>
             <div className={sty.button_na}>
-                <NavLink to="/archive" className={({ isActive }) =>
+                <NavLink to="/archive/" className={({ isActive }) =>
                     isActive ? sty.active : undefined}>Архив</NavLink>
             </div>
             <div className={sty.button_nw}>
-                <NavLink to="/wlist" className={({ isActive }) =>
+                <NavLink to="/wlist/" className={({ isActive }) =>
                     isActive ? sty.active : undefined}>Белый список</NavLink>
             </div>
             <div className={sty.button_nb}>
-                <NavLink to="/blist" className={({ isActive }) =>
+                <NavLink to="/blist/" className={({ isActive }) =>
                     isActive ? sty.active : undefined}>Черный список</NavLink>
             </div>
             <div className={sty.button_nl}>
-                <NavLink to="/log" className={({ isActive }) =>
+                <NavLink to="/log/" className={({ isActive }) =>
                     isActive ? sty.active : undefined}>Log</NavLink>
             </div>
             <div className={sty.button_no}>
-                <NavLink to="/options" className={({ isActive }) =>
+                <NavLink to="/options/" className={({ isActive }) =>
                     isActive ? sty.active : undefined}>Настройки</NavLink>
             </div>
             <div className={sty.button_nv}>

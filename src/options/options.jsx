@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import opStyle from "./Options.module.css"
+import VideoPlayer from "../Archive/video-player/video-player";
+import record1 from "../Videobar/multi/video1.mp4"
 
 const Options = () => {
 
@@ -20,6 +22,7 @@ const Options = () => {
         butName = 'Разъеденить'
     } 
 
+    debugger
 
     return (
         <form className={opStyle.options}>
@@ -36,6 +39,31 @@ const Options = () => {
                     placeholder={"Port"} />
             </div>
             <button onClick={onConnect} onChange={onTap} >{butName}</button>
+            <div className={opStyle.videoStream}>
+                <VideoPlayer
+                    {...{
+                        start: 10,
+                        end: 20,
+                        currentTime: 0,
+                        autoplay: true,
+                        loop: true,
+                        playerOptions: {
+                            controls: true,
+                            aspectRatio: "16:9",
+                            sources: [
+                                {
+                                    src:
+                                        { record1 },
+                                    type: "video/mp4"
+                                    // src:
+                                    //   {record1},
+                                    // type: "application/x-mpegURL"
+                                }
+                            ]
+                        }
+                    }}
+      />
+    </div>
         </form>
         
     )

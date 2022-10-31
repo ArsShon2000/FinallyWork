@@ -9,7 +9,7 @@ const VideoBarSingle = (props) => {
             <video className={styleVideo.video} autoPlay loop muted  id="single-video-player">
                 <source src={sample1} type='video/mp4' />
             </video>
-            <img src={props.fullScreenButton} />
+            <img src={props.fullScreenButton} alt="fullScreenButton" />
             <span>{sample1}</span>
         </div>
 

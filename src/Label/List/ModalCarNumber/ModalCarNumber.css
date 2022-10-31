@@ -19,9 +19,9 @@
 
 /* список номеров */
 .modalDates__content {
-  z-index: 10;
-  /* position: fixed; */
-  margin-top: 0px;
+  /* z-index: 10; */
+  /* position: relative; */
+  /* margin-top: 100px; */
     padding: 20px;
     border-radius: 3px;
     background-color: rgb(223, 228, 250);

@@ -43,5 +43,15 @@
     color: white;
 }
 
+.videoStream {
+  height: 600px;
+  background-color: aliceblue;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.videoStream video {
+  height: 700px;
+}
 
  

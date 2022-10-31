@@ -3,20 +3,26 @@
   grid-template-areas:
   "name carNumber position telNumber";
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  color: #727272;
 }
 
 .divName {
   border: 1px solid #727272;
   grid-area: name;
   background-color: rgb(255, 255, 255);
-  position: relative;
+  /* position: relative; */
 }
 
 .divNumbers{
   border: 1px solid #727272;
   grid-area: carNumber;
   background-color: rgb(255, 255, 255);
+  cursor: pointer;
   /* position: absolute; */
+}
+
+.divNumberRows{ 
+  height: 22px;
 }
 
 .position {
@@ -34,7 +40,7 @@
 
 .name a {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: #727272;
 }
 
 /* 
@@ -79,21 +85,21 @@ padding: 6px;
 cursor: pointer;
 height: 27px;
 }
-
-.th button:hover{
-  background: rgb(219, 219, 219);
+*/
+.btnForCN {
+  width: 85px;
+  background-color: azure;
+  padding: 3px 3px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #d3d3d3;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* font-weight: bold; */
+  box-shadow:0 0 4px rgba(67, 64, 224, 0.397);
+  transition: .3s box-shadow;
+  cursor: pointer;
 }
 
-.th button:active{
-  background: rgb(148, 148, 148);
+.btnForCN:hover {
+  background-color: rgb(124, 175, 175);
 }
-.thCN {
-  background: rgb(255, 255, 255);
-  
-  padding-left: 3px;
-}
-
-th:hover {
-  background: rgb(219, 219, 219);
-} */
-

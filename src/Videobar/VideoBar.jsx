@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import sample1 from "./multi/video1.mp4"
-import sample2 from "./multi/video2.mp4"
-import sample3 from "./multi/video3.mp4"
-import sample4 from "./multi/video4.mp4"
+// import sample1 from "./multi/video1.mp4"
+// import sample2 from "./multi/video2.mp4"
+// import sample3 from "./multi/video3.mp4"
+// import sample4 from "./multi/video4.mp4"
 import styleVideo from "./VideoBar.module.css"
 // import car from "./img_2.jpg"
 import VideoBarSingle from './single/VideoBarSingle';
@@ -39,17 +39,17 @@ const instance = axios.create({
     //====================== camera ==========================
 
     //====================== cameraStream ==========================
-    let [editStreamCamera1, setEditStreamCamera1] = useState(sample1)
-    let [editStreamCamera2, setEditStreamCamera2] = useState(sample2)
-    let [editStreamCamera3, setEditStreamCamera3] = useState(sample3)
-    let [editStreamCamera4, setEditStreamCamera4] = useState(sample4)
+    // let [editStreamCamera1, setEditStreamCamera1] = useState(sample1)
+    // let [editStreamCamera2, setEditStreamCamera2] = useState(sample2)
+    // let [editStreamCamera3, setEditStreamCamera3] = useState(sample3)
+    // let [editStreamCamera4, setEditStreamCamera4] = useState(sample4)
     //====================== cameraStream ==========================
 
     //====================== cameraStatus ==========================
-    let [editModeCameraStatus1, setEditModeCameraStatus1] = useState(false)
-    let [editModeCameraStatus2, setEditModeCameraStatus2] = useState(false)
-    let [editModeCameraStatus3, setEditModeCameraStatus3] = useState(false)
-    let [editModeCameraStatus4, setEditModeCameraStatus4] = useState(false)
+    // let [editModeCameraStatus1, setEditModeCameraStatus1] = useState(false)
+    // let [editModeCameraStatus2, setEditModeCameraStatus2] = useState(false)
+    // let [editModeCameraStatus3, setEditModeCameraStatus3] = useState(false)
+    // let [editModeCameraStatus4, setEditModeCameraStatus4] = useState(false)
     //====================== cameraStatus ==========================
 
 
@@ -93,6 +93,7 @@ const instance = axios.create({
                 })
                 break
             }
+            default: break
         }
     window.location.reload()
     }
@@ -159,7 +160,7 @@ const instance = axios.create({
                     {!editModeCamera1 && <span onDoubleClick={activateEditModeCamera}> {Cameras[0].nameCamera} </span>}
                     {editModeCamera1 && <input onChange={onNameCamera1Change} autoFocus={true} onBlur={deActivateEditModeCamera} />}
                     <img src={screenshot} alt="cameraStatusOn" />
-                    <img className={styleVideo.cameraStatusOn} src={(Cameras[0].editMode == "true" ? cameraStatusOff : cameraStatusOn )} 
+                    <img className={styleVideo.cameraStatusOn} src={(Cameras[0].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                         alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(1)} />
                 </div>
@@ -168,7 +169,7 @@ const instance = axios.create({
                     {!editModeCamera2 && <span onDoubleClick={ activateEditModeCamera2}> {Cameras[1].nameCamera} </span>}
                     {editModeCamera2 && <input onChange={onNameCamera2Change} autoFocus={true} onBlur={deActivateEditModeCamera2} />}
                     <img src={screenshot} alt="cameraStatusOn" />
-                    <img className={styleVideo.cameraStatusOn} src={(Cameras[1].editMode == "true" ? cameraStatusOff : cameraStatusOn )} 
+                    <img className={styleVideo.cameraStatusOn} src={(Cameras[1].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                         alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(2)}/>
                 </div>
@@ -177,7 +178,7 @@ const instance = axios.create({
                     {!editModeCamera3 && <span onDoubleClick={ activateEditModeCamera3}> {Cameras[2].nameCamera} </span>}
                     {editModeCamera3 && <input onChange={onNameCamera3Change} autoFocus={true} onBlur={deActivateEditModeCamera3} />}
                     <img src={screenshot} alt="cameraStatusOn" />
-                    <img className={styleVideo.cameraStatusOn} src={(Cameras[2].editMode == "true" ? cameraStatusOff : cameraStatusOn )} 
+                    <img className={styleVideo.cameraStatusOn} src={(Cameras[2].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                     
                         alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(3)}/>
@@ -187,7 +188,7 @@ const instance = axios.create({
                     {!editModeCamera4 && <span onDoubleClick={ activateEditModeCamera4}> {Cameras[3].nameCamera} </span>}
                     {editModeCamera4 && <input onChange={onNameCamera4Change} autoFocus={true} onBlur={deActivateEditModeCamera4} />}
                     <img src={screenshot} alt="cameraStatusOn" />
-                    <img className={styleVideo.cameraStatusOn} src={(Cameras[3].editMode == "true" ? cameraStatusOff : cameraStatusOn )} 
+                    <img className={styleVideo.cameraStatusOn} src={(Cameras[3].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                         alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(4)}/>
                 </div>

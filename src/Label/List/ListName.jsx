@@ -1,26 +1,31 @@
 import React from "react";
-import stylist from "./List.module.css"
+let render = 0
 
-let count = 0;
-
-const ListName = (props) => {
+export default React.memo(
+function ListName (props) {
 
   let renderElement = React.useMemo(() => {
     if (props.id_name === props.wIdNAme) {
-      console.log(count++);
-      console.log(props.number);
+  console.warn("listname запрос " + ++render)
       return (
         <span>&nbsp;{props.number} &nbsp;</span>
       )
     }
-  }, [props.id_name]);
+  }, []);
 
   return (
-    <span className="">
+    <div className="">
       {renderElement}
-    </span>
+    </div>
   )
+}, 
+(props) => {
+  if (props.id_name === props.wIdNAme) {
+    return false;
+  }
+  else {
+   return true;
+}
 }
 
-
-export default ListName
+)

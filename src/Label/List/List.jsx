@@ -10,9 +10,10 @@ const instance = axios.create({
   withCredentials: true,
   baseURL: 'http://127.0.0.1:5000',
 })
-
-
+// let render = 0
 const List = (props) => {
+  // console.warn("list запрос " + ++render)
+
 
   let id_name = props.id_name
   // let whiteList = props.whiteList
@@ -21,12 +22,13 @@ const List = (props) => {
   const [modalActive, setModalActive] = useState(false)
 
   let [title, setTitle] = useState('');
-  const [whiteList, setWhiteList] = useState([]);
+  let [whiteList, setWhiteList] = useState([]);
+  let [changeSize, setChangeSize] = useState(false)
 
 
 
   // удаление имени из таб wNum
-  let onDelName = () => {
+  const onDelName = () => {
     instance.delete(`/wNum/id/${id_name}`).then((res) => {
       setWhiteList(whiteList.filter((e) => {
         console.log(e.id_name + "-----------------------------------")
@@ -35,17 +37,17 @@ const List = (props) => {
       console.log(id_name + " owner is deleted in whiteNameList");
     })
   }
-  let onAddName = () => {
+  const onAddName = () => {
     //добавление номеров в вайтлистнам
     if (props.determinant === "white") {
       if (title !== '') {
         instance.post('/wNumWithId', {
           carNumber: title,
           name: props.names,
-          id_name: props.id_name
+          id_name: id_name
         }).then((res) => {
-          setWhiteList([...whiteList, { car_number: title, name: props.names, id_name: props.id_name }])
-          title = ''
+          setWhiteList([...props.whiteList, { car_number: title, name: props.names, id_name: id_name }])
+          setTitle('')
           console.log(res + "Name is added");
         })
       }
@@ -56,10 +58,10 @@ const List = (props) => {
         instance.post('/bNum', {
           carNumber: title,
           name: props.names,
-          id_name: props.id_name
+          id_name: id_name
         }).then((res) => {
-          setWhiteList([...whiteList, { car_number: title, name: props.names, id_name: props.id_name }])
-          title = ''
+          setWhiteList([...whiteList, { car_number: title, name: props.names, id_name: id_name }])
+          setTitle('')
           console.log(res + "Name is added");
         })
       }
@@ -70,31 +72,47 @@ const List = (props) => {
   return (
     <div className={stylist.name}  >
       {/* выводится имя */}
-      <div className={stylist.divName} onClick={() => setModalActive(true)} >
+      <div className={stylist.divName} >
         <span>&nbsp;{props.names}</span>&nbsp;&nbsp;&nbsp;
       </div>
-      <div className={stylist.divNumbers}>
+
+      <div className={stylist.divNumbers} onClick={() => ((changeSize === false  ? setChangeSize(true) : setChangeSize(false)))}>
         {/* <div style={{'text-align' : 'center'}}>{props.names}</div> */}
-        {props.whiteList.map((n) => { //тот же вайтлист из пропса
-          return <ListName
-            key={n.id}
-            id_name={id_name} // idName из вайтлист
-            number={n.car_number}
-            wIdNAme={n.id_name} //idName из props.whiteList (id_name и wIdNAme проверяется на схожество)
-          />
-        })}
-        <ModalCarNumber nameListLength={nameListLength} active={modalActive} setActive={setModalActive}>
-          <input className="type-2CN"
+        <div className={stylist.divNumberRows} style={ changeSize === false 
+        ? {'height' : '' } 
+        : {'height' : 'fit-content', 'text-align' : 'center', 'padding' : '10px' }}>
+            {props.whiteList.map((n) => { //тот же вайтлист из пропса
+            return <ListName
+              key={n.id}
+              id_name={id_name} // idName из вайтлист
+              number={n.car_number}
+              wIdNAme={n.id_name} //idName из props.whiteList (id_name и wIdNAme проверяется на схожество)
+            />
+          })}
+          
+          <div style={ changeSize === false ? {'opacity' : '0', 'pointer-events': 'none'} : {'opacity' : '1', 'margin-top' : '10px'}} >
+            <input onClick={e => e.stopPropagation()}           
+             className="type-2CN"
             type="text"
             value={title} onChange={(e) => setTitle(e.currentTarget.value)}
-            placeholder="Номер машины"
-          />
-          <button className="btnForCN" onClick={onAddName}>Добавить</button>&nbsp;
-          <button className="btnForCN" onClick={onDelName}>Удалить</button>
-        </ModalCarNumber>
+            placeholder="Номер машины"/>
+          </div>
+          <div style={ changeSize === false ? {'opacity' : '0', 'pointer-events': 'none' } : {'opacity' : '1'}}>
+            <button onClick={onAddName}
+             className={stylist.btnForCN}>Добавить</button>&nbsp;
+            <button onClick={onDelName} 
+            className={stylist.btnForCN}>Удалить</button>
+          </div>
+        
+          </div>
+
+
       </div>
-      <div className={stylist.position}>&nbsp;position</div>
-      <div className={stylist.telNumber}>&nbsp;telNumber</div>
+      {/* <ModalCarNumber nameListLength={nameListLength} active={modalActive} setActive={setModalActive}> */}
+        
+      {/* </ModalCarNumber> */}
+      <div className={stylist.position}>&nbsp;position {props.whiteList[0].workPosition}</div>
+      <div className={stylist.telNumber}>&nbsp;telNumber {props.whiteList[0].telNumber}</div>
       {/* выводится номера  */}
     </div>
   )

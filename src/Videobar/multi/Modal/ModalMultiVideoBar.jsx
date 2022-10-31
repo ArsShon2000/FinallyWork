@@ -8,7 +8,7 @@ const ModalMultiVideoBar = ({active, setActive, children}) => {
 
     return(
         <div className={active ? "modalMultiVideoBar active" : "modalMultiVideoBar"} onClick={() => setActive(false)}>
-            <img src={cancel} />
+            <img src={cancel} alt="cancel"/>
             <div className={active ? "modalMultiVideoBar__content active" : "modalMultiVideoBar__content"} onClick={e => e.stopPropagation()}>
                 {children}
             </div>

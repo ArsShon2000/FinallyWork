@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import log from "./Login.module.css"
 import logo from "../Header/logo.png" 
-import App from './../App';
 
 
 
