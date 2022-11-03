@@ -1,13 +1,7 @@
 import React, { useState} from "react";
-// import sample1 from "./video1.mp4"
-// import sample2 from "./video2.mp4"
-// import sample3 from "./video3.mp4"
-// import sample4 from "./video4.mp4"
 import styleVideo from "./VideoBarMulti.module.css"
 import FullWindowStream from '../../Icons/free-icon-font-expand-3917554.png'
 import fullAllStreams from '../../Icons/free-icon-font-apps-3917618.png'
-// import volume from '../../Icons/volume.png'
-// import volumeMuted from '../../Icons/volumeMuted.png'
 import fullOneStream from '../../Icons/single.png'
 import ModalMultiVideoBar from './Modal/ModalMultiVideoBar';
 import GenCarNumber from "../../GenCarNum/GenCarNumber";
@@ -83,8 +77,8 @@ const VideoBarMulti = (props) => {
 
     //  ======================== полноэкранный режим каждого окна c помощью селекта ======================== 
     const onClickFullOneStream = () => {
-        let select = document.getElementById("select_")
-        let value = select.options[select.selectedIndex].value
+        let select = document.getElementById("select_") 
+        let value = select.options[select.selectedIndex].value //получаем значение из селекта
         switch (value) {
             case "1":
                 {
@@ -184,7 +178,7 @@ const VideoBarMulti = (props) => {
     // }
 
     let potok1, potok2, potok3, potok4 = false
-    for(let i = 0; i < props.streams.length; i++){
+    for(let i = 0; i < props.streams.length; i++){ //проверяем есть ли потоки
         if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 0 ) {
              (potok1 = true)
         }else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 1  ) {
@@ -249,31 +243,25 @@ const VideoBarMulti = (props) => {
 
         {/*  ======================== нижние инструменты ========================  */}
 
-        <div className={styleVideo.tools}>
-            <div className={styleVideo.FullWindowStream} >
+        <div className={styleVideo.tools}> //
+            <div className={styleVideo.FullWindowStream} > {/* на весь экран все 4 видео */}
                 <img onClick={onClickFullWindowStream} src={FullWindowStream} alt="FullWindowStream" />
             </div>
-            <div className={styleVideo.fullAllStreams} >
+            <div className={styleVideo.fullAllStreams} > {/* на полный экран браузера все 4 видео */}
                 <img onClick={() => setModalActive(true)} src={fullAllStreams} alt="fullAllStreams" />
             </div>
             <div className={styleVideo.fullOneStream} onClick={onClickFullOneStream}>
-                <img src={fullOneStream} alt="fullOneStream" />
+                <img src={fullOneStream} alt="fullOneStream" /> {/* на весь экран 1 видео */}
             </div>
             <div className={styleVideo.select}>
-            <select id="select_">
+            <select id="select_"> {/* выбор видео на весь экран */}
                         <option  value=""></option>
                         <option type="checkbox" value="1">1</option>
                         <option type="checkbox" value="2">2</option>
                         <option type="checkbox" value="3">3</option>
                         <option type="checkbox" value="4">4</option>
                     </select>
-
-
             </div>
-            {/* <div onClick={() => setVoice(false)} className={styleVideo.microphone}>{voice === true ?
-                    <img src={volume} alt="volume" /> :
-                    <img src={volumeMuted} alt="muteVolume" />}
-                </div> */}
         </div>
 
     </div>

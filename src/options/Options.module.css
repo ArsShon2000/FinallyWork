@@ -44,8 +44,17 @@
 }
 
 .videoStream {
+
   height: 600px;
   background-color: aliceblue;
+  font-family: sans-serif;
+  text-align: center;
+}
+.videoStream video {
+  position: relative;
+  z-index: 1001;
+  height: 600px;
+  background-color: rgb(255, 241, 240);
   font-family: sans-serif;
   text-align: center;
 }

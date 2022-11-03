@@ -31,11 +31,16 @@
     margin-left: 1%;
   }
  .videoStream{
-    /* position: absolute; */
     grid-area: video;
     height:852px;
     width:1512px;
   }
+
+  /* .videoStream video{
+    grid-area: video;
+    height:852px;
+    width:1512px;
+  } */
 
   .progressBar {
     position: relative;
@@ -156,4 +161,3 @@
   .react-calendar {
       background: #00e8f8;
   }
-  
