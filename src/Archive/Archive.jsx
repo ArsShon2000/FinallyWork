@@ -17,6 +17,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import offsetPlugin from "videojs-offset";
 import videojs from "video.js";
+import 'video.js/dist/video-js.css';
 
 
 const instance = axios.create({
@@ -167,15 +168,18 @@ const Archive = (props) => {
     if(Video != null)
     {
         let options = {};
-    let player1 = videojs('single-video-player', options, function onPlayerReady() {
-        videojs.log('Видео идет!');
-        this.cache_.currentTime = 10;
-        // player1.offset({
-        //     start: 120,
-        //     end: 150,
-        //     restart_beginning: false,
-        //   });
-        });
+    // let player1 = videojs('single-video-player', options, function onPlayerReady() {
+    //     videojs.log('Видео идет!');
+    //     player1.offset({
+    //         start: 120,
+    //         end: 200,
+    //         restart_beginning: false
+    //       });
+        // });
+        let ranges = [30, 200]
+        videojs.createTimeRanges(120, 200)
+        // console.log(player1.duration())
+        console.log(videojs.createTimeRanges(ranges[0], ranges[1]))
         Video.ontimeupdate = () => {myFunction()};
         const myFunction = () => {
             setProgressTime(Video.currentTime)
@@ -299,7 +303,7 @@ const Archive = (props) => {
             <div className={styArch.videoArea}>
             
                 <video className={styArch.videoStream} autoPlay loop muted id="single-video-player"
-                ontimeupdate="myFunction(this)">
+                ontimeupdate="myFunction(this)" controls>
                     <source src={record1} type='video/mp4' />
                 </video>
 

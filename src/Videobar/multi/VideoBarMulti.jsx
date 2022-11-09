@@ -194,7 +194,7 @@ const VideoBarMulti = (props) => {
     return (<div>
         <div id="mainVideoBar" className={styleVideo.vidMulti}>
             {/*  ======================== первый видео поток ========================  */}
-            <video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video1} autoPlay loop muted id="multi-video1-player" >
+            <video controls style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video1} autoPlay loop muted id="multi-video1-player" >
                 <source src={potok1 === true ? props.streams[0].nameStream : ""} type='video/mp4' /> 
             </video>
             <span className={styleVideo.video1}>{"sample1"}</span>
@@ -243,7 +243,7 @@ const VideoBarMulti = (props) => {
 
         {/*  ======================== нижние инструменты ========================  */}
 
-        <div className={styleVideo.tools}> //
+        <div className={styleVideo.tools}> 
             <div className={styleVideo.FullWindowStream} > {/* на весь экран все 4 видео */}
                 <img onClick={onClickFullWindowStream} src={FullWindowStream} alt="FullWindowStream" />
             </div>
