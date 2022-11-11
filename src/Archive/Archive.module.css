@@ -55,16 +55,19 @@
   }
   .demo{
     justify-self: start;
+    margin-bottom: 13px;
   }
 
   .progressBar progress{
     width: 89%;
     cursor: pointer;
+    height: 45px;
   }
   
   .videoEnd{
     justify-self: end;
     margin-right: 1%;
+    margin-bottom: 13px;
   }
     
   /* ====================================   records   ================================== */
