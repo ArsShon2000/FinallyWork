@@ -20,8 +20,10 @@ const Log = (props) => {
     
 
     return (
-        <div className={stylab.lab}>
-            {log}
+        <div className={stylab.MainLab}>
+            <div className={stylab.NavbarLog}></div>
+            <div className={stylab.Log}>{log}</div>
+            
         </div>
     )
 }

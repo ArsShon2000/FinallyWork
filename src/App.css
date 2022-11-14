@@ -1,26 +1,26 @@
 .App {
-  
   display: grid;
   margin: auto;
   padding: 0px 10px 0px 10px ;
-  /* height: fit-content; */
+  height: fit-content;
+  min-height: 977px;
   width: auto;
   max-width: 1900px;
   min-width: 1880px;
+  /* height: fit-content; */
   grid-template-areas:
     "header navbar"
     "content content";
   grid-template-rows: 55px 1fr;
   grid-template-columns: 1fr 1fr;
   background-color: rgb(54, 54, 54);
-  overflow-x: hidden; 
-  overflow-y: hidden;
+  overflow: hidden;
   
 }
 
-
-
-
 .App-wrapper-content {
   grid-area: content; 
+}
+.App-wrapper-content input {
+  cursor: text; 
 }

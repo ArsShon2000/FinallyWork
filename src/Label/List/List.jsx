@@ -3,6 +3,7 @@ import stylist from "./List.module.css"
 import ListName from "./ListName";
 import axios from "axios";
 import ModalCarNumber from "./ModalCarNumber/ModalCarNumber";
+import personIcons from "../../Icons/person.png"
 
 
 
@@ -71,48 +72,49 @@ const List = (props) => {
 
   return (
     <div className={stylist.name}  >
-      {/* выводится имя */}
-      <div className={stylist.divName} >
-        <span>&nbsp;{props.names}</span>&nbsp;&nbsp;&nbsp;
-      </div>
+      <div className={stylist.divName} onClick={() => (
+        (changeSize === false  //если скписок расскрыть то при клике закрывается и наоборот
+          ? setChangeSize(true)
+          : setChangeSize(false)))}
+        style={changeSize === false // если changeSize тру то список расскрывается
+          ? { 'height': '' }
+          : { 'height': 'fit-content', 'text-align': 'center', 'padding': '10px', 'background-color': 'rgb(206 213 213)'  }}>
+        <span>&nbsp;<img src={personIcons} alt="onStopClick" />&nbsp;{props.names}</span>&nbsp;&nbsp;&nbsp; {/* выводится имя */}
 
-      <div className={stylist.divNumbers} onClick={() => ((changeSize === false  ? setChangeSize(true) : setChangeSize(false)))}>
-        {/* <div style={{'text-align' : 'center'}}>{props.names}</div> */}
-        <div className={stylist.divNumberRows} style={ changeSize === false 
-        ? {'height' : '' } 
-        : {'height' : 'fit-content', 'text-align' : 'center', 'padding' : '10px' }}>
+
+        <div className={stylist.divNumbers} style={changeSize === false // если changeSize тру то список становится видимым
+          ? { 'opacity': '0', 'pointer-events': 'none' }
+          : { 'opacity': '1', 'margin-top': '10px', 'background-color': 'rgb(206 213 213)'  }}>
+          {/* <div style={{'text-align' : 'center'}}>{props.names}</div> */}
+          <div className={stylist.divNumberRows} >
             {props.whiteList.map((n) => { //тот же вайтлист из пропса
-            return <ListName
-              key={n.id}
-              id_name={id_name} // idName из вайтлист
-              number={n.car_number}
-              wIdNAme={n.id_name} //idName из props.whiteList (id_name и wIdNAme проверяется на схожество)
-            />
-          })}
+              return <ListName
+                key={n.id}
+                id_name={id_name} // idName из вайтлист
+                number={n.car_number}
+                wIdNAme={n.id_name} //idName из props.whiteList (id_name и wIdNAme проверяется на схожество)
+              />
+            })}
+          </div>
+            <div  >
+              <input onClick={e => e.stopPropagation()}
+                className="type-2CN"
+                type="text"
+                value={title} onChange={(e) => setTitle(e.currentTarget.value)}
+                placeholder="Номер машины" />
+            </div>
+            <div style={changeSize === false ? { 'opacity': '0', 'pointer-events': 'none' } : { 'opacity': '1' }}>
+              <button onClick={onAddName}
+                className={stylist.btnForCN}>Добавить</button>&nbsp;
+              <button onClick={onDelName}
+                className={stylist.btnForCN}>Удалить</button>
+            </div>
           
-          <div style={ changeSize === false ? {'opacity' : '0', 'pointer-events': 'none'} : {'opacity' : '1', 'margin-top' : '10px'}} >
-            <input onClick={e => e.stopPropagation()}           
-             className="type-2CN"
-            type="text"
-            value={title} onChange={(e) => setTitle(e.currentTarget.value)}
-            placeholder="Номер машины"/>
-          </div>
-          <div style={ changeSize === false ? {'opacity' : '0', 'pointer-events': 'none' } : {'opacity' : '1'}}>
-            <button onClick={onAddName}
-             className={stylist.btnForCN}>Добавить</button>&nbsp;
-            <button onClick={onDelName} 
-            className={stylist.btnForCN}>Удалить</button>
-          </div>
-        
-          </div>
-
-
+        </div>
       </div>
       {/* <ModalCarNumber nameListLength={nameListLength} active={modalActive} setActive={setModalActive}> */}
-        
+
       {/* </ModalCarNumber> */}
-      <div className={stylist.position}>&nbsp;position {props.whiteList[0].workPosition}</div>
-      <div className={stylist.telNumber}>&nbsp;telNumber {props.whiteList[0].telNumber}</div>
       {/* выводится номера  */}
     </div>
   )

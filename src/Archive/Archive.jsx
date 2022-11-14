@@ -74,7 +74,7 @@ const Archive = (props) => {
                 })
     }, [])
 
-    console.log(cupEdit)
+    // console.log(cupEdit)
 
 
     /* ====================================   stop   ================================== */
@@ -211,8 +211,8 @@ const Archive = (props) => {
     }
 
     const progressClick = (e) => {
-        if (cupEdit[2].cupMode == true) {
-            if (cupEdit[3]) {
+        if (false) {
+            if (true) {
                 setCupEdit([...cupEdit, { secondTime: Video.currentTime }])
                 // let cupEditJSON = JSON.stringify(cupEdit)
                 fetch(`http://192.168.88.208:8003?urlVideo=${cupEdit[1].urlVideo}&firstTime=${cupEdit[3].firstTime}&secondTime=${cupEdit[3].secondTime}`)
@@ -288,7 +288,7 @@ const Archive = (props) => {
     } else {
 
         return (
-            <div className={styArch.lab} >
+            <div className={styArch.Arch} >
                 <div className={styArch.records}>
                     <div className={styArch.recordsTitle}>records</div>
                     <div className={styArch.recordsList}>

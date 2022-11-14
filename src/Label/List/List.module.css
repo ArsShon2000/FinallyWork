@@ -1,23 +1,28 @@
 .name {
   display: grid;
   grid-template-areas:
-  "name carNumber position telNumber";
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  "whiteList";
+  grid-template-columns: 100%;
   color: #727272;
 }
 
 .divName {
   border: 1px solid #727272;
-  grid-area: name;
+  grid-area: whiteList;
+  cursor: pointer;
   background-color: rgb(255, 255, 255);
+  height: 25px;
   /* position: relative; */
 }
 
+.divName img {
+  width: 20px;
+}
+
 .divNumbers{
-  border: 1px solid #727272;
-  grid-area: carNumber;
+  /* border: 1px solid #727272; */
+  grid-area: whiteList;
   background-color: rgb(255, 255, 255);
-  cursor: pointer;
   /* position: absolute; */
 }
 
@@ -25,67 +30,11 @@
   height: 22px;
 }
 
-.position {
-  border: 1px solid #727272;
-  grid-area: position;
-  background-color: rgb(255, 255, 255);
-}
-
-.telNumber{
-  border: 1px solid #727272;
-  grid-area: telNumber;
-  background-color: rgb(255, 255, 255);
-}
-
-
 .name a {
   text-decoration: none;
   color: #727272;
 }
 
-/* 
-
-.maintable{
-  background-color: rgb(0, 0, 0);
-}
-
-.maintableCN{
-  margin: 0px;
-}
-
-.table {
-  width: 190px;
-  border-collapse: collapse;
-  text-align: left;
-
-}
-
-.tableCN {
-  width: 170px;
-  text-align: left;
-
-}
-
-TH {
-  font-weight: normal;
-}
-
-.th {
-  background: rgb(255, 255, 255);
-
-}
-
-.th button{
-  background-color: rgb(255, 255, 255);
-  width: 171px;
-  margin-bottom: -29px;
-  margin-top: -25px;
-  margin-right: -22px;
-padding: 6px;
-cursor: pointer;
-height: 27px;
-}
-*/
 .btnForCN {
   width: 85px;
   background-color: azure;
@@ -101,5 +50,5 @@ height: 27px;
 }
 
 .btnForCN:hover {
-  background-color: rgb(124, 175, 175);
+  background-color: rgb(180, 218, 218);
 }

@@ -1,36 +1,53 @@
 .white {
   display: grid;
+  padding: 10px 0px
+                0px 0px;
   grid-template-areas:
-    "add del search"
-    "table table table";
+    "navbarWL btns"
+    "navbarWL table";
   grid-template-rows: 40px 1fr;
-  grid-template-columns: 170px 170px 1fr;
-  padding: 10px;
+  grid-template-columns: 1fr 4fr;
   height: fit-content;
   min-height: 892px;
-
 }
-/* загаловка и списки */
+
+.navbarWhiteList{
+  margin: 0px 10px
+  0px 0px;
+  border: 2px solid #333333;
+  color:aliceblue;
+  background-color: #1f2129;         
+  grid-area: navbarWL;
+  position: relative;
+}
+/* кнопки инпуты */
+.btns {
+  grid-area: btns;
+  display: grid;
+  grid-template-areas:
+    "add del search";
+  grid-template-rows: 40px;
+  grid-template-columns: 170px 170px 1fr;
+}
+
+/*  списки */
 .names {
+  width: 30%;
   grid-area: table;
   position: relative;
   margin-top: 20px;
-  display: grid;
-  grid-template-areas:
-    "headlines"
-    "nameTable";
-  grid-template-rows: 25px 1fr;
+
 }
 
 /* загаловка */
-.headlines{
+/* .headlines{
   font-weight: bold;
   grid-area: headlines;
   display: grid;
   grid-template-areas:
-    "name carNumber position telNumber";
+    "name carNumber";
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  border: 1px 1px 1px 1px solid #727272;
+  border: 1px 1px solid #727272;
 }
 
 .name {
@@ -42,8 +59,8 @@
   grid-area: carNumber;
   border: 1px solid #727272;
   background-color: rgb(255, 255, 255);
-}
-.position {
+} */
+/* .position {
   grid-area: position;
   border: 1px solid #727272;
   background-color: rgb(255, 255, 255);
@@ -52,13 +69,11 @@
   grid-area: telNumber;
   border: 1px solid #727272;
   background-color: rgb(255, 255, 255);
-}
+} */
 /* загаловка */
 
 /* Список */
-.nameTable {
-  grid-area: nameTable;
-}
+
 
 /* поиск */
 .search {
@@ -70,17 +85,18 @@
 .type_2 {
   padding: 7px;
   margin-right: 10px;
-    border:0;
-    box-shadow:0 0 4px rgba(0,0,0,0.3);
-    transition: .3s box-shadow;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    width: 200px;
-
+  border: 0;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  transition: .3s box-shadow;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 200px;
+  cursor: text;
 }
-  .type_2:hover {
-    border:0;
-    box-shadow:0 0 6px rgba(0,0,0,0.7);
-  }
+
+.type_2:hover {
+  border: 0;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+}
 
 .search_btn {
   background-color: azure;
@@ -91,6 +107,7 @@
   cursor: pointer;
   width: 150px;
 }
+
 /* поиск */
 
 
@@ -109,8 +126,7 @@
 }
 
 .open_btn:hover {
-  background-color: #72a7ec
-  ;
+  background-color: #72a7ec;
   font-weight: bold;
 
 }

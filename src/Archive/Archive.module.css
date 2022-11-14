@@ -1,4 +1,4 @@
-.lab {
+.Arch {
     grid-area: content;
     padding: 10px 0px
                 0px 0px;
@@ -12,8 +12,6 @@
 }
 
   /* ====================================   TOOLS   ================================== */
-
- 
 
 .videoArea {
     border: 3px solid rgb(82, 82, 82);

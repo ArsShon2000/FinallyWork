@@ -13,15 +13,15 @@ const instance = axios.create({
 let render = 0
 
 const WList = (props) => {
-//   console.warn("wlist запрос " + ++render)
+    //   console.warn("wlist запрос " + ++render)
 
     // instance.post('/create-db-wn', () => {})
     // instance.post('/create-db-wn2', () => {}) 
     // instance.post('/create-db-w', () => {}) 
 
-// опеределяет в какой странице происходит действие
+    // опеределяет в какой странице происходит действие
     const determinant = "white"
-    
+
     // модальное окно
     const [modalActive, setModalActive] = useState(false)
 
@@ -29,10 +29,10 @@ const WList = (props) => {
     const [title, setTitle] = useState(''); // номер машины
     const [titleName, setTitleName] = useState(''); //имя владельца
     // const [titleForDel, setTitleForDel] = useState(''); 
-    const [jobTitle, setJobTitle] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
+    // const [jobTitle, setJobTitle] = useState('')
+    // const [phoneNumber, setPhoneNumber] = useState('')
     const [whiteList, setWhiteList] = useState([]); // список из БД
-    
+
     useEffect(() => {
         instance.get(`/wNum`).then((res) => {
             setWhiteList(res.data.wNum);
@@ -44,7 +44,7 @@ const WList = (props) => {
     // let idName = whiteNameList2.length + 1
     let onAddName = () => {
 
-        if((7 < title.length) && (10 > title.length) ) // проверяю длину номера
+        if ((7 < title.length) && (10 > title.length)) // проверяю длину номера
         {
             if (titleName !== '') {
                 instance.post('/wNames2', {
@@ -57,14 +57,15 @@ const WList = (props) => {
                 instance.post('/wNum', {
                     carNumber: title,
                     name: titleName,
-                    workPosition: jobTitle,
-                    telNumber: phoneNumber
+                    // workPosition: jobTitle,
+                    // telNumber: phoneNumber
                 }).then((res) => {
-                    setWhiteList([...whiteList, { 
-                        name: titleName, 
-                        car_number: title, 
-                        workPosition: jobTitle,
-                        telNumber: phoneNumber }])
+                    setWhiteList([...whiteList, {
+                        name: titleName,
+                        car_number: title,
+                        // workPosition: jobTitle,
+                        // telNumber: phoneNumber 
+                    }])
                     console.log(res + "data is added in whitelist");
                 })
             }
@@ -73,9 +74,9 @@ const WList = (props) => {
         else {
             alert("Неправильный формат номера!")
         }
-        
+
     }
-    
+
     // удаление по номеру
     // let onDelName = () => {
     //     instance.delete(`/wNum/cn/${titleForDel}`).then((res) => {
@@ -104,10 +105,10 @@ const WList = (props) => {
         }
         return result;
     }
-// отсорированные айдишки
+    // отсорированные айдишки
     unique(namesNoSort);
 
-// по айди получаем имена водителей
+    // по айди получаем имена водителей
     let names = []
     for (let i = 0; i < unique(namesNoSort).length; i++) {
         for (let j = 0; j < whiteList.length; j++) {
@@ -123,11 +124,13 @@ const WList = (props) => {
     }))
     console.log(finalWhiteList)
     let nameListLength = finalWhiteList.length
-    
 
-    
+
+
 
     return <div className={stylab.white}>
+        <div className={stylab.navbarWhiteList}></div>
+        <div className={stylab.btns}>
             <button className={stylab.open_btn} onClick={() => setModalActive(true)}>Добавить</button>
             <button className={stylab.delete_btn} onClick={() => setModalActive(true)}>Удалить</button>
 
@@ -142,7 +145,7 @@ const WList = (props) => {
                     value={title} onChange={(e) => setTitle(e.currentTarget.value)}
                     placeholder="Номер машины"
                 />
-                <input className="type-2"
+                {/* <input className="type-2"
                     type="text"
                     value={jobTitle} onChange={(e) => setJobTitle(e.currentTarget.value)}
                     placeholder="Должность"
@@ -151,7 +154,7 @@ const WList = (props) => {
                     type="text"
                     value={phoneNumber} onChange={(e) => setPhoneNumber(e.currentTarget.value)}
                     placeholder="Номер телефона"
-                />
+                /> */}
                 <button className="btn_add_dates" onClick={onAddName}>Добавить</button>
             </Modal>
             <div className={stylab.search}>
@@ -159,11 +162,13 @@ const WList = (props) => {
                     type="text" />
                 <button className={stylab.search_btn}>Найти</button>
             </div>
+        </div>
 
-            <br></br>
-            <br></br>
-            
-            {/* <input
+
+        <br></br>
+        <br></br>
+
+        {/* <input
                 type="text"
                 value={title} onChange={(e) => setTitle(e.currentTarget.value)}
                 placeholder="Номер машины"
@@ -188,8 +193,7 @@ const WList = (props) => {
                 placeholder="Удалить владельца"
             />
             <button onClick={onDelName}>Удалить</button> */}
-        <div className={stylab.names}>
-            <div className={stylab.headlines}>
+            {/*<div className={stylab.headlines}>         //заголовки
                 <div className={stylab.name}>
                     <span>&nbsp;ФИО водителя</span>
                 </div>
@@ -202,23 +206,22 @@ const WList = (props) => {
                 <div className={stylab.telNumber}>
                     <span>&nbsp;Номер телефона</span>
                 </div>
-            </div>
-            <div className={stylab.nameTable} 
-            // style={nameListLength > 10 ? { 'height': '230px', 'width': '211px', 'overflow-y': 'scroll', 'overflow-x': 'none', 'display': 'grid' } : {}}
+            </div> */}
+            <div className={stylab.names}
+                style={nameListLength > 9 ? { 'height': '400px', 'width': '30%', 'overflow-y': 'scroll'} : {}}
             >
                 {finalWhiteList.map((w) => {
                     return (
-                        <List key = {w.idName}
+                        <List key={w.idName}
                             determinant={determinant} //определитель черного и белого списка
-                            names={w.sortName} 
+                            names={w.sortName}
                             id_name={w.idName} // айди номера отсортированных водителей
                             whiteList={whiteList} // данные из сервера
                             nameListLength={nameListLength} // длина списка
                         />
                     )
                 })}
-            </div>
-        </div>        
+        </div>
     </div>
 }
 
