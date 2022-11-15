@@ -23,19 +23,25 @@ const Options = () => {
 
     return (
         <div className={opStyle.options}>
-            <div>
+            <div className={opStyle.navbarOptions}>
+                <span>Камеры</span><br></br>
+                <span>Настройка камер</span><br></br>
+                <span>Экспорт </span><br></br>
+                <span>Импорт</span><br></br>
+                <span>Безопастность</span><br></br>
+                <span>Сеть</span><br></br>
+            </div>
+            <div className={opStyle.pageOptions}>
                 <input
                     type="text"
                     value={Ip} onChange={(e) => setIp(e.currentTarget.value)}
                     placeholder={"IP"} />
-            </div>
-            <div>
                 <input
                     type="text"
                     value={Port} onChange={(e) => setPort(e.currentTarget.value)}
                     placeholder={"Port"} />
-            </div>
-            <button onClick={onConnect} onChange={onTap} >{butName}</button>            
+            <button onClick={onConnect} onChange={onTap} >{butName}</button>
+            </div>            
         </div>
         
     )

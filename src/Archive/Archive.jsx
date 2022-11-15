@@ -11,6 +11,9 @@ import pauseButton from "../Icons/pause.png"
 import stopButton from "../Icons/stop.png"
 import stopButtonOff from "../Icons/stopOff.png"
 import scissors from "../Icons/scissors.png"
+import saveVideo from "../Icons/save.png"
+import resetPoint from "../Icons/reset.png"
+import scissorsOn from "../Icons/scissorsOn.png"
 import axios from "axios";
 import VideoList from "./videoList/VideoList";
 import Calendar from 'react-calendar';
@@ -55,7 +58,7 @@ const Archive = (props) => {
     let [progressTime, setProgressTime] = useState(0)
     let [videoEnd, setVideoEnd] = useState([]) // длительность видео
 
-    let [cupEdit, setCupEdit] = useState() // режим для резки видео
+    let [cupEdit, setCupEdit] = useState() // режим для резки видео. [0] пусто, [1] - путь, [2]-режим мода, [3-4] - старт-енд
 
 
 
@@ -171,12 +174,16 @@ const Archive = (props) => {
         setChoiceStream(value)
     }
 
-    const onScissorsClick = () => {
-        setCupEdit([...cupEdit, { cupMode: true }])
+     /* ====================================   пост запрос   ================================== */
+    const onScissorsClick = () => { //отправляем полученные данные
+        // let cupEditJSON = JSON.stringify(cupEdit)
+        fetch(`http://192.168.88.208:8003?urlVideo=${cupEdit[1].urlVideo}&firstTime=${cupEdit[2].firstTime}&secondTime=${cupEdit[3].secondTime}`)
+                    .then(response => response.text())
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
     }
+
     /* ====================================   progressBar   ================================== */
-
-
     let Video = document.getElementById("single-video-player")
     if (Video != null) {
         let options = {};
@@ -207,36 +214,50 @@ const Archive = (props) => {
             if (videoEnd.length < 1) {
                 setVideoEnd([...videoEnd, { 0: hours, 1: minutes, 2: seconds }])
             }
+        }    
+    }
+    const progressClick = (e) => {       //кликаем по прогресс бару 
+        let PB = document.getElementById("progressBar");
+        if (PB != null) { 
+            let widthPB = Video.duration  // длина template video
+            let procent = (8.04 / 100) * (100 * window.event.offsetX / widthPB) //убираю разницу длины прогресбара от общей длины
+            let newTime = window.event.offsetX - ((widthPB / 100) * procent) // уточняю где был клик
+            Video.currentTime = newTime //устанавливаем время место клика
+            console.log(newTime)
+            console.log(Video.duration)            
         }
     }
 
-    const progressClick = (e) => {
-        if (false) {
-            if (true) {
-                setCupEdit([...cupEdit, { secondTime: Video.currentTime }])
-                // let cupEditJSON = JSON.stringify(cupEdit)
-                fetch(`http://192.168.88.208:8003?urlVideo=${cupEdit[1].urlVideo}&firstTime=${cupEdit[3].firstTime}&secondTime=${cupEdit[3].secondTime}`)
-                    .then(response => response.text())
-                    .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
+     /* ====================================   гет пойнтс   ================================== */
+    const sendPointDoubleClick = () => { //при дабл клике мы будем получать данные для резки
+        if (cupEdit[1]) { //если есть путь
+            if (cupEdit[2] && !cupEdit[3]) { // если есть первая точка
+                setCupEdit([...cupEdit, { secondTime: Video.currentTime }])  //2я точка                   
             }
-            else {
-                setCupEdit([...cupEdit, { firstTime: Video.currentTime }])
+            else if(cupEdit[3]){
+                alert(`У Вас уже есть выбранные точки:\n первая точка=${cupEdit[2].firstTime} \n вторая точка=${cupEdit[3].secondTime}`)
             }
-        }
-        else {
-            let PB = document.getElementById("progressBar");
-            if (PB != null) {
-                let widthPB = Video.duration  // длина template video
-                let procent = (8.04 / 100) * (100 * window.event.offsetX / widthPB) //убираю разницу длины прогресбара от общей длины
-                let newTime = window.event.offsetX - ((widthPB / 100) * procent) // уточняю где был клик
-                Video.currentTime = newTime
-                console.log(newTime)
-                console.log(Video.duration)
+            else { 
+                // setCupEdit([...cupEdit, { cupMode: true }])  // едит режим             
+                setCupEdit([...cupEdit, { firstTime: Video.currentTime }]) //1я точка
             }
         }
-
     }
+
+    /* ====================================   reset points   ================================== */
+    const onResetPoint = () =>
+    {
+        if (cupEdit[3]) { // если есть первая точка
+            cupEdit.splice(2, 1)
+            cupEdit.splice(2, 1)  //2я точка                   
+        }
+        else { 
+            cupEdit.splice(2, 1)  // едит режим
+        }
+    }
+
+
+
 
 
     const searchVideos = () => {
@@ -363,7 +384,8 @@ const Archive = (props) => {
                             max={videoEnd.length > 0 ?
                                 videoEnd[0][0] * 360 + videoEnd[0][1] * 60 + videoEnd[0][2] :
                                 0} value={progressTime}
-                            onClick={progressClick}></progress>
+                            onClick={progressClick}
+                            onDoubleClick={sendPointDoubleClick}></progress>
                         {/* =========================== Прогресс бар текущяя время =========================== */}
                         <span className={styArch.demo}>
                             {hour.toString().padStart(2, '0')}:
@@ -412,9 +434,29 @@ const Archive = (props) => {
                                 <option value="3">8x</option>
                             </select>
                         </div>
-                        <div className={styArch.scissors}>
-                            <img src={scissors} onClick={onScissorsClick} alt="onForwardClick" />
-                        </div>
+                        {cupEdit[2] 
+                            ? cupEdit[3] 
+                                ?<div className={styArch.scissors}>
+                                    <img src={saveVideo} onClick={onScissorsClick} alt="saveVideo" />
+                                </div>
+                                :<div className={styArch.scissors}>
+                                    <img src={scissorsOn} onClick={onScissorsClick} alt="scissorsOn" />
+                                </div>
+                            
+                            :<div className={styArch.scissors}>
+                                <img src={scissors}  alt="scissors" />
+                            </div>
+                        }
+                        {cupEdit[2] 
+                            ? <div className={styArch.resetPoint}
+                            title="Сбросить точек">
+                                    <img src={resetPoint} onClick={onResetPoint} alt="resetPoint" />
+                                </div>
+                            :<div className={styArch.resetPoint}
+                            style = {{'opacity' : '0'}}>
+                                <img src={resetPoint}  alt="resetPoint" />
+                            </div>
+                        }
                     </div>
                     {/* <img src={props.fullScreenButton} alt="fullScreenButton"/> */}
                     {/* <span>{record1}</span> */}

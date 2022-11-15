@@ -73,7 +73,7 @@
   .records {
     margin: 0px 10px
                 0px 0px;
-    border: 2px solid #333333;
+    border: 3px solid rgb(82, 82, 82);
     color:aliceblue;
     background-color: #1f2129;   
     overflow-y: scroll;         
@@ -113,9 +113,9 @@
     background-color: #525252;
     display: grid;
     grid-template-areas:
-      "stop back Play forward speed scissors";
+      "stop back Play forward speed scissors resetPoint";
     grid-template-rows: 1fr ;
-    grid-template-columns: 45px 45px 45px 45px 30px  1fr;
+    grid-template-columns: 45px 45px 45px 45px 30px 45px 1fr;
   }
   
   .tools img{

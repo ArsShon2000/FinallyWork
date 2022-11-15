@@ -130,22 +130,23 @@ const WList = (props) => {
 
     return <div className={stylab.white}>
         <div className={stylab.navbarWhiteList}></div>
-        <div className={stylab.btns}>
-            <button className={stylab.open_btn} onClick={() => setModalActive(true)}>Добавить</button>
-            <button className={stylab.delete_btn} onClick={() => setModalActive(true)}>Удалить</button>
+        <div className={stylab.pageWhiteList}>
+            <div className={stylab.btns}>
+                <button className={stylab.open_btn} onClick={() => setModalActive(true)}>Добавить</button>
+                <button className={stylab.delete_btn} onClick={() => setModalActive(true)}>Удалить</button>
 
-            <Modal active={modalActive} setActive={setModalActive}>
-                <input className="type-2"
-                    type="text"
-                    value={titleName} onChange={(e) => setTitleName(e.currentTarget.value)}
-                    placeholder="Владелец"
-                />
-                <input className="type-2"
-                    type="text"
-                    value={title} onChange={(e) => setTitle(e.currentTarget.value)}
-                    placeholder="Номер машины"
-                />
-                {/* <input className="type-2"
+                <Modal active={modalActive} setActive={setModalActive}>
+                    <input className="type-2"
+                        type="text"
+                        value={titleName} onChange={(e) => setTitleName(e.currentTarget.value)}
+                        placeholder="Владелец"
+                    />
+                    <input className="type-2"
+                        type="text"
+                        value={title} onChange={(e) => setTitle(e.currentTarget.value)}
+                        placeholder="Номер машины"
+                    />
+                    {/* <input className="type-2"
                     type="text"
                     value={jobTitle} onChange={(e) => setJobTitle(e.currentTarget.value)}
                     placeholder="Должность"
@@ -155,20 +156,20 @@ const WList = (props) => {
                     value={phoneNumber} onChange={(e) => setPhoneNumber(e.currentTarget.value)}
                     placeholder="Номер телефона"
                 /> */}
-                <button className="btn_add_dates" onClick={onAddName}>Добавить</button>
-            </Modal>
-            <div className={stylab.search}>
-                <input className={stylab.type_2}
-                    type="text" />
-                <button className={stylab.search_btn}>Найти</button>
+                    <button className="btn_add_dates" onClick={onAddName}>Добавить</button>
+                </Modal>
+                <div className={stylab.search}>
+                    <input className={stylab.type_2}
+                        type="text" />
+                    <button className={stylab.search_btn}>Найти</button>
+                </div>
             </div>
-        </div>
 
 
-        <br></br>
-        <br></br>
+            <br></br>
+            <br></br>
 
-        {/* <input
+            {/* <input
                 type="text"
                 value={title} onChange={(e) => setTitle(e.currentTarget.value)}
                 placeholder="Номер машины"
@@ -208,8 +209,9 @@ const WList = (props) => {
                 </div>
             </div> */}
             <div className={stylab.names}
-                style={nameListLength > 9 ? { 'height': '400px', 'width': '30%', 'overflow-y': 'scroll'} : {}}
-            >
+                style={nameListLength > 9 
+                    ? { 'height': '400px', 'width': '30%', 'overflow-y': 'scroll' } 
+                    : {}}>
                 {finalWhiteList.map((w) => {
                     return (
                         <List key={w.idName}
@@ -221,7 +223,9 @@ const WList = (props) => {
                         />
                     )
                 })}
+            </div>
         </div>
+
     </div>
 }
 

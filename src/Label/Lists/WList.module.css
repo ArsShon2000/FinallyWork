@@ -3,18 +3,28 @@
   padding: 10px 0px
                 0px 0px;
   grid-template-areas:
-    "navbarWL btns"
-    "navbarWL table";
-  grid-template-rows: 40px 1fr;
+    "navbarWL pageWhiteList";
   grid-template-columns: 1fr 4fr;
   height: fit-content;
-  min-height: 892px;
+  height: 902px;
+}
+
+.pageWhiteList {
+  border: 3px solid rgb(82, 82, 82);
+    grid-area: pageWhiteList; 
+    /* background-color: rgb(214, 216, 218); */
+    padding: 5px;
+    display: grid;
+  grid-template-areas:
+    "btns"
+    "table";
+  grid-template-rows: 40px 1fr;
 }
 
 .navbarWhiteList{
   margin: 0px 10px
   0px 0px;
-  border: 2px solid #333333;
+  border: 3px solid rgb(82, 82, 82);
   color:aliceblue;
   background-color: #1f2129;         
   grid-area: navbarWL;

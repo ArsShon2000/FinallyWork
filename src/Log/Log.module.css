@@ -1,6 +1,6 @@
 .MainLab {
     grid-area: content;
-    color:aliceblue;
+    color: #727272;
     white-space: pre-wrap;
     background-color: rgb(54, 54, 54); 
     height: 902px;
@@ -10,8 +10,6 @@
     grid-template-areas:
       "navbarLog log";
     grid-template-columns: 1fr 4fr;
-    padding: 10px 0px
-              0px 0px;
               
     
 }
@@ -20,12 +18,15 @@
     grid-area: navbarLog;
     margin: 0px 10px
     0px 0px;
-    border: 2px solid #333333;
+    border: 3px solid rgb(82, 82, 82);
     color:aliceblue;
     background-color: #1f2129;     
   }
 
   .Log {
+    border: 3px solid rgb(82, 82, 82);
     grid-area: log; 
     overflow-y: scroll;
+    background-color: rgb(214, 216, 218);
+    padding: 5px;
   }
