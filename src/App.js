@@ -8,12 +8,13 @@ import Login from './Login/Login';
 import Navbar from './Navbar/Navbar';
 import WList from './Label/Lists/WList';
 import BList from './Label/Lists/BList';
-import Options from './options/options';
+import Options from './options/Options';
 // import axios from "axios";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Archive from './Archive/Archive';
 import Log from './Log/Log';
+import Network from './options/parameterList/Network';
 
 
 // let render = 0
@@ -32,8 +33,8 @@ let App = () => {
   const [loginList, setLoginList] = useState([]);
 
   let bool
-  if(loginList.login){
-  bool = loginList.login.length
+  if (loginList.login) {
+    bool = loginList.login.length
   }
 
   useEffect(() => {
@@ -51,11 +52,11 @@ let App = () => {
       .then(res => res.json())
       .then((result) => {
         if (bool !== 1) {
-        setLoginList(result);
-    console.log("From app")
+          setLoginList(result);
+          console.log("From app")
         }
       })
-      
+
   }, [])
 
   console.log(loginList)
@@ -76,7 +77,7 @@ let App = () => {
         <div className="App">
           <Header />
           <Routes>
-            <Route path='/camera/' element={<VideoBar Cameras={Cameras} />} />
+            <Route path='/camera' element={<VideoBar Cameras={Cameras} />} />
             <Route path='/' element={<VideoBar Cameras={Cameras} />} />
           </Routes>
           {/* <VideoBar /> */}
@@ -85,18 +86,20 @@ let App = () => {
           <div className="App-wrapper-content ">
             {bool !== 1 ? refresh() : <Routes>
               {/* <Route path='/camera/' element={<VideoBar />} /> */}
-              <Route path='/camera/' element={<GenCarNumber />} />
+              <Route path='/camera' element={<GenCarNumber />} />
               <Route path='/' element={<GenCarNumber />} />
-              <Route path='/archive/' element={<Archive />} />
-              <Route path='/wlist/' element={<WList />} />
-              <Route path='/blist/' element={<BList />} />
-              <Route path='/log/' element={<Log />} />
-              <Route path='/options/' element={<Options />} />
+              <Route path='/archive' element={<Archive />} />
+              <Route path='/wlist' element={<WList />} />
+              <Route path='/blist' element={<BList />} />
+              <Route path='/log' element={<Log />} />
+              <Route path='options' element={<Options />} >
+                <Route path='cameras' element={<div>satrt</div>} />
+                <Route path='network' element={<Network />} />
+              </Route>
               {/* <Route path='/login' element={<Login />} /> */}
             </Routes>
             }
           </div>
-
         </div>
       </BrowserRouter>
     );

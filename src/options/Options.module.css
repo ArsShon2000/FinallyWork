@@ -6,8 +6,8 @@
     color: #727272;
     background-color: rgb(54, 54, 54); 
     display: grid;
-    padding: 10px 0px
-                  0px 0px;
+    padding:  10px 0px
+              0px 0px;
     grid-template-areas:
       "navbarOptions pageOptions";
     grid-template-columns: 1fr 4fr;
@@ -18,9 +18,10 @@
     border: 3px solid rgb(82, 82, 82);
     color:aliceblue;
     margin: 0px 10px
-    0px 0px;
+            0px 0px;
     background-color: #1f2129;     
     padding: 5px;
+
   }
 
   .navbarOptions span{
@@ -32,6 +33,9 @@
     grid-area: pageOptions; 
     /* background-color: rgb(214, 216, 218); */
     padding: 5px;
+    display: grid;
+    grid-template-areas:
+      "Options";
   }
 
   .button {

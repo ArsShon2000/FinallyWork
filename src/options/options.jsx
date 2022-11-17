@@ -1,50 +1,26 @@
 import React, { useState } from "react";
+import OptionNavbar from "./optionNavbar/OptionNavbar";
 import opStyle from "./Options.module.css"
+import { Outlet, Route, Routes } from 'react-router-dom';
+import Cameras from "./parameterList/Cameras";
+import Network from "./parameterList/Network";
+
 
 const Options = () => {
-
-
-
-
-    let butName = 'Соеденить'
-
-    let [Ip, setIp] = useState('');
-    let [Port, setPort] = useState('');
-
-    let onConnect = () => {
-        alert('Error 404')
-        
-    }
-
-    let onTap = () => {
-        butName = 'Разъеденить'
-    } 
-
-
     return (
         <div className={opStyle.options}>
             <div className={opStyle.navbarOptions}>
-                <span>Камеры</span><br></br>
-                <span>Настройка камер</span><br></br>
-                <span>Экспорт </span><br></br>
-                <span>Импорт</span><br></br>
-                <span>Безопастность</span><br></br>
-                <span>Сеть</span><br></br>
+                <OptionNavbar />
             </div>
             <div className={opStyle.pageOptions}>
-                <input
-                    type="text"
-                    value={Ip} onChange={(e) => setIp(e.currentTarget.value)}
-                    placeholder={"IP"} />
-                <input
-                    type="text"
-                    value={Port} onChange={(e) => setPort(e.currentTarget.value)}
-                    placeholder={"Port"} />
-            <button onClick={onConnect} onChange={onTap} >{butName}</button>
+                <Outlet></Outlet>
+                {/* <Routes>
+                    <Route path="/" element={<Cameras />} />
+                    <Route path='/options/cameras' element={<div>satrt</div>} />
+                    <Route path='/options/network' render={() => <Network />} />
+                </Routes>                 */}
             </div>            
         </div>
-        
     )
 }
-
 export default Options

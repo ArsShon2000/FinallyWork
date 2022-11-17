@@ -136,12 +136,14 @@ const Archive = (props) => {
         video.currentTime += 2
     }
     // кнопкой
-    document.addEventListener('keyup', function (event) {
-        if ((event.key === "ArrowRight")) {
+    React.useMemo(() => {
+        document.addEventListener('keydown', function (event) {
             let video = document.querySelector("#single-video-player")
-            video.currentTime += 1
-        }
-    })
+            if ((event.key === "ArrowRight" && video)) {
+                video.currentTime += 1
+            }
+        })
+    }, []);
     /* ====================================   speedUp   ================================== */
     const onSpeedUp = () => {
         let video = document.querySelector("#single-video-player")
@@ -174,13 +176,13 @@ const Archive = (props) => {
         setChoiceStream(value)
     }
 
-     /* ====================================   пост запрос   ================================== */
+    /* ====================================   пост запрос   ================================== */
     const onScissorsClick = () => { //отправляем полученные данные
         // let cupEditJSON = JSON.stringify(cupEdit)
         fetch(`http://192.168.88.208:8003?urlVideo=${cupEdit[1].urlVideo}&firstTime=${cupEdit[2].firstTime}&secondTime=${cupEdit[3].secondTime}`)
-                    .then(response => response.text())
-                    .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
     }
 
     /* ====================================   progressBar   ================================== */
@@ -214,30 +216,30 @@ const Archive = (props) => {
             if (videoEnd.length < 1) {
                 setVideoEnd([...videoEnd, { 0: hours, 1: minutes, 2: seconds }])
             }
-        }    
+        }
     }
     const progressClick = (e) => {       //кликаем по прогресс бару 
         let PB = document.getElementById("progressBar");
-        if (PB != null) { 
+        if (PB != null) {
             let widthPB = Video.duration  // длина template video
             let procent = (8.04 / 100) * (100 * window.event.offsetX / widthPB) //убираю разницу длины прогресбара от общей длины
             let newTime = window.event.offsetX - ((widthPB / 100) * procent) // уточняю где был клик
             Video.currentTime = newTime //устанавливаем время место клика
             console.log(newTime)
-            console.log(Video.duration)            
+            console.log(Video.duration)
         }
     }
 
-     /* ====================================   гет пойнтс   ================================== */
+    /* ====================================   гет пойнтс   ================================== */
     const sendPointDoubleClick = () => { //при дабл клике мы будем получать данные для резки
         if (cupEdit[1]) { //если есть путь
             if (cupEdit[2] && !cupEdit[3]) { // если есть первая точка
                 setCupEdit([...cupEdit, { secondTime: Video.currentTime }])  //2я точка                   
             }
-            else if(cupEdit[3]){
+            else if (cupEdit[3]) {
                 alert(`У Вас уже есть выбранные точки:\n первая точка=${cupEdit[2].firstTime} \n вторая точка=${cupEdit[3].secondTime}`)
             }
-            else { 
+            else {
                 // setCupEdit([...cupEdit, { cupMode: true }])  // едит режим             
                 setCupEdit([...cupEdit, { firstTime: Video.currentTime }]) //1я точка
             }
@@ -245,13 +247,12 @@ const Archive = (props) => {
     }
 
     /* ====================================   reset points   ================================== */
-    const onResetPoint = () =>
-    {
+    const onResetPoint = () => {
         if (cupEdit[3]) { // если есть первая точка
             cupEdit.splice(2, 1)
             cupEdit.splice(2, 1)  //2я точка                   
         }
-        else { 
+        else {
             cupEdit.splice(2, 1)  // едит режим
         }
     }
@@ -434,27 +435,27 @@ const Archive = (props) => {
                                 <option value="3">8x</option>
                             </select>
                         </div>
-                        {cupEdit[2] 
-                            ? cupEdit[3] 
-                                ?<div className={styArch.scissors}>
+                        {cupEdit[2]
+                            ? cupEdit[3]
+                                ? <div className={styArch.scissors}>
                                     <img src={saveVideo} onClick={onScissorsClick} alt="saveVideo" />
                                 </div>
-                                :<div className={styArch.scissors}>
+                                : <div className={styArch.scissors}>
                                     <img src={scissorsOn} onClick={onScissorsClick} alt="scissorsOn" />
                                 </div>
-                            
-                            :<div className={styArch.scissors}>
-                                <img src={scissors}  alt="scissors" />
+
+                            : <div className={styArch.scissors}>
+                                <img src={scissors} alt="scissors" />
                             </div>
                         }
-                        {cupEdit[2] 
+                        {cupEdit[2]
                             ? <div className={styArch.resetPoint}
-                            title="Сбросить точек">
-                                    <img src={resetPoint} onClick={onResetPoint} alt="resetPoint" />
-                                </div>
-                            :<div className={styArch.resetPoint}
-                            style = {{'opacity' : '0'}}>
-                                <img src={resetPoint}  alt="resetPoint" />
+                                title="Сбросить точек">
+                                <img src={resetPoint} onClick={onResetPoint} alt="resetPoint" />
+                            </div>
+                            : <div className={styArch.resetPoint}
+                                style={{ 'opacity': '0' }}>
+                                <img src={resetPoint} alt="resetPoint" />
                             </div>
                         }
                     </div>
