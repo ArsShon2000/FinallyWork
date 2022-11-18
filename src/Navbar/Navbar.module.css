@@ -3,12 +3,12 @@
     grid-area: navbar; 
     display: grid;  
     grid-template-areas:
-    ". . . . . . ."
-    "np na nw nb nl no nv";
+    ". . . . . ."
+    "np na nw nl no nv";
     width: auto;
     text-align: center;
     grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr  1fr 1fr 1fr;
   
 
     /* justify-self: space-around; */
@@ -30,11 +30,11 @@
     display: grid;  
     grid-area: nw;
   }
-  .button_nb {
+  /* .button_nb {
     
     display: grid;  
     grid-area: nb;
-  }
+  } */
   .button_nl {
     display: grid;  
     grid-area: nl;

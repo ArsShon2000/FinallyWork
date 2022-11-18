@@ -15,6 +15,11 @@ import { useEffect } from 'react';
 import Archive from './Archive/Archive';
 import Log from './Log/Log';
 import Network from './options/parameterList/Network';
+import CamerasOptions from './options/parameterList/CamerasOptions';
+import CameraParameters from './options/parameterList/CameraParameters';
+import ExportOptions from './options/parameterList/ExportOptions';
+import ImportOptions from './options/parameterList/ImportOptions';
+import SafetyOptions from './options/parameterList/SafetyOptions';
 
 
 // let render = 0
@@ -89,11 +94,15 @@ let App = () => {
               <Route path='/camera' element={<GenCarNumber />} />
               <Route path='/' element={<GenCarNumber />} />
               <Route path='/archive' element={<Archive />} />
-              <Route path='/wlist' element={<WList />} />
-              <Route path='/blist' element={<BList />} />
+              <Route path='/wlis' element={<WList />} />
+              <Route path='/blis' element={<BList />} />
               <Route path='/log' element={<Log />} />
               <Route path='options' element={<Options />} >
-                <Route path='cameras' element={<div>satrt</div>} />
+                <Route path='cameras' element={<CamerasOptions />} />
+                <Route path='cameraParameters' element={<CameraParameters/>} />
+                <Route path='export' element={<ExportOptions />} />
+                <Route path='import' element={<ImportOptions />} />
+                <Route path='safety' element={<SafetyOptions />} />
                 <Route path='network' element={<Network />} />
               </Route>
               {/* <Route path='/login' element={<Login />} /> */}

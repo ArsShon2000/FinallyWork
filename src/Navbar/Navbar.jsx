@@ -46,12 +46,12 @@ const Navbar = () => {
             </div>
             <div className={sty.button_nw}>
                 <NavLink to="/wlist/" className={({ isActive }) =>
-                    isActive ? sty.active : undefined}>Белый список</NavLink>
+                    isActive ? sty.active : undefined}>Список водителей</NavLink>
             </div>
-            <div className={sty.button_nb}>
+            {/* <div className={sty.button_nb}>
                 <NavLink to="/blist/" className={({ isActive }) =>
                     isActive ? sty.active : undefined}>Черный список</NavLink>
-            </div>
+            </div> */}
             <div className={sty.button_nl}>
                 <NavLink to="/log/" className={({ isActive }) =>
                     isActive ? sty.active : undefined}>Log</NavLink>

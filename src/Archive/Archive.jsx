@@ -103,19 +103,21 @@ const Archive = (props) => {
         }
     }
     // кнопкой
-    document.addEventListener('keyup', function (event) {
-        let video = document.querySelector("#single-video-player")
-        if ((event.code === "Space")) {
-            if (pause === true) {
-                video.pause()
-                setPause(false)
-            } else {
-                video.play()
-                setPause(true)
-                setStop(true)
+    React.useMemo(() => {
+        document.addEventListener('keyup', function (event) {
+            let video = document.querySelector("#single-video-player")
+            if (event.code === "Space") {
+                if (pause === true) {
+                    video.pause()
+                    setPause(false)
+                } else {
+                    video.play()
+                    setPause(true)
+                    setStop(true)
+                }
             }
-        }
-    })
+        })
+    }, [false]);
 
     /* ====================================   back   ================================== */
     const onBackClick = () => {
@@ -124,12 +126,14 @@ const Archive = (props) => {
 
     }
     // кнопкой
-    document.addEventListener('keyup', function (event) {
-        if ((event.key === "ArrowLeft")) {
-            let video = document.querySelector("#single-video-player")
-            video.currentTime -= 1
-        }
-    })
+    React.useMemo(() => {
+        document.addEventListener('keydown', function (event) {
+            if ((event.key === "ArrowLeft")) {
+                let video = document.querySelector("#single-video-player")
+                video.currentTime -= 1
+            }
+        })
+    }, []);
     /* ====================================   Forward   ================================== */
     const onForwardClick = () => {
         let video = document.querySelector("#single-video-player")

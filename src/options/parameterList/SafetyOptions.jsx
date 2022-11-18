@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import ParamNavStyle from "./ParameterNavbar.module.css";
 
 
-const Network = () => {
+const SafetyOptions = () => {
     return (
-        <div className={ParamNavStyle.cam}>Network</div>
+        <div className={ParamNavStyle.cam}>SafetyOptions</div>
     )
 };
 
-export default Network;
+export default SafetyOptions;
