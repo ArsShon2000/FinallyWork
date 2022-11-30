@@ -6,8 +6,8 @@ import VideoBar from './Videobar/VideoBar.jsx'
 import GenCarNumber from './GenCarNum/GenCarNumber';
 import Login from './Login/Login';
 import Navbar from './Navbar/Navbar';
-import WList from './Label/Lists/WList';
-import BList from './Label/Lists/BList';
+import WList from './Label/WBLists/WList';
+import BList from './Label/WBLists/BList';
 import Options from './options/Options';
 // import axios from "axios";
 import { useState } from 'react';
@@ -20,6 +20,7 @@ import CameraParameters from './options/parameterList/CameraParameters';
 import ExportOptions from './options/parameterList/ExportOptions';
 import ImportOptions from './options/parameterList/ImportOptions';
 import SafetyOptions from './options/parameterList/SafetyOptions';
+import Label from './Label/Label';
 
 
 // let render = 0
@@ -93,9 +94,16 @@ let App = () => {
               {/* <Route path='/camera/' element={<VideoBar />} /> */}
               <Route path='/camera' element={<GenCarNumber />} />
               <Route path='/' element={<GenCarNumber />} />
-              <Route path='/archive' element={<Archive />} />
-              <Route path='/wlis' element={<WList />} />
-              <Route path='/blis' element={<BList />} />
+                <Route path='/archive' element={ 
+                  <React.StrictMode>
+                    <Archive />
+                  </React.StrictMode>
+                } />
+              <Route path='/list' element={<Label />} >
+                <Route path='wlist' element={<WList />} />
+                <Route path='blist' element={<BList/>} />
+              </Route>
+              <Route path='/blist' element={<BList />} />
               <Route path='/log' element={<Log />} />
               <Route path='options' element={<Options />} >
                 <Route path='cameras' element={<CamerasOptions />} />

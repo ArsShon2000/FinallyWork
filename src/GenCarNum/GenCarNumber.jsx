@@ -73,6 +73,7 @@ const GenCarNumber = (props) => {
     useEffect(() => {
         instance.get('/genNum').then((res) => {
             setGenNum(res.data.genNum);
+            console.log('gen num')
         })
     }, []);
 

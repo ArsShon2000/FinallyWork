@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import stylist from "./List.module.css"
 import ListName from "./ListName";
-import axios from "axios";
 import ModalCarNumber from "./ModalCarNumber/ModalCarNumber";
 import personIcons from "../../Icons/person.png"
+import axios from "axios";
 
 
 
@@ -14,8 +14,9 @@ const instance = axios.create({
 // let render = 0
 const List = (props) => {
   // console.warn("list запрос " + ++render)
-
-
+  let titleForSearch
+  props.titleForSearch ? titleForSearch = props.titleForSearch : titleForSearch = ''
+  
   let id_name = props.id_name
   // let whiteList = props.whiteList
   let nameListLength = props.nameListLength
@@ -78,13 +79,14 @@ const List = (props) => {
           : setChangeSize(false)))}
         style={changeSize === false // если changeSize тру то список расскрывается
           ? { 'height': '' }
-          : { 'height': 'fit-content', 'text-align': 'center', 'padding': '10px', 'background-color': 'rgb(206 213 213)'  }}>
+          : { 'height': 'fit-content', 'padding': '10px', 'background-color': '#7f7f7f'  }}>
         <span>&nbsp;<img src={personIcons} alt="onStopClick" />&nbsp;{props.names}</span>&nbsp;&nbsp;&nbsp; {/* выводится имя */}
 
 
         <div className={stylist.divNumbers} style={changeSize === false // если changeSize тру то список становится видимым
-          ? { 'opacity': '0', 'pointer-events': 'none' }
-          : { 'opacity': '1', 'margin-top': '10px', 'background-color': 'rgb(206 213 213)'  }}>
+          ? { 'opacity': '0',
+           'pointer-events': 'none' }
+          : { 'opacity': '1','justifySelf': 'center',  'margin-top': '10px'  }}>
           {/* <div style={{'text-align' : 'center'}}>{props.names}</div> */}
           <div className={stylist.divNumberRows} >
             {props.whiteList.map((n) => { //тот же вайтлист из пропса
@@ -96,7 +98,8 @@ const List = (props) => {
               />
             })}
           </div>
-            <div  >
+          <div className={stylist.functions}>
+            <div>
               <input onClick={e => e.stopPropagation()}
                 className="type-2CN"
                 type="text"
@@ -109,9 +112,10 @@ const List = (props) => {
               <button onClick={onDelName}
                 className={stylist.btnForCN}>Удалить</button>
             </div>
-          
+          </div>
         </div>
       </div>
+      
       {/* <ModalCarNumber nameListLength={nameListLength} active={modalActive} setActive={setModalActive}> */}
 
       {/* </ModalCarNumber> */}

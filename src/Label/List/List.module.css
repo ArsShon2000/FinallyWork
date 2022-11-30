@@ -3,14 +3,14 @@
   grid-template-areas:
   "whiteList";
   grid-template-columns: 100%;
-  color: #727272;
+  color: aliceblue;
 }
 
 .divName {
   border: 1px solid #727272;
   grid-area: whiteList;
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
+  background-color: #1f2129;
   height: 25px;
   /* position: relative; */
 }
@@ -22,12 +22,19 @@
 .divNumbers{
   /* border: 1px solid #727272; */
   grid-area: whiteList;
-  background-color: rgb(255, 255, 255);
+  grid-template-areas: 
+  "numbers"
+  "functions";
+  /* background-color: rgb(255, 255, 255); */
   /* position: absolute; */
 }
 
+.functions{
+  grid-area: functions;
+}
 .divNumberRows{ 
-  height: 22px;
+  height: fit-content;
+  grid-area: numbers;
 }
 
 .name a {

@@ -1,19 +1,14 @@
 .white {
   display: grid;
-  padding: 10px 0px
-                0px 0px;
   grid-template-areas:
-    "navbarWL pageWhiteList";
-  grid-template-columns: 1fr 4fr;
+    "pageWhiteList";
+  grid-template-columns: 1fr;
   height: fit-content;
   height: 902px;
 }
 
 .pageWhiteList {
-  border: 3px solid rgb(82, 82, 82);
     grid-area: pageWhiteList; 
-    /* background-color: rgb(214, 216, 218); */
-    padding: 5px;
     display: grid;
   grid-template-areas:
     "btns"
@@ -21,15 +16,6 @@
   grid-template-rows: 40px 1fr;
 }
 
-.navbarWhiteList{
-  margin: 0px 10px
-  0px 0px;
-  border: 3px solid rgb(82, 82, 82);
-  color:aliceblue;
-  background-color: #1f2129;         
-  grid-area: navbarWL;
-  position: relative;
-}
 /* кнопки инпуты */
 .btns {
   grid-area: btns;
@@ -42,7 +28,7 @@
 
 /*  списки */
 .names {
-  width: 30%;
+  width: 100%;
   grid-area: table;
   position: relative;
   margin-top: 20px;
@@ -90,6 +76,17 @@
   display: flex;
   grid-area: search;
   justify-self: end;
+}
+
+.search_abs{
+  z-index: 1;
+  margin-top: 45px;
+  position: absolute;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: fit-content;
+  background-color: aliceblue;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .type_2 {

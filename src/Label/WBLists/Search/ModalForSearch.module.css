@@ -1,0 +1,41 @@
+.search{
+  width: 204px;
+  height: 36px;
+  display: grid;
+  grid-template-areas: 
+  "PersonIcon name plusIcon crossIcon"
+  "PersonIcon carNumber plusIcon crossIcon";
+  grid-template-columns:  1fr 4fr 1fr 1fr;
+  grid-template-rows: 16px 16px;
+}
+
+.personIcons img{
+  grid-area: PersonIcon;
+  width: 34px;
+}
+
+.name {
+  grid-area: name;
+}
+
+.carNum {
+  grid-area: carNumber;
+}
+
+.plusIcon img{
+  cursor: pointer;
+  padding-top: 7px;
+  width: 20px;
+  grid-area: plusIcon;
+}
+
+.crossIcon img{
+  cursor: pointer;
+  padding-top: 7px;
+  width: 20px;
+  grid-area: crossIcon;
+}
+
+.search img{
+  /* width: 34px; */
+}

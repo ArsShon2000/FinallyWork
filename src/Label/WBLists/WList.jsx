@@ -3,6 +3,7 @@ import List from "../List/List";
 import stylab from "./WList.module.css"
 import axios from "axios";
 import Modal from "./Modal/Modal";
+import ModalForSearch from "./Search/ModalForSearch";
 
 
 
@@ -32,6 +33,8 @@ const WList = (props) => {
     // const [jobTitle, setJobTitle] = useState('')
     // const [phoneNumber, setPhoneNumber] = useState('')
     const [whiteList, setWhiteList] = useState([]); // список из БД
+    const [titleForSearch, setTitleForSearch] = useState('')//поиск
+    const [searchMode, setSearchMode] = useState(false)//поиск мод
 
     useEffect(() => {
         instance.get(`/wNum`).then((res) => {
@@ -43,7 +46,6 @@ const WList = (props) => {
 
     // let idName = whiteNameList2.length + 1
     let onAddName = () => {
-
         if ((7 < title.length) && (10 > title.length)) // проверяю длину номера
         {
             if (titleName !== '') {
@@ -51,31 +53,39 @@ const WList = (props) => {
                     name: titleName
                 })
             }
-
             //добавление номеров в вайтлистнам
             if (title !== '' && titleName !== '') {
                 instance.post('/wNum', {
                     carNumber: title,
-                    name: titleName,
-                    // workPosition: jobTitle,
-                    // telNumber: phoneNumber
+                    name: titleName
                 }).then((res) => {
                     setWhiteList([...whiteList, {
                         name: titleName,
-                        car_number: title,
-                        // workPosition: jobTitle,
-                        // telNumber: phoneNumber 
+                        car_number: title
                     }])
                     console.log(res + "data is added in whitelist");
                 })
             }
-            // window.location.reload()
         }
         else {
             alert("Неправильный формат номера!")
         }
-
     }
+
+    const onDriverSearch = () => { //сортировка списка по поиску
+        if(titleForSearch === '' && searchMode === false){            
+            alert("Введите имя!\a")
+        }
+        else if(searchMode === true)
+        {
+            setSearchMode(false)
+            setTitleForSearch('')
+        }
+        else{
+            setSearchMode(true)
+        }
+    }
+
 
     // удаление по номеру
     // let onDelName = () => {
@@ -125,11 +135,18 @@ const WList = (props) => {
     console.log(finalWhiteList)
     let nameListLength = finalWhiteList.length
 
-
-
+    // поиск по водителям
+    const driverElements = whiteList.map(search_ => 
+        <ModalForSearch 
+            key={search_.id} 
+            titleForSearch={titleForSearch} 
+            drivers={search_.name} 
+            carNumber={search_.car_number}
+            id_name = {search_.id_name}
+        />
+    )
 
     return <div className={stylab.white}>
-        <div className={stylab.navbarWhiteList}></div>
         <div className={stylab.pageWhiteList}>
             <div className={stylab.btns}>
                 <button className={stylab.open_btn} onClick={() => setModalActive(true)}>Добавить</button>
@@ -146,25 +163,26 @@ const WList = (props) => {
                         value={title} onChange={(e) => setTitle(e.currentTarget.value)}
                         placeholder="Номер машины"
                     />
-                    {/* <input className="type-2"
-                    type="text"
-                    value={jobTitle} onChange={(e) => setJobTitle(e.currentTarget.value)}
-                    placeholder="Должность"
-                />
-                <input className="type-2"
-                    type="text"
-                    value={phoneNumber} onChange={(e) => setPhoneNumber(e.currentTarget.value)}
-                    placeholder="Номер телефона"
-                /> */}
                     <button className="btn_add_dates" onClick={onAddName}>Добавить</button>
                 </Modal>
                 <div className={stylab.search}>
                     <input className={stylab.type_2}
-                        type="text" />
-                    <button className={stylab.search_btn}>Найти</button>
+                        type="text" 
+                        value = {titleForSearch} onChange = {(e) => setTitleForSearch(e.currentTarget.value)}/>
+                    {searchMode === false 
+                    ?<button className={stylab.search_btn}
+                    onClick = {onDriverSearch}>Найти</button>
+                    :<button className={stylab.search_btn}
+                    onClick = {onDriverSearch}>Сбросить</button>    }
+                    
+                      
+                    <div className={stylab.search_abs}>
+                        <div className={stylab.search_rel}>
+                            {searchMode === false ? driverElements : '' }
+                        </div>
+                    </div>
                 </div>
             </div>
-
 
             <br></br>
             <br></br>
@@ -201,28 +219,39 @@ const WList = (props) => {
                 <div className={stylab.carNumber}>
                     <span>&nbsp;Номер машины</span>
                 </div>
-                <div className={stylab.position}>
-                    <span>&nbsp;Должность</span>
-                </div>
-                <div className={stylab.telNumber}>
-                    <span>&nbsp;Номер телефона</span>
                 </div>
             </div> */}
             <div className={stylab.names}
-                style={nameListLength > 9 
-                    ? { 'height': '400px', 'width': '30%', 'overflow-y': 'scroll' } 
+                style={nameListLength > 25
+
+                    ? { 'height': '1fr', 'width': '100%', 'overflow-y': 'scroll' }
                     : {}}>
-                {finalWhiteList.map((w) => {
-                    return (
-                        <List key={w.idName}
-                            determinant={determinant} //определитель черного и белого списка
-                            names={w.sortName}
-                            id_name={w.idName} // айди номера отсортированных водителей
-                            whiteList={whiteList} // данные из сервера
-                            nameListLength={nameListLength} // длина списка
-                        />
-                    )
-                })}
+                {searchMode === true
+                    ? finalWhiteList.map((w) => {
+                        if (titleForSearch === w.sortName) {
+                            return (
+                                <List key={w.idName}
+                                    determinant={determinant} //определитель черного и белого списка
+                                    names={w.sortName}
+                                    id_name={w.idName} // айди номера отсортированных водителей
+                                    whiteList={whiteList} // данные из сервера
+                                    nameListLength={nameListLength} // длина списка
+                                />
+                            )
+                        }
+                    })
+                    : finalWhiteList.map((w) => {
+                        return (
+                            <List key={w.idName}
+                                determinant={determinant} //определитель черного и белого списка
+                                names={w.sortName}
+                                id_name={w.idName} // айди номера отсортированных водителей
+                                whiteList={whiteList} // данные из сервера
+                                nameListLength={nameListLength} // длина списка                            
+                            />
+                        )
+                    })
+                }
             </div>
         </div>
 

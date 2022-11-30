@@ -1,15 +1,31 @@
-/* .lab {
-    position: relative;
-    margin-left: 1000px;
-    grid-area: c;
-    padding: 10px;
-    display: grid;
-    margin: 20px;
-    grid-template-areas:
-      "w b"
+.lab {
+  display: grid;
+  padding: 10px 0px
+                0px 0px;
+  grid-template-areas:
+    "navbarWL pageWhiteList";
+  grid-template-columns: 1fr 4fr;
+  height: fit-content;
+  height: 902px;
   }
 
-  .names {
-    margin-top: 10px;
+  .pageWhiteList {
+    border: 3px solid rgb(82, 82, 82);
+      grid-area: pageWhiteList; 
+      padding: 10px;
+      display: grid;
+    grid-template-areas:
+      "btns"
+      "table";
+    grid-template-rows: 40px 1fr;
   }
- */
+
+  .navbarWhiteList{
+    margin: 0px 10px
+    0px 0px;
+    border: 3px solid rgb(82, 82, 82);
+    color:aliceblue;
+    background-color: #1f2129;         
+    grid-area: navbarWL;
+    position: relative;
+  }

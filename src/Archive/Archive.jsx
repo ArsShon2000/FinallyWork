@@ -77,7 +77,7 @@ const Archive = (props) => {
                 })
     }, [])
 
-    // console.log(cupEdit)
+    console.log(cupEdit)
 
 
     /* ====================================   stop   ================================== */
@@ -355,12 +355,10 @@ const Archive = (props) => {
 
                 {/* ========================== видеоплеер ======================== */}
                 <div className={styArch.videoArea}>
-
                     <video className={styArch.videoStream} autoPlay loop muted id="single-video-player"
                         ontimeupdate="myFunction(this)" controls>
                         <source src={record1} type='video/mp4' />
                     </video>
-
                     {/* <div
                     className={styArch.videoStream}
                     id="single-video-player">
