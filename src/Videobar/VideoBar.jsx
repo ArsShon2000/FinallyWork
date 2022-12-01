@@ -10,7 +10,7 @@ import VideoBarMulti from './multi/VideoBarMulti';
 import liveStreaming from '../Icons/live-streaming.png'
 import cameraStatusOn from '../Icons/cameraStatusOn.png'
 import cameraStatusOff from '../Icons/cameraStatusOff.png'
-import screenshot from '../Icons/screenshot.png'
+// import screenshot from '../Icons/screenshot.png'
 import fullScreenButton from '../Icons/expand.png'
 import axios from "axios";
 
@@ -160,7 +160,6 @@ const instance = axios.create({
                     <img src={liveStreaming} alt="liveStreaming" />
                     {!editModeCamera1 && <span onDoubleClick={activateEditModeCamera}> {Cameras[0].nameCamera} </span>}
                     {editModeCamera1 && <input onChange={onNameCamera1Change} autoFocus={true} onBlur={deActivateEditModeCamera} />}
-                    <img src={screenshot} alt="cameraStatusOn" />
                     <img className={styleVideo.cameraStatusOn} src={(Cameras[0].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                         alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(1)} />
@@ -169,7 +168,6 @@ const instance = axios.create({
                     <img src={liveStreaming} alt="liveStreaming" />
                     {!editModeCamera2 && <span onDoubleClick={ activateEditModeCamera2}> {Cameras[1].nameCamera} </span>}
                     {editModeCamera2 && <input onChange={onNameCamera2Change} autoFocus={true} onBlur={deActivateEditModeCamera2} />}
-                    <img src={screenshot} alt="cameraStatusOn" />
                     <img className={styleVideo.cameraStatusOn} src={(Cameras[1].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                         alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(2)}/>
@@ -178,7 +176,6 @@ const instance = axios.create({
                     <img src={liveStreaming} alt="liveStreaming" />
                     {!editModeCamera3 && <span onDoubleClick={ activateEditModeCamera3}> {Cameras[2].nameCamera} </span>}
                     {editModeCamera3 && <input onChange={onNameCamera3Change} autoFocus={true} onBlur={deActivateEditModeCamera3} />}
-                    <img src={screenshot} alt="cameraStatusOn" />
                     <img className={styleVideo.cameraStatusOn} src={(Cameras[2].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                     
                         alt="cameraStatusOn"  // глазок
@@ -188,7 +185,6 @@ const instance = axios.create({
                     <img src={liveStreaming} alt="liveStreaming" />
                     {!editModeCamera4 && <span onDoubleClick={ activateEditModeCamera4}> {Cameras[3].nameCamera} </span>}
                     {editModeCamera4 && <input onChange={onNameCamera4Change} autoFocus={true} onBlur={deActivateEditModeCamera4} />}
-                    <img src={screenshot} alt="cameraStatusOn" />
                     <img className={styleVideo.cameraStatusOn} src={(Cameras[3].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                         alt="cameraStatusOn"  // глазок
                         style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(4)}/>

@@ -82,7 +82,7 @@ video::-webkit-media-controls {
 
 .tools img{
   position: relative;
-  z-index: 1;
+  z-index: 0;
   padding: 4px;
   width: 35px;
   cursor: pointer;

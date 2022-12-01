@@ -321,7 +321,6 @@ const Archive = (props) => {
                         <div className={styArch.stream}>
                             {/* ========================выбор камеры==================================== */}
                             <select id="stream_" onChange={changeRecord}>
-                                <option value="">Выберите камеру</option>
                                 <option value="1">Первая камера</option>
                                 <option value="2">Вторая камера</option>
                                 <option value="3">Третьяя камера</option>

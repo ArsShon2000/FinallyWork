@@ -70,6 +70,7 @@ const WList = (props) => {
         else {
             alert("Неправильный формат номера!")
         }
+        setModalActive(false)
     }
 
     const onDriverSearch = () => { //сортировка списка по поиску

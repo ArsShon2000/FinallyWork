@@ -158,10 +158,13 @@ const VideoBarMulti = (props) => {
         } else if (el.webkitRequestFullscreen) {
             el.webkitRequestFullscreen();
         }
+        setTimeout(() => {
+            setEditSizeMode(false)
+        }, 1000);
     };
 
     //  ======================== вернуть размеры в исходное состояние ======================== 
-    document.addEventListener('keydown', function (event) {
+    document.addEventListener('keyup', function (event) {
         if ((event.key === "Escape")) {
             setEditSizeMode(false)
             setModalActive(false)
