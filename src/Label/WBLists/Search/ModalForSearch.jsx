@@ -53,16 +53,14 @@ const ModalForSearch = (props) => {  // поиск по водителям
     })
   }
   //=========================================FUNCTIONS=========================================
-
-
-  if (drivers === titleForSearch) {
+  if (drivers.toLowerCase() === titleForSearch.toLowerCase()) {
     return (
       <div className={stySearch.search}>
         <div className={stySearch.personIcons}>
           <img src={personIcons} alt="personIcons" />
         </div>
         <div className={stySearch.name}>
-          {titleForSearch}
+          {drivers}
         </div>
         <div className={stySearch.carNum}>
           {props.carNumber}

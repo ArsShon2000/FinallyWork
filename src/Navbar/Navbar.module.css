@@ -58,28 +58,40 @@
     text-decoration: none;
     color:rgb(0, 0, 0);
     font-size: 14px;
-    padding-top: 8px;
+    padding-top: 5px;
   }
 
   .nav a.active {
     color: rgb(32, 32, 32);
     font-weight: bold;
     background: linear-gradient(rgb(231, 231, 231), rgb(151, 151, 151));
-    /* border-radius: 3px; */
-    /* border: 1px solid #d3d3d3; */
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
-    /* width: 95px; */
   }
 
-  .nav button {
-    background: linear-gradient(rgb(175, 175, 175), rgb(121, 121, 121));
-    margin: 1px;
-    border: none;
-    border-radius:  8px 8px
-                    1px 1px;
+  .btn_log_out{
+    margin: 10px;
+    background-color: rgb(151, 104, 104);
+    color: aliceblue;
+    padding: 3px 3px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #883636;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     cursor: pointer;
+    width: 150px;
+  }
+
+  .btn_cancel{
+    border: none;
+    background-color: rgb(121, 121, 121);
+    color: aliceblue;
+    padding: 3px 3px;
+    font-size: 16px;
+    border-radius: 4px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    width: 150px;
   }
 
   .item button:active {

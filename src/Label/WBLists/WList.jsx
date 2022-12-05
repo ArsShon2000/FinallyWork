@@ -229,7 +229,7 @@ const WList = (props) => {
                     : {}}>
                 {searchMode === true
                     ? finalWhiteList.map((w) => {
-                        if (titleForSearch === w.sortName) {
+                        if (titleForSearch.toLowerCase() === w.sortName.toLowerCase()) {
                             return (
                                 <List key={w.idName}
                                     determinant={determinant} //определитель черного и белого списка

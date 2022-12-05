@@ -4,13 +4,11 @@ import React, { useState } from "react";
 // import sample3 from "./multi/video3.mp4"
 // import sample4 from "./multi/video4.mp4"
 import styleVideo from "./VideoBar.module.css"
-// import car from "./img_2.jpg"
 import VideoBarSingle from './single/VideoBarSingle';
 import VideoBarMulti from './multi/VideoBarMulti';
 import liveStreaming from '../Icons/live-streaming.png'
 import cameraStatusOn from '../Icons/cameraStatusOn.png'
 import cameraStatusOff from '../Icons/cameraStatusOff.png'
-// import screenshot from '../Icons/screenshot.png'
 import fullScreenButton from '../Icons/expand.png'
 import axios from "axios";
 
@@ -162,7 +160,7 @@ const instance = axios.create({
                     {editModeCamera1 && <input onChange={onNameCamera1Change} autoFocus={true} onBlur={deActivateEditModeCamera} />}
                     <img className={styleVideo.cameraStatusOn} src={(Cameras[0].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                         alt="cameraStatusOn"  // глазок
-                        style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(1)} />
+                        style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(1)} title="Отключить камеру" />
                 </div>
                 <div>
                     <img src={liveStreaming} alt="liveStreaming" />
@@ -170,7 +168,7 @@ const instance = axios.create({
                     {editModeCamera2 && <input onChange={onNameCamera2Change} autoFocus={true} onBlur={deActivateEditModeCamera2} />}
                     <img className={styleVideo.cameraStatusOn} src={(Cameras[1].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                         alt="cameraStatusOn"  // глазок
-                        style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(2)}/>
+                        style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(2)} title="Отключить камеру" />
                 </div>
                 <div>
                     <img src={liveStreaming} alt="liveStreaming" />
@@ -179,7 +177,7 @@ const instance = axios.create({
                     <img className={styleVideo.cameraStatusOn} src={(Cameras[2].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                     
                         alt="cameraStatusOn"  // глазок
-                        style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(3)}/>
+                        style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(3)} title="Отключить камеру" />
                 </div>
                 <div>
                     <img src={liveStreaming} alt="liveStreaming" />
@@ -187,7 +185,7 @@ const instance = axios.create({
                     {editModeCamera4 && <input onChange={onNameCamera4Change} autoFocus={true} onBlur={deActivateEditModeCamera4} />}
                     <img className={styleVideo.cameraStatusOn} src={(Cameras[3].editMode === "true" ? cameraStatusOff : cameraStatusOn )} 
                         alt="cameraStatusOn"  // глазок
-                        style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(4)}/>
+                        style={{ 'width': '20px', 'padding': '0px' }} onClick={(e) => onCameraStatusEdit1(4)} title="Отключить камеру" />
                 </div>
             </div>
         </div>
