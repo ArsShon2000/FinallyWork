@@ -14,34 +14,69 @@
 
 .video1{
   grid-area: video1;
+  position: relative;
   height:425px;
   width:756px;
   overflow:hidden;
-  position: relative;
+}
+.video1NoCamera{
+  height:425px;
+  width:756px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-left: -5%;
 }
 
 .video2{
   grid-area: video2;
+  position: relative;
   height:425px;
   width:756px;
   overflow:hidden;
-  position: relative;
+}
+.video2NoCamera{
+  grid-area: video2;
+  height:425px;
+  width:756px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-left: -5%;
 }
 
 .video3{
   grid-area: video3;
+  position: relative;
   height:425px;
   width:756px;
   overflow:hidden;
-  position: relative;
+}
+.video3NoCamera{
+  grid-area: video3;
+  height:425px;
+  width:756px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-left: -5%;
 }
 
 .video4{
   grid-area: video4;
+  position: relative;
   height:425px;
   width:756px;
   overflow:hidden;
-  position: relative;
+}
+.video4NoCamera{
+  grid-area: video4;
+  height:425px;
+  width:756px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-left: -5%;
 }
 
 
@@ -94,6 +129,26 @@ video::-webkit-media-controls {
 
 .FullWindowStream {
   grid-area: FullWindowStream;
+ }
+
+ .fullOneStream{
+  grid-area: fullOneStream;
+  z-index: 1;
+ }
+
+ .valueOfSelect{
+  position: relative;
+  color: gainsboro;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  top: -2.5px;
+  left: -1.5px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  grid-area: fullOneStream;
  }
 
 .select {

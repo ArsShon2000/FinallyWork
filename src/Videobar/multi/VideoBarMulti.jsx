@@ -1,8 +1,9 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import styleVideo from "./VideoBarMulti.module.css"
 import FullWindowStream from '../../Icons/free-icon-font-expand-3917554.png'
 import fullAllStreams from '../../Icons/free-icon-font-apps-3917618.png'
 import fullOneStream from '../../Icons/single.png'
+import noSignal from '../../Icons/no-signal.png'
 import ModalMultiVideoBar from './Modal/ModalMultiVideoBar';
 import GenCarNumber from "../../GenCarNum/GenCarNumber";
 
@@ -10,7 +11,7 @@ import GenCarNumber from "../../GenCarNum/GenCarNumber";
 const VideoBarMulti = (props) => {
 
 
-    
+
 
     //  ======================== модальное окно ======================== 
     const [modalActive, setModalActive] = useState(false)
@@ -21,7 +22,8 @@ const VideoBarMulti = (props) => {
     //  ======================== полноэкранный режим 1 камеры ======================== 
     let [editOneSizeMode, setEditOneSizeMode] = useState('')
 
-    //  ======================== Обновить данные из массива ======================== 
+    //  ======================== Номер камеры ======================== 
+    let [showValueOfSelect, setValueOfSelect] = useState('NO')
 
     //  ======================== полноэкранный режим каждого окна ======================== 
     const toggleFullScreen1 = () => {
@@ -80,13 +82,13 @@ const VideoBarMulti = (props) => {
 
     //  ======================== полноэкранный режим каждого окна c помощью селекта ======================== 
     const onClickFullOneStream = () => {
-        let select = document.getElementById("select_") 
+        let select = document.getElementById("select_")
         let value = select.options[select.selectedIndex].value //получаем значение из селекта
         switch (value) {
             case "1":
                 {
                     let el = document.getElementById("multi-video1-player")
-                    
+
                     break
                 }
             case "2":
@@ -138,10 +140,8 @@ const VideoBarMulti = (props) => {
         }
     }
 
-
     //  ======================== изменение размера в полноэкранном режиме всех 4 камер ======================== 
     const onClickFullWindowStream = () => {
-
         setEditSizeMode(true)
         let el = document.querySelector("#mainVideoBar");
         if (el.requestFullscreen) {
@@ -163,58 +163,64 @@ const VideoBarMulti = (props) => {
         }
     })
 
-   
-
     //  ======================== второй вариант фуллскрин ======================== 
-
-
     let potok1, potok2, potok3, potok4 = false
-    for(let i = 0; i < props.streams.length; i++){ //проверяем есть ли потоки
-        if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 0 ) {
-             (potok1 = true)
-        }else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 1  ) {
-             (potok2 = true)
-        }else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 2  ) {
-             (potok3 = true)
-        }else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 3  ) {
-             (potok4 = true)
+    for (let i = 0; i < props.streams.length; i++) { //проверяем есть ли потоки
+        if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 0) {
+            (potok1 = true)
+        } else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 1) {
+            (potok2 = true)
+        } else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 2) {
+            (potok3 = true)
+        } else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 3) {
+            (potok4 = true)
         }
-    }    
+    }
 
-    
+
+
     return (<div>
         <div id="mainVideoBar" className={styleVideo.vidMulti}>
             {/*  ======================== первый видео поток ========================  */}
-            <video controls style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video1} autoPlay loop muted id="multi-video1-player" >
-                <source src={props.streams[0].nameStream} type='video/mp4' /> 
-            </video> 
-            <span className={styleVideo.video1}>{props.streams[0].nameCamera}</span>
-            <img onClick={toggleFullScreen1} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video1} src={props.fullScreenButton} title="На полный экран"/>
-            
+            {potok1
+                ? <><video controls style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video1} autoPlay loop muted id="multi-video1-player" >
+                    <source src={props.streams[0].nameStream} type='video/mp4' />
+                </video>
+                    <span className={styleVideo.video1}>{props.streams[0].nameCamera}</span>
+                    <img onClick={toggleFullScreen1} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video1} src={props.fullScreenButton} title="На полный экран" />
+                </>
+                : <div className={styleVideo.video1NoCamera}><img src={noSignal} alt="noSignal" /></div>}
+
+
             {/*  ======================== 2 видео поток ========================  */}
-            <video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video2} autoPlay loop muted id='multi-video2-player'>
-                <source src={potok2 === true ? props.streams[1].nameStream : ""}  type='video/mp4' />
-            </video>
-            <span className={styleVideo.video2}>{props.streams[1].nameCamera}</span>
-            <img onClick={toggleFullScreen2} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video2} src={props.fullScreenButton} title="На полный экран" />
-
+            {potok2
+                ? <><video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video2} autoPlay loop muted id='multi-video2-player'>
+                    <source src={potok2 === true ? props.streams[1].nameStream : ""} type='video/mp4' />
+                </video>
+                    <span className={styleVideo.video2}>{props.streams[1].nameCamera}</span>
+                    <img onClick={toggleFullScreen2} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video2} src={props.fullScreenButton} title="На полный экран" />
+                </>
+                : <div className={styleVideo.video1NoCamera}><img src={noSignal} alt="noSignal" /></div>}
             {/*  ======================== 3 видео поток ========================  */}
-            <video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video3} autoPlay loop muted id='multi-video3-player'>
-                <source src={potok3 === true ? props.streams[2].nameStream : ""}  type='video/mp4' />
-            </video>
-            <span className={styleVideo.video3}>{props.streams[2].nameCamera}</span>
-            <img onClick={toggleFullScreen3} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video3} src={props.fullScreenButton} title="На полный экран" />
-
+            {potok3
+                ? <><video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video3} autoPlay loop muted id='multi-video3-player'>
+                    <source src={potok3 === true ? props.streams[2].nameStream : ""} type='video/mp4' />
+                </video>
+                    <span className={styleVideo.video3}>{props.streams[2].nameCamera}</span>
+                    <img onClick={toggleFullScreen3} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video3} src={props.fullScreenButton} title="На полный экран" />
+                </>
+                : <div className={styleVideo.video3NoCamera}><img src={noSignal} alt="noSignal" /></div>}
             {/*  ======================== 4 видео поток ========================  */}
-            <video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video4} autoPlay loop muted id='multi-video4-player'>
-                <source src={potok4 === true ? props.streams[3].nameStream : ""}  type='video/mp4' />
-            </video>
-            <span className={styleVideo.video4}>{props.streams[3].nameCamera}</span>
-            <img onClick={toggleFullScreen4} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video4} src={props.fullScreenButton} title="На полный экран" />
+            {potok4
+                ? <><video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video4} autoPlay loop muted id='multi-video4-player'>
+                    <source src={potok4 === true ? props.streams[3].nameStream : ""} type='video/mp4' />
+                </video>
+                    <span className={styleVideo.video4}>{props.streams[3].nameCamera}</span>
+                    <img onClick={toggleFullScreen4} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video4} src={props.fullScreenButton} title="На полный экран" />
+                </>
+                : <div className={styleVideo.video4NoCamera}><img src={noSignal} alt="noSignal" /></div>}
 
-
-            <GenCarNumber potok1={potok1} potok2={potok2} potok3={potok3} potok4={potok4}/>
-
+            <GenCarNumber potok1={potok1} potok2={potok2} potok3={potok3} potok4={potok4} />
             {/*  ======================== полноэкранный режим c рамкой ======================== */}
             <ModalMultiVideoBar active={modalActive} setActive={setModalActive}>
                 <video autoPlay loop muted id="multi-video1-player">
@@ -231,30 +237,30 @@ const VideoBarMulti = (props) => {
                 </video>
             </ModalMultiVideoBar>
         </div>
-
         {/*  ======================== нижние инструменты ========================  */}
-
-        <div className={styleVideo.tools}> 
+        <div className={styleVideo.tools}>
             <div className={styleVideo.FullWindowStream} title="Hа весь экран все 4 видео" > {/* на весь экран все 4 видео */}
                 <img onClick={onClickFullWindowStream} src={FullWindowStream} alt="FullWindowStream" />
             </div>
             <div className={styleVideo.fullAllStreams} title="Hа весь экран браузера все 4 видео"> {/* на полный экран браузера все 4 видео */}
                 <img onClick={() => setModalActive(true)} src={fullAllStreams} alt="fullAllStreams" />
             </div>
-            <div className={styleVideo.fullOneStream} onClick={onClickFullOneStream}  title="Hа весь экран 1 видео">
+            <div className={styleVideo.fullOneStream} onClick={onClickFullOneStream} title="Hа весь экран 1 видео">
                 <img src={fullOneStream} alt="fullOneStream" /> {/* на весь экран 1 видео */}
             </div>
+            <div className={styleVideo.valueOfSelect} style = {showValueOfSelect === 'NO' ? {'color':'red'} : {'color':'green'}}>
+                {showValueOfSelect}
+            </div>
             <div className={styleVideo.select} title="Выбор камеры">
-            <select id="select_"> {/* выбор видео на весь экран */}
-                        <option  value=""></option>
-                        <option type="checkbox" value="1">1</option>
-                        <option type="checkbox" value="2">2</option>
-                        <option type="checkbox" value="3">3</option>
-                        <option type="checkbox" value="4">4</option>
-                    </select>
+                <select id="select_" onChange={(e) => setValueOfSelect(e.currentTarget.value)}> {/* выбор видео на весь экран */}
+                    <option value="NO"></option>
+                    <option type="checkbox" value="1">1</option>
+                    <option type="checkbox" value="2">2</option>
+                    <option type="checkbox" value="3">3</option>
+                    <option type="checkbox" value="4">4</option>
+                </select>
             </div>
         </div>
-
     </div>
     )
 }

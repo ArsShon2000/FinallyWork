@@ -93,7 +93,7 @@ const GenCarNumber = (props) => {
         defShort = shortArray.join('')
     }
 
-
+    if(genNum){
         return (
             <div className={stylab.lab} >
                 <div className={stylab.imgArea}>
@@ -176,6 +176,8 @@ const GenCarNumber = (props) => {
                 </div>
             </div>
         )
+    }
+        
     
     
 }

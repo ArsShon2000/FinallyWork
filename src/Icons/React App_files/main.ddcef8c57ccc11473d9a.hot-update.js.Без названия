@@ -1,0 +1,714 @@
+webpackHotUpdate("main",{
+
+/***/ "./src/Videobar/multi/VideoBarMulti.jsx":
+/*!**********************************************!*\
+  !*** ./src/Videobar/multi/VideoBarMulti.jsx ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VideoBarMulti.module.css */ "./src/Videobar/multi/VideoBarMulti.module.css");
+/* harmony import */ var _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Icons_free_icon_font_expand_3917554_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Icons/free-icon-font-expand-3917554.png */ "./src/Icons/free-icon-font-expand-3917554.png");
+/* harmony import */ var _Icons_free_icon_font_expand_3917554_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Icons_free_icon_font_expand_3917554_png__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Icons_free_icon_font_apps_3917618_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Icons/free-icon-font-apps-3917618.png */ "./src/Icons/free-icon-font-apps-3917618.png");
+/* harmony import */ var _Icons_free_icon_font_apps_3917618_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Icons_free_icon_font_apps_3917618_png__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Icons_single_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Icons/single.png */ "./src/Icons/single.png");
+/* harmony import */ var _Icons_single_png__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_Icons_single_png__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Icons_no_signal_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Icons/no-signal.png */ "./src/Icons/no-signal.png");
+/* harmony import */ var _Icons_no_signal_png__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Icons_no_signal_png__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Modal_ModalMultiVideoBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Modal/ModalMultiVideoBar */ "./src/Videobar/multi/Modal/ModalMultiVideoBar.jsx");
+/* harmony import */ var _GenCarNum_GenCarNumber__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../GenCarNum/GenCarNumber */ "./src/GenCarNum/GenCarNumber.jsx");
+var _jsxFileName = "C:\\develop\\playgraund\\FinallyWork\\my-app\\src\\Videobar\\multi\\VideoBarMulti.jsx";
+
+
+
+
+
+
+
+
+const VideoBarMulti = props => {
+  //  ======================== модальное окно ======================== 
+  const [modalActive, setModalActive] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+
+  //  ======================== полноэкранный режим всех камер ======================== 
+  let [editSizeMode, setEditSizeMode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+
+  //  ======================== полноэкранный режим 1 камеры ======================== 
+  let [editOneSizeMode, setEditOneSizeMode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+
+  //  ======================== Номер камеры ======================== 
+  let [showValueOfSelect, setValueOfSelect] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('NO');
+
+  //  ======================== полноэкранный режим каждого окна ======================== 
+  const toggleFullScreen1 = () => {
+    let el = document.querySelector("#multi-video1-player");
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen();
+    } else if (el.mozRequestFullScreen) {
+      el.mozRequestFullScreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
+  };
+  const toggleFullScreen2 = () => {
+    let el = document.querySelector("#multi-video2-player");
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen();
+    } else if (el.mozRequestFullScreen) {
+      el.mozRequestFullScreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
+  };
+  const toggleFullScreen3 = () => {
+    let el = document.querySelector("#multi-video3-player");
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen();
+    } else if (el.mozRequestFullScreen) {
+      el.mozRequestFullScreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
+  };
+  const toggleFullScreen4 = () => {
+    let el = document.querySelector("#multi-video4-player");
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen();
+    } else if (el.mozRequestFullScreen) {
+      el.mozRequestFullScreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
+  };
+  //  ======================== полноэкранный режим каждого окна ======================== 
+
+  //  ======================== полноэкранный режим каждого окна c помощью селекта ======================== 
+  const onClickFullOneStream = () => {
+    let select = document.getElementById("select_");
+    let value = select.options[select.selectedIndex].value; //получаем значение из селекта
+    switch (value) {
+      case "1":
+        {
+          let el = document.getElementById("multi-video1-player");
+          break;
+        }
+      case "2":
+        {
+          let el = document.getElementById("multi-video2-player");
+          if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          } else if (el.msRequestFullscreen) {
+            el.msRequestFullscreen();
+          } else if (el.mozRequestFullScreen) {
+            el.mozRequestFullScreen();
+          } else if (el.requestFullscreen) {
+            el.requestFullscreen();
+          }
+          break;
+        }
+      case "3":
+        {
+          let el = document.getElementById("multi-video3-player");
+          if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          } else if (el.msRequestFullscreen) {
+            el.msRequestFullscreen();
+          } else if (el.mozRequestFullScreen) {
+            el.mozRequestFullScreen();
+          } else if (el.requestFullscreen) {
+            el.requestFullscreen();
+          }
+          break;
+        }
+      case "4":
+        {
+          let el = document.getElementById("multi-video4-player");
+          if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          } else if (el.msRequestFullscreen) {
+            el.msRequestFullscreen();
+          } else if (el.mozRequestFullScreen) {
+            el.mozRequestFullScreen();
+          } else if (el.requestFullscreen) {
+            el.requestFullscreen();
+          }
+          break;
+        }
+      default:
+        {
+          alert("Выберите камеру!");
+        }
+    }
+  };
+
+  //  ======================== изменение размера в полноэкранном режиме всех 4 камер ======================== 
+  const onClickFullWindowStream = () => {
+    setEditSizeMode(true);
+    let el = document.querySelector("#mainVideoBar");
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen();
+    } else if (el.mozRequestFullScreen) {
+      el.mozRequestFullScreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
+  };
+
+  //  ======================== вернуть размеры в исходное состояние ======================== 
+  document.addEventListener('keydown', function (event) {
+    if (event.key === "Escape") {
+      setEditSizeMode(false);
+      setModalActive(false);
+    }
+  });
+
+  //  ======================== второй вариант фуллскрин ======================== 
+  let potok1,
+    potok2,
+    potok3,
+    potok4 = false;
+  for (let i = 0; i < props.streams.length; i++) {
+    //проверяем есть ли потоки
+    if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 0) {
+      potok1 = true;
+    } else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 1) {
+      potok2 = true;
+    } else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 2) {
+      potok3 = true;
+    } else if (props.streams[i].nameStream === "/static/media/video1.cff2ae39.mp4" && i === 3) {
+      potok4 = true;
+    }
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 182,
+      columnNumber: 13
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "mainVideoBar",
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.vidMulti,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 183,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video1,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 185,
+      columnNumber: 21
+    }
+  }, props.streams[0].nameCamera), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    onClick: toggleFullScreen1,
+    id: "fullScreenImg",
+    alt: "fullScreenImg",
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video1,
+    src: props.fullScreenButton,
+    title: "\u041D\u0430 \u043F\u043E\u043B\u043D\u044B\u0439 \u044D\u043A\u0440\u0430\u043D",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 186,
+      columnNumber: 21
+    }
+  }), potok1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    controls: true,
+    style: editSizeMode === true ? {
+      "width": "960px",
+      "height": "540px"
+    } : {},
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video1,
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    id: "multi-video1-player",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 188,
+      columnNumber: 21
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: props.streams[0].nameStream,
+    type: "video/mp4",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 189,
+      columnNumber: 21
+    }
+  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video1NoCamera,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 192,
+      columnNumber: 19
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: _Icons_no_signal_png__WEBPACK_IMPORTED_MODULE_5___default.a,
+    alt: "noSignal",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 192,
+      columnNumber: 62
+    }
+  })), potok2 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    style: editSizeMode === true ? {
+      "width": "960px",
+      "height": "540px"
+    } : {},
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video2,
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    id: "multi-video2-player",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 197,
+      columnNumber: 21
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: potok2 === true ? props.streams[1].nameStream : "",
+    type: "video/mp4",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 198,
+      columnNumber: 21
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video2,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 200,
+      columnNumber: 21
+    }
+  }, props.streams[1].nameCamera), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    onClick: toggleFullScreen2,
+    id: "fullScreenImg",
+    alt: "fullScreenImg",
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video2,
+    src: props.fullScreenButton,
+    title: "\u041D\u0430 \u043F\u043E\u043B\u043D\u044B\u0439 \u044D\u043A\u0440\u0430\u043D",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 201,
+      columnNumber: 21
+    }
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video1NoCamera,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 203,
+      columnNumber: 19
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: _Icons_no_signal_png__WEBPACK_IMPORTED_MODULE_5___default.a,
+    alt: "noSignal",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 203,
+      columnNumber: 62
+    }
+  })), potok3 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    style: editSizeMode === true ? {
+      "width": "960px",
+      "height": "540px"
+    } : {},
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video3,
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    id: "multi-video3-player",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 206,
+      columnNumber: 21
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: potok3 === true ? props.streams[2].nameStream : "",
+    type: "video/mp4",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 207,
+      columnNumber: 21
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video3,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 209,
+      columnNumber: 21
+    }
+  }, props.streams[2].nameCamera), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    onClick: toggleFullScreen3,
+    id: "fullScreenImg",
+    alt: "fullScreenImg",
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video3,
+    src: props.fullScreenButton,
+    title: "\u041D\u0430 \u043F\u043E\u043B\u043D\u044B\u0439 \u044D\u043A\u0440\u0430\u043D",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 210,
+      columnNumber: 21
+    }
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video3NoCamera,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 212,
+      columnNumber: 19
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: _Icons_no_signal_png__WEBPACK_IMPORTED_MODULE_5___default.a,
+    alt: "noSignal",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 212,
+      columnNumber: 62
+    }
+  })), potok4 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    style: editSizeMode === true ? {
+      "width": "960px",
+      "height": "540px"
+    } : {},
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video4,
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    id: "multi-video4-player",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 215,
+      columnNumber: 21
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: potok4 === true ? props.streams[3].nameStream : "",
+    type: "video/mp4",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 216,
+      columnNumber: 21
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video4,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 218,
+      columnNumber: 21
+    }
+  }, props.streams[3].nameCamera), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    onClick: toggleFullScreen4,
+    id: "fullScreenImg",
+    alt: "fullScreenImg",
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video4,
+    src: props.fullScreenButton,
+    title: "\u041D\u0430 \u043F\u043E\u043B\u043D\u044B\u0439 \u044D\u043A\u0440\u0430\u043D",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 219,
+      columnNumber: 21
+    }
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.video4NoCamera,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 221,
+      columnNumber: 19
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: _Icons_no_signal_png__WEBPACK_IMPORTED_MODULE_5___default.a,
+    alt: "noSignal",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 221,
+      columnNumber: 62
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GenCarNum_GenCarNumber__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    potok1: potok1,
+    potok2: potok2,
+    potok3: potok3,
+    potok4: potok4,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 223,
+      columnNumber: 13
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Modal_ModalMultiVideoBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    active: modalActive,
+    setActive: setModalActive,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 225,
+      columnNumber: 13
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    id: "multi-video1-player",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 226,
+      columnNumber: 17
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: potok1 === true ? props.streams[0].nameStream : "",
+    type: "video/mp4",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 227,
+      columnNumber: 21
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    id: "multi-video2-player",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 229,
+      columnNumber: 17
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: potok2 === true ? props.streams[1].nameStream : "",
+    type: "video/mp4",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 230,
+      columnNumber: 21
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    id: "multi-video3-player",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 232,
+      columnNumber: 17
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: potok3 === true ? props.streams[2].nameStream : "",
+    type: "video/mp4",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 233,
+      columnNumber: 21
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    id: "multi-video4-player",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 235,
+      columnNumber: 17
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    src: potok4 === true ? props.streams[3].nameStream : "",
+    type: "video/mp4",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 236,
+      columnNumber: 21
+    }
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.tools,
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 241,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.FullWindowStream,
+    title: "H\u0430 \u0432\u0435\u0441\u044C \u044D\u043A\u0440\u0430\u043D \u0432\u0441\u0435 4 \u0432\u0438\u0434\u0435\u043E",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 242,
+      columnNumber: 13
+    }
+  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    onClick: onClickFullWindowStream,
+    src: _Icons_free_icon_font_expand_3917554_png__WEBPACK_IMPORTED_MODULE_2___default.a,
+    alt: "FullWindowStream",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 243,
+      columnNumber: 17
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.fullAllStreams,
+    title: "H\u0430 \u0432\u0435\u0441\u044C \u044D\u043A\u0440\u0430\u043D \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0430 \u0432\u0441\u0435 4 \u0432\u0438\u0434\u0435\u043E",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 245,
+      columnNumber: 13
+    }
+  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    onClick: () => setModalActive(true),
+    src: _Icons_free_icon_font_apps_3917618_png__WEBPACK_IMPORTED_MODULE_3___default.a,
+    alt: "fullAllStreams",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 246,
+      columnNumber: 17
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.fullOneStream,
+    onClick: onClickFullOneStream,
+    title: "H\u0430 \u0432\u0435\u0441\u044C \u044D\u043A\u0440\u0430\u043D 1 \u0432\u0438\u0434\u0435\u043E",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 248,
+      columnNumber: 13
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: _Icons_single_png__WEBPACK_IMPORTED_MODULE_4___default.a,
+    alt: "fullOneStream",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 249,
+      columnNumber: 17
+    }
+  }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.valueOfSelect,
+    style: showValueOfSelect === 'NO' ? {
+      'color': 'red'
+    } : {
+      'color': 'green'
+    },
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 251,
+      columnNumber: 13
+    }
+  }, showValueOfSelect), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _VideoBarMulti_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.select,
+    title: "\u0412\u044B\u0431\u043E\u0440 \u043A\u0430\u043C\u0435\u0440\u044B",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 254,
+      columnNumber: 13
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    id: "select_",
+    onChange: e => setValueOfSelect(e.currentTarget.value),
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 255,
+      columnNumber: 17
+    }
+  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "NO",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 256,
+      columnNumber: 21
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    type: "checkbox",
+    value: "1",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 257,
+      columnNumber: 21
+    }
+  }, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    type: "checkbox",
+    value: "2",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 258,
+      columnNumber: 21
+    }
+  }, "2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    type: "checkbox",
+    value: "3",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 259,
+      columnNumber: 21
+    }
+  }, "3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    type: "checkbox",
+    value: "4",
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 260,
+      columnNumber: 21
+    }
+  }, "4")))));
+};
+/* harmony default export */ __webpack_exports__["default"] = (VideoBarMulti);
+
+/***/ })
+
+})
+//# sourceMappingURL=main.ddcef8c57ccc11473d9a.hot-update.js.map
