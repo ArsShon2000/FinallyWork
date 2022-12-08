@@ -1,22 +1,21 @@
 .vidSingle {
     overflow:hidden;
-    height: 880px;
+    height: 850px;
     display: grid;
     grid-template-areas:
-    "video";
-  grid-template-rows: 1fr;
+    "video"
+    "tools";
+  grid-template-rows: 1fr 30px;
   grid-template-columns: 8fr;
   }
-  
 
-
-.video{
+.singleVideoArea{
+  grid-area: video;
+  position: relative;
   height:852px;
   width:1512px;
   overflow:hidden;
 }
-
-
 
 video::-webkit-media-controls {
   display: -webkit-box;
@@ -25,6 +24,69 @@ video::-webkit-media-controls {
 /* =============================== НАЗЫВАНИЕ КАРМЕРЫ ================================== */
 .vidSingle span {
   color: aliceblue;
-  position: absolute;
   margin-left: 1%;
+  position: relative;
+}
+
+.vidSingle img {
+  width: 40px;
+  height: 40px;
+  margin-left: 95%;
+  margin-top: 1%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* ====================================   TOOLS   ================================== */
+
+.tools {
+  margin: 0px 0px;
+  grid-area: tools;
+  background-color: rgb(82, 82, 82);
+  display: grid;
+  grid-template-areas:
+    "fullOneStream select";
+  grid-template-rows: 1fr ;
+  grid-template-columns: 45px 45px  1fr;
+}
+
+.tools img{
+  position: relative;
+  z-index: 0;
+  padding: 4px;
+  width: 35px;
+  cursor: pointer;
+}
+
+.fullOneStream{
+  grid-area: fullOneStream;
+  z-index: 1;
+ }
+
+ .valueOfSelect{
+  position: relative;
+  color: gainsboro;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  top: -2.5px;
+  left: -1.5px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  grid-area: fullOneStream;
+ }
+
+.select {
+  padding: 1px;
+  grid-area: select;
+}
+
+.select select {
+  margin: 3px;
+  cursor: pointer;
+  width: 20px;
+  position: relative;
+  height: 35px;
 }

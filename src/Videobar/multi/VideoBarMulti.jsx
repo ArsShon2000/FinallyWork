@@ -6,11 +6,16 @@ import fullOneStream from '../../Icons/single.png'
 import noSignal from '../../Icons/no-signal.png'
 import ModalMultiVideoBar from './Modal/ModalMultiVideoBar';
 import GenCarNumber from "../../GenCarNum/GenCarNumber";
+import axios from "axios";
 
+const instance = axios.create({
+    withCredentials: true,
+    baseURL: 'http://127.0.0.1:5000',
+})
 
 const VideoBarMulti = (props) => {
 
-
+    let genNum = props.genNum
 
 
     //  ======================== модальное окно ======================== 
@@ -87,50 +92,82 @@ const VideoBarMulti = (props) => {
         switch (value) {
             case "1":
                 {
-                    let el = document.getElementById("multi-video1-player")
-
+                    for (let i = 0; i < 4; ++i) {
+                        if (parseInt(value) === (i + 1)) 
+                        {
+                            instance.put(`/Cameras/id/${i + 1}`, {
+                                edit_stream: "/static/media/video1.cff2ae39.mp4",
+                                edit_mode: "false"
+                            })
+                        }
+                        else {
+                            instance.put(`/Cameras/id/${i + 1}`, {
+                                edit_stream: "",
+                                edit_mode: "true"
+                            })
+                        }
+                    }
+                    window.location.reload()
                     break
                 }
             case "2":
                 {
-                    let el = document.getElementById("multi-video2-player")
-                    if (el.webkitRequestFullscreen) {
-                        el.webkitRequestFullscreen();
-                    } else if (el.msRequestFullscreen) {
-                        el.msRequestFullscreen();
-                    } else if (el.mozRequestFullScreen) {
-                        el.mozRequestFullScreen();
-                    } else if (el.requestFullscreen) {
-                        el.requestFullscreen();
+                    for (let i = 0; i < 4; ++i) {
+                        if (parseInt(value) === (i + 1)) 
+                        {
+                            instance.put(`/Cameras/id/${i + 1}`, {
+                                edit_stream: "/static/media/video1.cff2ae39.mp4",
+                                edit_mode: "false"
+                            })
+                        }
+                        else {
+                            instance.put(`/Cameras/id/${i + 1}`, {
+                                edit_stream: "",
+                                edit_mode: "true"
+                            })
+                        }
                     }
+                    window.location.reload()
                     break
                 }
             case "3":
                 {
-                    let el = document.getElementById("multi-video3-player")
-                    if (el.webkitRequestFullscreen) {
-                        el.webkitRequestFullscreen();
-                    } else if (el.msRequestFullscreen) {
-                        el.msRequestFullscreen();
-                    } else if (el.mozRequestFullScreen) {
-                        el.mozRequestFullScreen();
-                    } else if (el.requestFullscreen) {
-                        el.requestFullscreen();
+                    for (let i = 0; i < 4; ++i) {
+                        if (parseInt(value) === (i + 1)) 
+                        {
+                            instance.put(`/Cameras/id/${i + 1}`, {
+                                edit_stream: "/static/media/video1.cff2ae39.mp4",
+                                edit_mode: "false"
+                            })
+                        }
+                        else {
+                            instance.put(`/Cameras/id/${i + 1}`, {
+                                edit_stream: "",
+                                edit_mode: "true"
+                            })
+                        }
                     }
+                    window.location.reload()
                     break
                 }
             case "4":
                 {
-                    let el = document.getElementById("multi-video4-player")
-                    if (el.webkitRequestFullscreen) {
-                        el.webkitRequestFullscreen();
-                    } else if (el.msRequestFullscreen) {
-                        el.msRequestFullscreen();
-                    } else if (el.mozRequestFullScreen) {
-                        el.mozRequestFullScreen();
-                    } else if (el.requestFullscreen) {
-                        el.requestFullscreen();
+                    for (let i = 0; i < 4; ++i) {
+                        if (parseInt(value) === (i + 1)) 
+                        {
+                            instance.put(`/Cameras/id/${i + 1}`, {
+                                edit_stream: "/static/media/video1.cff2ae39.mp4",
+                                edit_mode: "false"
+                            })
+                        }
+                        else {
+                            instance.put(`/Cameras/id/${i + 1}`, {
+                                edit_stream: "",
+                                edit_mode: "true"
+                            })
+                        }
                     }
+                    window.location.reload()
                     break
                 }
             default:
@@ -177,6 +214,15 @@ const VideoBarMulti = (props) => {
         }
     }
 
+    //для ресета размера видео (не работает)
+    // setInterval((event) => {
+    //     let el = document.querySelector("#mainVideoBar");
+    //     if(el.webkitSupportsFullscreen)
+    //     {
+    //         alert("uu")
+    //         setEditSizeMode(false)
+    //     }
+    // }, 500);
 
 
     return (<div>
@@ -196,7 +242,8 @@ const VideoBarMulti = (props) => {
             {potok2
                 ? <><video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video2} autoPlay loop muted id='multi-video2-player'>
                     <source src={potok2 === true ? props.streams[1].nameStream : ""} type='video/mp4' />
-                </video>
+                </video>                   
+                    <GenCarNumber genNum={genNum}/>
                     <span className={styleVideo.video2}>{props.streams[1].nameCamera}</span>
                     <img onClick={toggleFullScreen2} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video2} src={props.fullScreenButton} title="На полный экран" />
                 </>
@@ -220,7 +267,7 @@ const VideoBarMulti = (props) => {
                 </>
                 : <div className={styleVideo.video4NoCamera}><img src={noSignal} alt="noSignal" /></div>}
 
-            <GenCarNumber potok1={potok1} potok2={potok2} potok3={potok3} potok4={potok4} />
+            
             {/*  ======================== полноэкранный режим c рамкой ======================== */}
             <ModalMultiVideoBar active={modalActive} setActive={setModalActive}>
                 <video autoPlay loop muted id="multi-video1-player">

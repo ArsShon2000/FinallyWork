@@ -29,7 +29,7 @@ grid-template-columns: 1fr 1fr;
 
 }
 
-.img1 {
+.img{
   display: grid;
   align-items: end;
   justify-content: end;

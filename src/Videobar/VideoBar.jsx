@@ -20,7 +20,32 @@ const instance = axios.create({
 
 
     const VideoBar = (props) => {
-    let Cameras = props.Cameras.videoStreams
+
+    let genNum = props.genNum
+
+
+
+    let cameraQuantity = 0;
+    let singleCamera;
+    let Cameras = props.Cameras.videoStreams;
+    for(let i = 0; i < Cameras.length; i++)
+    {
+        if(Cameras[i].nameStream != '')
+        {
+            ++cameraQuantity;
+        }
+
+    }
+    if(cameraQuantity === 1)
+    {
+        for(let i = 0; i < Cameras.length; i++)
+        {
+            if(Cameras[i].nameStream != '')
+            {
+                singleCamera = Cameras[i];
+            }
+        }
+    }
 
     
 
@@ -149,7 +174,7 @@ const instance = axios.create({
 
 
 
-    return (<div className={Cameras.length > 1 ? styleVideo.vidMulti : styleVideo.vid}>
+    return (<div className={styleVideo.vid}>
         <div className={styleVideo.cameras}>
             <div className={styleVideo.cameraTitle}>Cameras</div>
             <div className={styleVideo.camerasList}>
@@ -190,9 +215,9 @@ const instance = axios.create({
             </div>
         </div>
         {/*  ======================== поле видео ========================  */}
-        <div className={styleVideo.videoArea}>{Cameras.length > 1
-            ? <VideoBarMulti fullScreenButton={fullScreenButton} streams={Cameras} />
-            : <VideoBarSingle fullScreenButton={fullScreenButton} streams={Cameras} />}</div>
+        <div className={styleVideo.videoArea}>{cameraQuantity > 1
+            ? <VideoBarMulti fullScreenButton={fullScreenButton} streams={Cameras} genNum={genNum}/>
+            : <VideoBarSingle fullScreenButton={fullScreenButton} singleCamera={singleCamera} />}</div>
     </div>
     )
 }

@@ -12,6 +12,7 @@ const instance = axios.create({
 
 
 const GenCarNumber = (props) => {
+    let genNum = props.genNum
 
     let [changeSizeCarNumber, setChangeSizeCarNumber] = useState(1)
     let [changeSizeCarNumber2, setChangeSizeCarNumber2] = useState(1)
@@ -68,14 +69,7 @@ const GenCarNumber = (props) => {
 
 
 
-    //  ======================== get car number from DB ======================== 
-    const [genNum, setGenNum] = useState([]);
-    useEffect(() => {
-        instance.get('/genNum').then((res) => {
-            setGenNum(res.data.genNum);
-            console.log('gen num')
-        })
-    }, []);
+
 
     // genNum разбиваем на две переменные
     let defLong, defShort
@@ -119,7 +113,7 @@ const GenCarNumber = (props) => {
 
 
                     {/*  ======================== 2 видео поток ========================  */}
-                    <div className={stylab.img2}>
+                    {/* <div className={stylab.img2}>
                         <div onClick={onSizeChange2} className={stylab.image1}>
                             <img style={changeSizeCarNumber2 === 1 ? { "width": "200px" } :  // small picture
                                 changeSizeCarNumber2 === 3 ? { "width": "552px" } : {}} // big picture
@@ -135,9 +129,9 @@ const GenCarNumber = (props) => {
                             changeSizeCarNumber2 === 3 ?
                                 { "fontSize": "70px", "left": "420px", "width": "111px", "top": "-28px" } : {}} // big short number
                             onClick={onSizeChange2} className={stylab.shortText1}>{defShort}</span>
-                    </div>
+                    </div> */}
                     {/*  ======================== 3 видео поток ========================  */}
-                    <div className={stylab.img3}>
+                    {/* <div className={stylab.img3}>
 
                         <div onClick={onSizeChange3} className={stylab.image1}>
                             <img style={changeSizeCarNumber3 === 1 ? { "width": "200px" } :  // small picture
@@ -154,9 +148,9 @@ const GenCarNumber = (props) => {
                             changeSizeCarNumber3 === 3 ?
                                 { "fontSize": "70px", "left": "420px", "width": "111px", "top": "-28px" } : {}} // big short number
                             onClick={onSizeChange3} className={stylab.shortText1}>{defShort}</span>
-                    </div>
+                    </div> */}
                     {/*  ======================== 4 видео поток ========================  */}
-                    <div className={stylab.img4}>
+                    {/* <div className={stylab.img4}>
                         <div onClick={onSizeChange4} className={stylab.image1}>
                             <img style={changeSizeCarNumber4 === 1 ? { "width": "200px" } :  // small picture
                                 changeSizeCarNumber4 === 3 ? { "width": "552px" } : {}} // big picture
@@ -172,7 +166,7 @@ const GenCarNumber = (props) => {
                             changeSizeCarNumber4 === 3 ?
                                 { "fontSize": "70px", "left": "420px", "width": "111px", "top": "-28px" } : {}} // big short number
                             onClick={onSizeChange4} className={stylab.shortText1}>{defShort}</span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )

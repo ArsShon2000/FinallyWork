@@ -9,7 +9,7 @@ import Navbar from './Navbar/Navbar';
 import WList from './Label/WBLists/WList';
 import BList from './Label/WBLists/BList';
 import Options from './options/Options';
-// import axios from "axios";
+import axios from "axios";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Archive from './Archive/Archive';
@@ -25,10 +25,10 @@ import Label from './Label/Label';
 
 // let render = 0
 
-// const instance = axios.create({
-//   withCredentials: true,
-//   baseURL: 'http://127.0.0.1:5000',
-// })
+const instance = axios.create({
+  withCredentials: true,
+  baseURL: 'http://127.0.0.1:5000',
+})
 
 let App = () => {
   // console.warn("app запрос " + ++render)
@@ -37,6 +37,9 @@ let App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   let [Cameras, setCameras] = useState([])
   const [loginList, setLoginList] = useState([]);
+  //  ======================== get car number from DB ======================== 
+  const [genNum, setGenNum] = useState([]);
+
 
   let bool
   if (loginList.login) {
@@ -62,6 +65,10 @@ let App = () => {
           console.log("From app")
         }
       })
+    instance.get('/genNum').then((res) => {
+      setGenNum(res.data.genNum);
+      console.log('gen num')
+    })
 
   }, [])
 
@@ -83,8 +90,8 @@ let App = () => {
         <div className="App">
           <Header />
           <Routes>
-            <Route path='/camera' element={<VideoBar Cameras={Cameras} />} />
-            <Route path='/' element={<VideoBar Cameras={Cameras} />} />
+            <Route path='/camera' element={<VideoBar Cameras={Cameras} genNum={genNum}/>} />
+            <Route path='/' element={<VideoBar Cameras={Cameras} />} genNum={genNum}/>
           </Routes>
           {/* <VideoBar /> */}
           {bool !== 1 ? <Login /> :
@@ -92,8 +99,8 @@ let App = () => {
           <div className="App-wrapper-content ">
             {bool !== 1 ? refresh() : <Routes>
               {/* <Route path='/camera/' element={<VideoBar />} /> */}
-              <Route path='/camera' element={<GenCarNumber />} />
-              <Route path='/' element={<GenCarNumber />} />
+              {/* <Route path='/camera' element={<GenCarNumber genNum={genNum}/>} />
+              <Route path='/' element={<GenCarNumber genNum={genNum}/>} /> */}
                 <Route path='/archive' element={ 
                   <React.StrictMode>
                     <Archive />

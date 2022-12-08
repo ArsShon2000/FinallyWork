@@ -11,21 +11,6 @@
   grid-template-rows: 1fr 30px;
   grid-template-columns: 2fr 8fr;
   }
-
-  .vidMulti {
-    
-    grid-area: content;
-    padding: 10px 0px
-              0px 0px;
-    overflow:hidden;
-    height: 902px;
-    display: grid;
-    grid-template-areas:
-    "cameras video"
-    "cameras video";
-  grid-template-rows: 1fr 30px;
-  grid-template-columns: 2fr 8fr;
-  }
   
 /* ====================================   VIDEO   ================================== */
 
