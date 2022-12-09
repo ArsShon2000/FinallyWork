@@ -28,6 +28,10 @@ video::-webkit-media-controls {
   position: relative;
 }
 
+.valueOfSelect span{
+  color: rgb(141, 231, 123);
+}
+
 .vidSingle img {
   width: 40px;
   height: 40px;

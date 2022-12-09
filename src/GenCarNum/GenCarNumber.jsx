@@ -86,34 +86,34 @@ const GenCarNumber = (props) => {
         defLong = longArray.join('') // из массива в стринг
         defShort = shortArray.join('')
     }
-
-    if(genNum){
+    console.log(genNum)
+    debugger
+    if (genNum) {
         return (
-            <div className={stylab.lab} >
-                <div className={stylab.imgArea}>
-                    {/*  ======================== 1 видео поток ========================  */}
-                     <div className={stylab.img1}>
-                            <div onClick={onSizeChange} className={stylab.image1}>
-                                <img style={changeSizeCarNumber === 1 ? { "width": "200px" } :  // small picture
-                                    changeSizeCarNumber === 3 ? { "width": "552px" } : {}} // big picture
-                                    src={gosNum} alt="gosNum" />
-                            </div>
-                            <span style={changeSizeCarNumber === 1 ?
-                                { "fontSize": "35px", "left": "15px", "width": "128px" } : // small long number
-                                changeSizeCarNumber === 3 ?
-                                    { "fontSize": "105px", "left": "35px", "width": "370px", "top": "6px" } : {}} // big long number
-                                onClick={onSizeChange} className={stylab.longText1}>{defLong}</span>
-                            <span style={changeSizeCarNumber === 1 ?
-                                { "fontSize": "23px", "left": "154px", "top": "-11px", "width": "36px" } :  // small short number
-                                changeSizeCarNumber === 3 ?
-                                    { "fontSize": "70px", "left": "420px", "width": "111px", "top": "-28px" } : {}} // big short number
-                                onClick={onSizeChange} className={stylab.shortText1}>{defShort}</span>
-                        </div>
-                        
+            <div className={stylab.imgArea}> {/*  ======================== 1 видео поток ========================  */}
+                <div onClick={onSizeChange} className={stylab.image1}>
+                    <img style={changeSizeCarNumber === 1 ? { "width": "200px" } :  // small picture
+                        changeSizeCarNumber === 3 ? { "width": "552px" } : {}} // big picture
+                        src={gosNum} alt="gosNum" />
+                </div>
+                <span style={changeSizeCarNumber === 1 ?
+                    { "fontSize": "35px", "left": "15px", "width": "128px" } : // small long number
+                    changeSizeCarNumber === 3 ?
+                        { "fontSize": "105px", "left": "35px", "width": "370px", "top": "6px" } : {}} // big long number
+                    onClick={onSizeChange} className={stylab.longText1}>{defLong}</span>
+                <span style={changeSizeCarNumber === 1 ?
+                    { "fontSize": "23px", "left": "154px", "top": "-11px", "width": "36px" } :  // small short number
+                    changeSizeCarNumber === 3 ?
+                        { "fontSize": "70px", "left": "420px", "width": "111px", "top": "-28px" } : {}} // big short number
+                    onClick={onSizeChange} className={stylab.shortText1}>{defShort}</span>
+            </div>
 
+        )
+    }
+}
 
-                    {/*  ======================== 2 видео поток ========================  */}
-                    {/* <div className={stylab.img2}>
+{/*  ======================== 2 видео поток ========================  */ }
+{/* <div className={stylab.img2}>
                         <div onClick={onSizeChange2} className={stylab.image1}>
                             <img style={changeSizeCarNumber2 === 1 ? { "width": "200px" } :  // small picture
                                 changeSizeCarNumber2 === 3 ? { "width": "552px" } : {}} // big picture
@@ -130,8 +130,8 @@ const GenCarNumber = (props) => {
                                 { "fontSize": "70px", "left": "420px", "width": "111px", "top": "-28px" } : {}} // big short number
                             onClick={onSizeChange2} className={stylab.shortText1}>{defShort}</span>
                     </div> */}
-                    {/*  ======================== 3 видео поток ========================  */}
-                    {/* <div className={stylab.img3}>
+{/*  ======================== 3 видео поток ========================  */ }
+{/* <div className={stylab.img3}>
 
                         <div onClick={onSizeChange3} className={stylab.image1}>
                             <img style={changeSizeCarNumber3 === 1 ? { "width": "200px" } :  // small picture
@@ -149,8 +149,8 @@ const GenCarNumber = (props) => {
                                 { "fontSize": "70px", "left": "420px", "width": "111px", "top": "-28px" } : {}} // big short number
                             onClick={onSizeChange3} className={stylab.shortText1}>{defShort}</span>
                     </div> */}
-                    {/*  ======================== 4 видео поток ========================  */}
-                    {/* <div className={stylab.img4}>
+{/*  ======================== 4 видео поток ========================  */ }
+{/* <div className={stylab.img4}>
                         <div onClick={onSizeChange4} className={stylab.image1}>
                             <img style={changeSizeCarNumber4 === 1 ? { "width": "200px" } :  // small picture
                                 changeSizeCarNumber4 === 3 ? { "width": "552px" } : {}} // big picture
@@ -167,13 +167,7 @@ const GenCarNumber = (props) => {
                                 { "fontSize": "70px", "left": "420px", "width": "111px", "top": "-28px" } : {}} // big short number
                             onClick={onSizeChange4} className={stylab.shortText1}>{defShort}</span>
                     </div> */}
-                </div>
-            </div>
-        )
-    }
-        
-    
-    
-}
+
+
 
 export default GenCarNumber

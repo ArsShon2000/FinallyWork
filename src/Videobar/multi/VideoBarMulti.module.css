@@ -12,6 +12,7 @@
   }
   
 
+
 .video1{
   grid-area: video1;
   position: relative;
@@ -84,8 +85,11 @@ video::-webkit-media-controls {
   display: -webkit-box;
 }
 
-/* =============================== НАЗЫВАНИЕ КАРМЕРЫ ================================== */
+.genNum {
+  position: relative;
+}
 
+/* =============================== НАЗЫВАНИЕ КАРМЕРЫ ================================== */
 
 .vidMulti span {
   color: aliceblue;
@@ -103,6 +107,10 @@ video::-webkit-media-controls {
 
 
 /* ====================================   TOOLS   ================================== */
+
+.valueOfSelect span{
+  color: rgb(141, 231, 123);
+}
 
 .tools {
   margin: 0px 0px;
