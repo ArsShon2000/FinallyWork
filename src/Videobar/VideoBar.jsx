@@ -217,7 +217,7 @@ const instance = axios.create({
         {/*  ======================== поле видео ========================  */}
         <div className={styleVideo.videoArea}>{cameraQuantity > 1
             ? <VideoBarMulti fullScreenButton={fullScreenButton} streams={Cameras} genNum={genNum}/>
-            : <VideoBarSingle fullScreenButton={fullScreenButton} singleCamera={singleCamera} />}</div>
+            : <VideoBarSingle fullScreenButton={fullScreenButton} singleCamera={singleCamera} genNum={genNum}/>}</div>
     </div>
     )
 }

@@ -14,7 +14,7 @@ const instance = axios.create({
 })
 
 const VideoBarMulti = (props) => {
-
+    //  ======================== Номера машин из бэка ======================== 
     let genNum = props.genNum
 
 
@@ -232,11 +232,13 @@ const VideoBarMulti = (props) => {
                 ? <><video controls style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video1} autoPlay loop muted id="multi-video1-player" >
                     <source src={props.streams[0].nameStream} type='video/mp4' />
                 </video>
-                    <div className={styleVideo.genNum1}><GenCarNumber genNum={genNum}/></div>
+                    <div className={styleVideo.genNum1}><GenCarNumber genNum={genNum[0].carNumbers}/></div>
                     
                     <span className={styleVideo.video1}>{props.streams[0].nameCamera}</span>
-                    <img onClick={toggleFullScreen1} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video1} src={props.fullScreenButton} title="На полный экран" />
-                </>
+                    <div className={styleVideo.fullScreenButton1}>
+                        <img onClick={toggleFullScreen1} id="fullScreenImg" alt="fullScreenImg" src={props.fullScreenButton} title="На полный экран" />
+                </div>
+                    </>
                 : <div className={styleVideo.video1NoCamera}><img src={noSignal} alt="noSignal" /></div>}
 
 
@@ -245,9 +247,11 @@ const VideoBarMulti = (props) => {
                 ? <><video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video2} autoPlay loop muted id='multi-video2-player'>
                     <source src={props.streams[1].nameStream} type='video/mp4' />
                 </video>                   
-                    <div className={styleVideo.genNum2}><GenCarNumber genNum={genNum}/></div>
+                    <div className={styleVideo.genNum2}><GenCarNumber genNum={genNum[1].carNumbers}/></div>
                     <span className={styleVideo.video2}>{props.streams[1].nameCamera}</span>
-                    <img onClick={toggleFullScreen2} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video2} src={props.fullScreenButton} title="На полный экран" />
+                    <div className={styleVideo.fullScreenButton2}>
+                        <img onClick={toggleFullScreen2} id="fullScreenImg" alt="fullScreenImg" src={props.fullScreenButton} title="На полный экран" />
+                </div>
                 </>
                 : <div className={styleVideo.video1NoCamera}><img src={noSignal} alt="noSignal" /></div>}
             {/*  ======================== 3 видео поток ========================  */}
@@ -255,20 +259,22 @@ const VideoBarMulti = (props) => {
                 ? <><video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video3} autoPlay loop muted id='multi-video3-player'>
                     <source src={props.streams[2].nameStream} type='video/mp4' />
                 </video>
-                    <div className={styleVideo.genNum3}><GenCarNumber genNum={genNum}/></div>
+                    <div className={styleVideo.genNum3}><GenCarNumber genNum={genNum[2].carNumbers}/></div>
                     <span className={styleVideo.video3}>{props.streams[2].nameCamera}</span>
-                    <img onClick={toggleFullScreen3} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video3} src={props.fullScreenButton} title="На полный экран" />
-                </>
+                    <div className={styleVideo.fullScreenButton3}>
+                        <img onClick={toggleFullScreen3} id="fullScreenImg" alt="fullScreenImg" src={props.fullScreenButton} title="На полный экран" />
+                </div></>
                 : <div className={styleVideo.video3NoCamera}><img src={noSignal} alt="noSignal" /></div>}
             {/*  ======================== 4 видео поток ========================  */}
             {potok4
                 ? <><video style={editSizeMode === true ? { "width": "960px", "height": "540px" } : {}} className={styleVideo.video4} autoPlay loop muted id='multi-video4-player'>
                     <source src={props.streams[3].nameStream} type='video/mp4' />
                 </video>
-                    <div className={styleVideo.genNum4}><GenCarNumber genNum={genNum}/></div>
+                    <div className={styleVideo.genNum4}><GenCarNumber genNum={genNum[3].carNumbers}/></div>
                     <span className={styleVideo.video4}>{props.streams[3].nameCamera}</span>
-                    <img onClick={toggleFullScreen4} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.video4} src={props.fullScreenButton} title="На полный экран" />
-                </>
+                    <div className={styleVideo.fullScreenButton4}>
+                        <img onClick={toggleFullScreen4} id="fullScreenImg" alt="fullScreenImg" src={props.fullScreenButton} title="На полный экран" />
+                </div></>
                 : <div className={styleVideo.video4NoCamera}><img src={noSignal} alt="noSignal" /></div>}
 
             

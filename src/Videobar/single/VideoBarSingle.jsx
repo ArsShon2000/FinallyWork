@@ -3,6 +3,8 @@ import sample1 from "./video1.mp4"
 import styleVideo from "./VideoBarSingle.module.css";
 import fullOneStream from '../../Icons/single.png';
 import axios from "axios";
+import GenCarNumber from "../../GenCarNum/GenCarNumber";
+// import GenCarNumber from "../../GenCarNum/GenCarNumber";
 
 const instance = axios.create({
     withCredentials: true,
@@ -11,7 +13,11 @@ const instance = axios.create({
 
 
 const VideoBarSingle = (props) => {
+    //  ======================== Номера машин из бэка ======================== 
+    let genNum = props.genNum
+    let singleCamera = true;
     //  ======================== Номер камеры ======================== 
+
 
     //  ======================== полноэкранный режим каждого окна c помощью селекта ======================== 
     const onClickFullOneStream = () => {
@@ -20,8 +26,8 @@ const VideoBarSingle = (props) => {
             switch (value) {
                 case "All":
                     {
-                        for (let i = 0; i < 4; ++i) {
-                            instance.put(`/Cameras/id/${i + 1}`, {
+                        for (let i = 1; i < 5; i++) {
+                            instance.put(`/Cameras/id/${i}`, {
                                 edit_stream: "/static/media/video1.cff2ae39.mp4",
                                 edit_mode: "false"
                             })
@@ -31,15 +37,15 @@ const VideoBarSingle = (props) => {
                     }
                 case "1":
                     {
-                        for (let i = 0; i < 4; ++i) {
-                            if (parseInt(value) === (i + 1)) {
-                                instance.put(`/Cameras/id/${i + 1}`, {
+                        for (let i = 1; i < 5; i++) {
+                            if (parseInt(value) === (i)) {
+                                instance.put(`/Cameras/id/${i}`, {
                                     edit_stream: "/static/media/video1.cff2ae39.mp4",
                                     edit_mode: "false"
                                 })
                             }
                             else {
-                                instance.put(`/Cameras/id/${i + 1}`, {
+                                instance.put(`/Cameras/id/${i}`, {
                                     edit_stream: "",
                                     edit_mode: "true"
                                 })
@@ -50,15 +56,15 @@ const VideoBarSingle = (props) => {
                     }
                 case "2":
                     {
-                        for (let i = 0; i < 4; ++i) {
-                            if (parseInt(value) === (i + 1)) {
-                                instance.put(`/Cameras/id/${i + 1}`, {
+                        for (let i = 1; i < 5; i++) {
+                            if (parseInt(value) === (i)) {
+                                instance.put(`/Cameras/id/${i}`, {
                                     edit_stream: "/static/media/video1.cff2ae39.mp4",
                                     edit_mode: "false"
                                 })
                             }
                             else {
-                                instance.put(`/Cameras/id/${i + 1}`, {
+                                instance.put(`/Cameras/id/${i}`, {
                                     edit_stream: "",
                                     edit_mode: "true"
                                 })
@@ -69,15 +75,15 @@ const VideoBarSingle = (props) => {
                     }
                 case "3":
                     {
-                        for (let i = 0; i < 4; ++i) {
-                            if (parseInt(value) === (i + 1)) {
-                                instance.put(`/Cameras/id/${i + 1}`, {
+                        for (let i = 1; i < 5; i++) {
+                            if (parseInt(value) === (i)) {
+                                instance.put(`/Cameras/id/${i}`, {
                                     edit_stream: "/static/media/video1.cff2ae39.mp4",
                                     edit_mode: "false"
                                 })
                             }
                             else {
-                                instance.put(`/Cameras/id/${i + 1}`, {
+                                instance.put(`/Cameras/id/${i}`, {
                                     edit_stream: "",
                                     edit_mode: "true"
                                 })
@@ -88,15 +94,15 @@ const VideoBarSingle = (props) => {
                     }
                 case "4":
                     {
-                        for (let i = 0; i < 4; ++i) {
-                            if (parseInt(value) === (i + 1)) {
-                                instance.put(`/Cameras/id/${i + 1}`, {
+                        for (let i = 1; i < 5; i++) {
+                            if (parseInt(value) === (i)) {
+                                instance.put(`/Cameras/id/${i}`, {
                                     edit_stream: "/static/media/video1.cff2ae39.mp4",
                                     edit_mode: "false"
                                 })
                             }
                             else {
-                                instance.put(`/Cameras/id/${i + 1}`, {
+                                instance.put(`/Cameras/id/${i}`, {
                                     edit_stream: "",
                                     edit_mode: "true"
                                 })
@@ -126,13 +132,16 @@ const VideoBarSingle = (props) => {
         }
     };
 
-    console.log(props.singleCamera.id_name)
+    let singleCameras = props.singleCamera
+
+    debugger
     return (
         <div>
             <div className={styleVideo.vidSingle}>
                 <video className={styleVideo.singleVideoArea} autoPlay loop muted id="single-video-player">
                     <source src={props.singleCamera.nameStream} type='video/mp4' />
                 </video>
+                <div className={styleVideo.genNumSingle}><GenCarNumber genNum={genNum[props.singleCamera.id_name - 1].carNumbers} singleCamera={singleCamera} /></div>
                 <img onClick={toggleFullScreen1} id="fullScreenImg" alt="fullScreenImg" className={styleVideo.singleVideoArea} src={props.fullScreenButton} title="На полный экран" />
                 <span className={styleVideo.singleVideoArea}>{props.singleCamera.nameCamera}</span>
             </div>

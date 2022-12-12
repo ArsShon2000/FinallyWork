@@ -27,22 +27,8 @@ grid-template-rows: 1fr 1fr;
 grid-template-columns: 1fr 1fr;
 } */
 
-.imgArea {
-  position: relative;
-  color: #000000 !important;
-  text-shadow: 1px 0 1px #000,
-    0 1px 1px #000,
-    -1px 0 1px #000,
-    0 -1px 1px #000;
-  grid-area: video1;
-  display: grid;
-  align-items: end;
-  justify-content: end;
-  grid-template-areas:
-    ". ."
-    ". img";
-}
 
+/* 
 .img2 {
   display: grid;
   align-items: end;
@@ -71,48 +57,160 @@ grid-template-columns: 1fr 1fr;
   grid-template-areas:
     ". ."
     ". img";
-}
+} */
 
 
-.lab img {
+.imgArea  {
+  z-index: 1;
   width: 300px;
+  height: 60px;
   position: relative;
+  margin-left: 0%;
+}
+.imgArea span{
+  color: #000000 !important;
+  text-shadow: 1px 0 1px #000,
+    0 1px 1px #000,
+    -1px 0 1px #000,
+    0 -1px 1px #000;
 }
 
-.image1 {
-  cursor: pointer;
-  grid-area: img;
+.imgArea img{
+  width: 300px;
+  height: 60px;
   position: relative;
-  display: grid;
+  cursor: pointer;
+  margin-left: 0%;
+  margin-top: -5px;
+}
+
+/* =============================== backgroundImg ================================== */
+
+.backgroundImgNormal{
+  cursor: pointer;
 
 }
 
-.longText1 {
+.backgroundImgSmall img{
   cursor: pointer;
-  grid-area: img;
+  top: 20px;
+  left: 99px;
+  width: 200px;
+  height: 40px;
+}
+
+.backgroundImgBig img{
+  cursor: pointer;
+  top: -52px;
+  left: -253px;
+  width: 552px;
+  height: 110.4px;
+}
+/* =============================== LONG ================================== */
+
+.longTextNormal {
   position: relative;
-  font-size: 56px;
-  left: 20px;
   top: 2px;
   text-align: center;
-  width: 201px;
+    top: -74px;
+    left: -30px;
+  font-size: 56px;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
 }
 
-.shortText1 {
+.longTextNormal span{
   cursor: pointer;
-  grid-area: img;
+}
+
+.longTextSmall {
+  position: relative;
+  top: 2px;
+  text-align: center;
+    top: -30px;
+    left: 28px;
+  font-size: 35px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.longTextSmall span{
+  cursor: pointer;
+}
+
+.longTextBig {
+  position: relative;
+  top: 2px;
+  text-align: center;
+    top: -188px;
+    left: -221px;
+  font-size: 105px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.longTextBig span{
+  cursor: pointer;
+}
+
+/* =============================== SHORT ================================== */
+
+.shortTextNormal {
   position: relative;
   font-size: 36px;
-  left: 230px;
-  top: -18px;
+  left: 228px;
+  top: -141px;
   text-align: center;
   width: 59px;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+
+.shortTextNormal span{
+  cursor: pointer;
+}
+
+.shortTextSmall {
+  position: relative;
+  left: 241px;
+  top: -73px;
+  font-size: 23px;
+  text-align: center;
+  width: 59px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.shortTextSmall span{
+  cursor: pointer;
+}
+
+.shortTextBig {
+  position: relative;
+  font-size: 70px;
+  left: 163px;
+  top: -314px;
+  text-align: center;
+  width: 59px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.shortTextBig span{
+  cursor: pointer;
+}
+
+.shortText1 span{
 }

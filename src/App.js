@@ -47,6 +47,9 @@ let App = () => {
   }
 
   useEffect(() => {
+    instance.get('/genNum').then((res) => {
+      setGenNum(res.data.numbers);
+    })
     fetch(`http://127.0.0.1:5000/Cameras`)
       .then(res => res.json())
       .then((result) => {
@@ -64,12 +67,7 @@ let App = () => {
           setLoginList(result);
           console.log("From app")
         }
-      })
-    instance.get('/genNum').then((res) => {
-      setGenNum(res.data.genNum);
-      console.log('gen num')
-    })
-
+      })    
   }, [])
 
   console.log(loginList)
@@ -85,13 +83,14 @@ let App = () => {
     return <div>Loading...</div>;
   } else {
 
+    console.log(genNum)
     return (
       <BrowserRouter>
         <div className="App">
           <Header />
           <Routes>
             <Route path='/camera' element={<VideoBar Cameras={Cameras} genNum={genNum}/>} />
-            <Route path='/' element={<VideoBar Cameras={Cameras} />} genNum={genNum}/>
+            <Route path='/' element={<VideoBar Cameras={Cameras} genNum={genNum}/>}/>
           </Routes>
           {/* <VideoBar /> */}
           {bool !== 1 ? <Login /> :

@@ -85,8 +85,38 @@ video::-webkit-media-controls {
   display: -webkit-box;
 }
 
-.genNum {
+/* =============================== GenCarNumber ================================== */
+
+.genNum1 {
+  grid-area: video1;
   position: relative;
+  display: grid;
+  align-items: end;
+  justify-content: end;
+}
+
+.genNum2 {
+  position: relative;
+  grid-area: video2;
+  display: grid;
+  align-items: end;
+  justify-content: end;
+}
+
+.genNum3 {
+  position: relative;
+  grid-area: video3;
+  display: grid;
+  align-items: end;
+  justify-content: end;
+}
+
+.genNum4 {
+  position: relative;
+  grid-area: video4;
+  display: grid;
+  align-items: end;
+  justify-content: end;
 }
 
 /* =============================== НАЗЫВАНИЕ КАРМЕРЫ ================================== */
@@ -97,12 +127,52 @@ video::-webkit-media-controls {
   position: relative;
 }
 
-.vidMulti img {
+.fullScreenButton1 {
+  grid-area: video1;
+}
+.fullScreenButton1 img {
   width: 40px;
   height: 40px;
   margin-left: 92%;
   margin-top: 1%;
   cursor: pointer;
+  position: relative;
+}
+
+.fullScreenButton2 {
+  grid-area: video2;
+}
+.fullScreenButton2 img {
+  width: 40px;
+  height: 40px;
+  margin-left: 92%;
+  margin-top: 1%;
+  cursor: pointer;
+  position: relative;
+}
+
+.fullScreenButton3 {
+  grid-area: video3;
+}
+.fullScreenButton3 img {
+  width: 40px;
+  height: 40px;
+  margin-left: 92%;
+  margin-top: 1%;
+  cursor: pointer;
+  position: relative;
+}
+
+.fullScreenButton4 {
+  grid-area: video4;
+}
+.fullScreenButton4 img {
+  width: 40px;
+  height: 40px;
+  margin-left: 92%;
+  margin-top: 1%;
+  cursor: pointer;
+  position: relative;
 }
 
 

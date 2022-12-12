@@ -12,12 +12,11 @@ const instance = axios.create({
 
 
 const GenCarNumber = (props) => {
-    let genNum = props.genNum
+    let genNum = props.genNum;
+    let singleCamera = props.singleCamera;
 
+    //  ======================== change size gosNumber ======================== 
     let [changeSizeCarNumber, setChangeSizeCarNumber] = useState(1)
-    let [changeSizeCarNumber2, setChangeSizeCarNumber2] = useState(1)
-    let [changeSizeCarNumber3, setChangeSizeCarNumber3] = useState(1)
-    let [changeSizeCarNumber4, setChangeSizeCarNumber4] = useState(1)
 
     //  ======================== 1 видео поток ======================== 
 
@@ -26,50 +25,10 @@ const GenCarNumber = (props) => {
             changeSizeCarNumber = 1
             setChangeSizeCarNumber(changeSizeCarNumber)
         } else {
-            changeSizeCarNumber++
+            ++changeSizeCarNumber
             setChangeSizeCarNumber(changeSizeCarNumber)
         }
     }
-
-    //  ======================== 2 видео поток ======================== 
-
-    const onSizeChange2 = () => {
-        if (changeSizeCarNumber2 === 3) {
-            changeSizeCarNumber2 = 1
-            setChangeSizeCarNumber2(changeSizeCarNumber2)
-        } else {
-            changeSizeCarNumber2++
-            setChangeSizeCarNumber2(changeSizeCarNumber2)
-        }
-    }
-
-    //  ======================== 3 видео поток ======================== 
-
-    const onSizeChange3 = () => {
-        if (changeSizeCarNumber3 === 3) {
-            changeSizeCarNumber3 = 1
-            setChangeSizeCarNumber3(changeSizeCarNumber3)
-        } else {
-            changeSizeCarNumber3++
-            setChangeSizeCarNumber3(changeSizeCarNumber3)
-        }
-    }
-
-    //  ======================== 4 видео поток ======================== 
-
-    const onSizeChange4 = () => {
-        if (changeSizeCarNumber4 === 3) {
-            changeSizeCarNumber4 = 1
-            setChangeSizeCarNumber4(changeSizeCarNumber4)
-        } else {
-            changeSizeCarNumber4++
-            setChangeSizeCarNumber4(changeSizeCarNumber4)
-        }
-    }
-
-
-
-
 
     // genNum разбиваем на две переменные
     let defLong, defShort
@@ -86,28 +45,49 @@ const GenCarNumber = (props) => {
         defLong = longArray.join('') // из массива в стринг
         defShort = shortArray.join('')
     }
-    console.log(genNum)
-    debugger
+
     if (genNum) {
         return (
-            <div className={stylab.imgArea}> {/*  ======================== 1 видео поток ========================  */}
-                <div onClick={onSizeChange} className={stylab.image1}>
-                    <img style={changeSizeCarNumber === 1 ? { "width": "200px" } :  // small picture
-                        changeSizeCarNumber === 3 ? { "width": "552px" } : {}} // big picture
-                        src={gosNum} alt="gosNum" />
-                </div>
-                <span style={changeSizeCarNumber === 1 ?
-                    { "fontSize": "35px", "left": "15px", "width": "128px" } : // small long number
-                    changeSizeCarNumber === 3 ?
-                        { "fontSize": "105px", "left": "35px", "width": "370px", "top": "6px" } : {}} // big long number
-                    onClick={onSizeChange} className={stylab.longText1}>{defLong}</span>
-                <span style={changeSizeCarNumber === 1 ?
-                    { "fontSize": "23px", "left": "154px", "top": "-11px", "width": "36px" } :  // small short number
-                    changeSizeCarNumber === 3 ?
-                        { "fontSize": "70px", "left": "420px", "width": "111px", "top": "-28px" } : {}} // big short number
-                    onClick={onSizeChange} className={stylab.shortText1}>{defShort}</span>
-            </div>
+            <div className={stylab.imgArea}>
+                {singleCamera
+                    ? <>
+                        <div className={changeSizeCarNumber === 1 ? stylab.backgroundImgSmall :
+                            changeSizeCarNumber === 3 ? stylab.backgroundImgBig
+                                : stylab.backgroundImgNormal}>
+                            <img onClick={onSizeChange} src={gosNum} alt="gosNum" />
+                        </div>
+                        
+                            <div className={changeSizeCarNumber === 1 ? stylab.longTextSmall :
+                                changeSizeCarNumber === 3 ? stylab.longTextBig
+                                    : stylab.longTextNormal}>
+                                <span onClick={onSizeChange}>{defLong}</span>
+                            </div>
+                            <div className={changeSizeCarNumber === 1 ? stylab.shortTextSmall :
+                                changeSizeCarNumber === 3 ? stylab.shortTextBig
+                                    : stylab.shortTextNormal}>
+                                <span onClick={onSizeChange}>{defShort}</span>
+                            </div>
+                    </>
+                    :<>
+                        <div className={changeSizeCarNumber === 1 ? stylab.backgroundImgSmall :
+                            changeSizeCarNumber === 3 ? stylab.backgroundImgBig
+                                : stylab.backgroundImgNormal}>
+                            <img onClick={onSizeChange} src={gosNum} alt="gosNum" />
+                        </div>
+                            <div className={changeSizeCarNumber === 1 ? stylab.longTextSmall :
+                                changeSizeCarNumber === 3 ? stylab.longTextBig
+                                    : stylab.longTextNormal}>
+                                <span onClick={onSizeChange}>{defLong}</span>
+                            </div>
+                            <div className={changeSizeCarNumber === 1 ? stylab.shortTextSmall :
+                                changeSizeCarNumber === 3 ? stylab.shortTextBig
+                                    : stylab.shortTextNormal}>
+                                <span onClick={onSizeChange}>{defShort}</span>
+                            </div>
+                    </>
+                }
 
+            </div>
         )
     }
 }
