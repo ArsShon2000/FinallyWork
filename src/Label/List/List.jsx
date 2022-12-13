@@ -101,7 +101,7 @@ const List = (props) => {
           <div className={stylist.functions}>
             <div>
               <input onClick={e => e.stopPropagation()}
-                className="type-2CN"
+                className="type_2"
                 type="text"
                 value={title} onChange={(e) => setTitle(e.currentTarget.value)}
                 placeholder="Номер машины" />

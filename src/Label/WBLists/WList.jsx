@@ -4,6 +4,7 @@ import stylab from "./WList.module.css"
 import axios from "axios";
 import Modal from "./Modal/Modal";
 import ModalForSearch from "./Search/ModalForSearch";
+import ImageUpload from "./ImageUpload/ImageUpload";
 
 
 
@@ -164,6 +165,7 @@ const WList = (props) => {
                         value={title} onChange={(e) => setTitle(e.currentTarget.value)}
                         placeholder="Номер машины"
                     />
+                    <ImageUpload />
                     <button className="btn_add_dates" onClick={onAddName}>Добавить</button>
                 </Modal>
                 <div className={stylab.search}>

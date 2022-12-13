@@ -10,7 +10,7 @@
     justify-content: center;
     opacity: 1;/*  Важно */
     pointer-events: all;
-    z-index: 0;
+    z-index: 100;
 
 }
 

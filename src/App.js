@@ -19,8 +19,8 @@ import CamerasOptions from './options/parameterList/CamerasOptions';
 import CameraParameters from './options/parameterList/CameraParameters';
 import ExportOptions from './options/parameterList/ExportOptions';
 import ImportOptions from './options/parameterList/ImportOptions';
-import SafetyOptions from './options/parameterList/SafetyOptions';
 import Label from './Label/Label';
+import SafetyOptions from './options/parameterList/SafetyOptions/SafetyOptions';
 
 
 // let render = 0
@@ -89,8 +89,8 @@ let App = () => {
         <div className="App">
           <Header />
           <Routes>
-            <Route path='/camera' element={<VideoBar Cameras={Cameras} genNum={genNum}/>} />
-            <Route path='/' element={<VideoBar Cameras={Cameras} genNum={genNum}/>}/>
+            <Route path='camera' element={<VideoBar Cameras={Cameras} genNum={genNum}/>} />
+            <Route path='' element={<VideoBar Cameras={Cameras} genNum={genNum}/>}/>
           </Routes>
           {/* <VideoBar /> */}
           {bool !== 1 ? <Login /> :
@@ -100,17 +100,18 @@ let App = () => {
               {/* <Route path='/camera/' element={<VideoBar />} /> */}
               {/* <Route path='/camera' element={<GenCarNumber genNum={genNum}/>} />
               <Route path='/' element={<GenCarNumber genNum={genNum}/>} /> */}
-                <Route path='/archive' element={ 
+                <Route path='archive' element={ 
                   <React.StrictMode>
                     <Archive />
                   </React.StrictMode>
                 } />
-              <Route path='/list' element={<Label />} >
+              <Route path='list' element={<Label />} >
                 <Route path='wlist' element={<WList />} />
+                <Route path='' element={<WList />} />
                 <Route path='blist' element={<BList/>} />
               </Route>
-              <Route path='/blist' element={<BList />} />
-              <Route path='/log' element={<Log />} />
+              <Route path='blist' element={<BList />} />
+              <Route path='log' element={<Log />} />
               <Route path='options' element={<Options />} >
                 <Route path='cameras' element={<CamerasOptions />} />
                 <Route path='cameraParameters' element={<CameraParameters/>} />

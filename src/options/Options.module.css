@@ -45,7 +45,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  .options  button:active {
+  /* .options  button:active {
     background-color: rgb(112, 112, 112);
   }
 
@@ -55,8 +55,7 @@
     font-size: 16px;
     border-radius: 4px;
     border: 1px solid #d3d3d3;
-    /* background: #e6e6ff; */
     color: rgb(61, 61, 61);
-}
+} */
 
  

@@ -201,8 +201,6 @@ const Archive = (props) => {
         //         restart_beginning: false
         //       });
         // });
-        let ranges = [30, 200]
-        videojs.createTimeRanges(120, 200)
         // console.log(player1.duration())
         // console.log(videojs.createTimeRanges(ranges[0], ranges[1]))
         Video.ontimeupdate = () => { myFunction() };
@@ -342,11 +340,11 @@ const Archive = (props) => {
                                 isMultiSelection={false} /*выбрать диапазон*/
                             />
                             <div>Архивы с {yearMonthDay[2]}-{yearMonthDay[1]}-{yearMonthDay[0]}</div> {/* день месяц год*/}
-                            {videoListFromArchive.map((w) => { /*пробежка по списку*/
+                            {/* {videoListFromArchive.map((w) => { пробежка по списку
                                 return (
                                     <VideoList key={w} videos={w} />
                                 )
-                            })}
+                            })} */}
                         </div>
 
                     </div>

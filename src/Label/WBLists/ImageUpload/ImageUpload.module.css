@@ -1,0 +1,25 @@
+.previewComponent{
+    width: 190px;
+}
+  .fileInput {
+    position: relative;
+    justify-content: center;
+    cursor: pointer;
+    color: transparent;
+  }
+
+  .imgPreview {
+    text-align: center;
+    margin: 5px 0px;
+  }
+  .imgPreview img {
+    width: 190px;
+  }
+  .previewText {
+    font-size: 12px;
+  }
+  
+  .inputArea{
+    position: relative;
+    left: 25px;
+  }

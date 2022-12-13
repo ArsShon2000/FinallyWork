@@ -48,7 +48,10 @@ video::-webkit-media-controls {
   margin-left: 95%;
   margin-top: 1%;
   cursor: pointer;
+  z-index: 1;
 }
+
+
 
 /* ====================================   TOOLS   ================================== */
 
@@ -72,7 +75,7 @@ video::-webkit-media-controls {
 
 .fullOneStream{
   grid-area: fullOneStream;
-  z-index: 1;
+  /* z-index: 1; */
  }
 
  .valueOfSelect{
